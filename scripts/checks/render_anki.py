@@ -182,7 +182,7 @@ def poll():
             and data["ordinal"] == z
             and data["names"] == expected_names
             and data["alpha"] == (255 if side == "question" else 0)
-            and data["image"] == f"rv-periodic-{theme}.png"
+            and data["image"] == f"rv-periodic-{theme}-v2.png"
         )
         if errors:
             data["console"] = list(errors)

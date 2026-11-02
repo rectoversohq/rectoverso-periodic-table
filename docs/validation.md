@@ -59,3 +59,28 @@ The answer caption now waits for its active target to be parsed. A controlled pa
 | `Tableau-periodique-fr.apkg` | 1,014,351 | `0965222794fd54b3567a5762e30b1eb867bf7bdb8351934a3a5917c12c553071` |
 
 Evidence is in the source-push packet’s `working-ci-caption/`, `caption-default-upgrade/` and `parser-regression-green/`; hosted checks retain their own generated reports. The earlier candidate-7 table remains historical evidence.
+
+
+## Atomic-number clearance candidate — 2026-11-02
+
+[Source issue #3](https://github.com/rectoversohq/rectoverso-periodic-table/issues/3) corrects the authored cell layout for [app #622](https://github.com/simonpinkas/RectoVerso/issues/622). The old 70 × 48 mask sat too close to the number: all 118 numbers in both themes intersected the unchanged native lens/rim. This was source spacing, not an app camera or registration error. Taller cells and a 70 × 40 full-symbol region leave a separate number band; typography, facts and identities are preserved. The four registered PNGs are now **3840 × 2960**.
+
+| Check | Observed result |
+| --- | --- |
+| Source regression | Five tests pass. Actual SF Pro raster ink for all 118 numbers in both themes has at least **11.432 source units** beyond the existing black lens rim; the old source fails all 236 cases (worst −16.560). |
+| Concealment / registration | Both original/clean pairs have zero changed pixels outside the 118 symbol regions. Complete symbol ink, including descenders, remains inside its region; original answer text is unchanged. |
+| Native Anki backend | Both language packages, independent rebuilds, native editing, optional-field fallback, scheduling and export/reimport pass. Fresh packages have four exact media hashes and no missing/unused media. |
+| Prior-candidate update | Default **If Newer** updates from candidate-7 and the caption-corrected source candidate pass for both languages: all 118 card IDs, note/model/GUID/field identities, studied state and review log survive. Current masks and preparation hashes are checked, then scheduled export/reimport passes. |
+| Media-name regression | An initial same-name artwork update failed: Anki renamed changed files while base64 preparation kept stale names. Versioned `-v2.png` names fix this. Old unused media may remain in existing collections; no user media is deleted. The validator's repeatable `--prior-packages` check retains this regression. |
+| Bundled Anki reviewer | **944/944** final-package pages pass, checking masks, ordinal, theme, correct name and absence of front-answer/metadata leaks. |
+| Actual app Core | The focused `GalleryOcclusionDeckTests` suite passes for the final EN/FR packages: 236 original answers/localized names, four media assets per language, study/save/update and Anki export/reimport preserve progress. |
+| Native simulator review | **72 Duo captures**: all six poses, light/English and dark/French, Cn (112) hidden/partial/full, automatic entry and actual pinch zoom. **20 430pt phone captures** add H and Og. These are native screenshots, with saved geometry; all 118 elements are covered by the raster/backend checks, not by an invented all-element native screenshot claim. |
+| Manual zoom boundary | The smallest closed-upright full-answer window is 76pt high. At roughly 2.1×, number 112 can move behind the toolbar/offscreen while still clearing the lens. Those extreme captures are retained. Useful closed-upright partial 1.386× and full-answer 0.8× captures keep it readable; other manual captures are about 2.1×. This source correction does not constrain manual pan/zoom or alter app controls. |
+| Preservation | Isolated probe with no App Group. Original Duo PID 89437 and all **6,434** saved-file hashes unchanged; probe removed and pose/palette/type restored. Physical-phone decks were not changed. |
+
+Current local evidence is `/Volumes/SSD/RectoVerso/raw/periodic-clearance-20261102/`: `artwork-v2/`, `packages-v2/`, `anki-final/report.json`, `reviewer-v2/render-report.json`, `app-roundtrip/`, `clearance-audit.json`, `phone/`, `duo/`, `duo-extreme-zoom/`, `preservation/` and the linked full screenshots in `review/index.html`. Incorrect-coordinate harness captures remain in a separate archive. The exact-head clean-clone and hosted results are recorded with the source PR. A complete manual Anki Desktop editor session and hardware/accessibility review remain separate gates; no release or app asset publication is implied.
+
+| Package | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `Periodic-table-en.apkg` | 1,016,539 | `96b73a0ab62a1dd0f6fb5822a9d13c4c226d71767ee88f10e25a1ff4a92db010` |
+| `Tableau-periodique-fr.apkg` | 1,016,597 | `f13b2fed311c3cbddff5a82def1e3b0a1c4363dcf9d884bf77787046ac770111` |

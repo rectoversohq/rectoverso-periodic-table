@@ -25,3 +25,28 @@ Sans affichage, le canevas est rendu sans GPU. Le vérificateur attend le docume
 ## Candidat de revue corrigé
 
 Le nom et les faits attendent maintenant que la cible active soit présente dans le document. Une pause contrôlée de l’analyse HTML reproduisait leur absence ; le même contrôle réussit après correction. Les deux paquets ont été reconstruits, sans modifier les données, illustrations, régions ni identités. Les nouvelles empreintes figurent dans le [rapport anglais](validation.md) et le manifeste. L’importation normale **Si plus récent** depuis le candidat local précédent applique le script en conservant les 118 identifiants et la progression étudiée dans chaque langue. Ce contrôle ne prétend pas à une migration depuis une version publiée.
+
+
+## Candidat : dégagement du numéro atomique — 2026-11-02
+
+L’[issue source #3](https://github.com/rectoversohq/rectoverso-periodic-table/issues/3), liée à l’[app #622](https://github.com/simonpinkas/RectoVerso/issues/622), corrige l’espacement des cellules dessinées. L’ancien masque de 70 × 48 était trop proche du numéro : les 118 numéros, dans les deux thèmes, rencontraient la lentille et son contour inchangés. Il ne s’agissait pas d’un défaut de caméra ou de recalage. Des cellules plus hautes et une région de 70 × 40 contenant tout le symbole réservent une bande au numéro. Typographie, données et identités restent intactes. Les quatre PNG recalés mesurent désormais **3840 × 2960**.
+
+| Contrôle | Résultat observé |
+| --- | --- |
+| Régression source | Cinq tests réussis. L’encre raster SF Pro des 118 numéros dans les deux thèmes garde au moins **11,432 unités source** au-delà du contour noir ; l’ancienne source échoue aux 236 cas (minimum −16,560). |
+| Masquage et recalage | Zéro pixel modifié hors des 118 régions entre chaque original et sa version nettoyée. Les symboles entiers, descendantes comprises, restent dans leur région ; la réponse originale est inchangée. |
+| Backend Anki natif | Paquets bilingues, reconstructions indépendantes, édition native, retrait du champ optionnel, planification et export/réimport réussis. Quatre médias exacts par paquet neuf, aucun absent ou inutilisé. |
+| Mise à jour des anciens candidats | Avec **Si plus récent**, candidate-7 puis le candidat à légende corrigée sont mis à jour dans les deux langues : 118 identités de cartes, note/modèle/GUID/champs, état étudié et journal conservés. Masques et empreintes actuels vérifiés, puis export/réimport avec planification réussi. |
+| Régression des noms de médias | Le premier essai réutilisant les noms a échoué : Anki renommait les fichiers modifiés, mais le JSON base64 conservait les anciens noms. Les noms `-v2.png` corrigent ce problème. Les anciens médias inutilisés peuvent rester dans la collection ; aucun média utilisateur n’est supprimé. L’option répétable `--prior-packages` conserve ce contrôle. |
+| Reviewer Anki intégré | **944/944** pages finales réussies : masque, ordinal, thème, nom correct et absence de réponse/métadonnées sur le recto. |
+| Core de l’app réelle | `GalleryOcclusionDeckTests` réussit avec les paquets finaux : 236 réponses originales/noms localisés, quatre médias par langue, étude/sauvegarde/mise à jour et export/réimport Anki avec progrès conservés. |
+| Revue native sur simulateurs | **72 captures Duo** : six postures, clair/anglais et sombre/français, Cn (112) masqué/partiel/révélé, entrée automatique et pincement réel. **20 captures téléphone 430pt** ajoutent H et Og. Captures natives avec géométrie conservée ; les 118 éléments sont couverts par les contrôles raster/backend, sans prétendre à 118 captures natives. |
+| Limite du zoom manuel | La plus petite fenêtre en portrait fermé, réponse complète, mesure 76pt. À environ 2,1×, le numéro 112 peut passer sous la barre ou hors écran tout en restant dégagé de la lentille. Ces captures extrêmes sont conservées. Les captures utiles à 1,386× en réponse partielle et 0,8× en réponse complète restent lisibles ; les autres zooms sont proches de 2,1×. Aucun contrôle de caméra ou de barre n’est modifié. |
+| Préservation | Sonde isolée sans App Group. PID Duo original 89437 et **6 434** empreintes de fichiers conservés ; sonde retirée, posture/thème/texte restaurés. Aucun paquet du téléphone physique modifié. |
+
+Preuves locales : `/Volumes/SSD/RectoVerso/raw/periodic-clearance-20261102/`, notamment `artwork-v2/`, `packages-v2/`, `anki-final/report.json`, `reviewer-v2/render-report.json`, `app-roundtrip/`, `clearance-audit.json`, `phone/`, `duo/`, `duo-extreme-zoom/`, `preservation/` et `review/index.html` avec liens vers les captures complètes. Les essais aux coordonnées erronées sont archivés séparément. La PR source indique les résultats du clone neuf sur le commit exact et de la CI hébergée. L’édition manuelle complète dans Anki Desktop et les revues matérielle/accessibilité restent distinctes ; aucune publication n’est impliquée.
+
+| Paquet | Octets | SHA-256 |
+| --- | ---: | --- |
+| `Periodic-table-en.apkg` | 1 016 539 | `96b73a0ab62a1dd0f6fb5822a9d13c4c226d71767ee88f10e25a1ff4a92db010` |
+| `Tableau-periodique-fr.apkg` | 1 016 597 | `f13b2fed311c3cbddff5a82def1e3b0a1c4363dcf9d884bf77787046ac770111` |

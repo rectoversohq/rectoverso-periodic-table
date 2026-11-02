@@ -83,7 +83,7 @@ button {font:inherit;font-size:14px;padding:8px 16px;border-radius:18px;}
             "try {",
             """try {
     const image = document.querySelector('#image-occlusion-container img');
-    if (document.body.classList.contains('nightMode')) image.src = 'rv-periodic-dark.png';""",
+    if (document.body.classList.contains('nightMode')) image.src = 'rv-periodic-dark-v2.png';""",
         )
     # The revealed name and compact facts lead the back, before the large figure.
     model["tmpls"][0]["afmt"] = model["tmpls"][0]["afmt"].replace(
@@ -160,7 +160,7 @@ button {font:inherit;font-size:14px;padding:8px 16px;border-radius:18px;}
     note.guid = ids["guid"]
     note["Occlusion"] = masks
     note["Image"] = (
-        '<img src="rv-periodic-light.png"><img src="rv-periodic-dark.png" style="display:none" aria-hidden="true">'
+        '<img src="rv-periodic-light-v2.png"><img src="rv-periodic-dark-v2.png" style="display:none" aria-hidden="true">'
     )
     note["Header"] = (
         "Which symbol belongs here?" if lang == "en" else "Quel symbole se trouve ici ?"

@@ -21,9 +21,9 @@ from PyQt6.QtSvg import QSvgRenderer
 from PyQt6.QtWidgets import QApplication
 
 ROOT = Path(__file__).resolve().parents[1]
-WIDTH, HEIGHT = 1920, 1200
+WIDTH, HEIGHT = 1920, 1480
 SCALE = 2
-X, Y, PITCH, ROW_PITCH, CELL_W, CELL_H = 100, 126, 96, 100, 88, 92
+X, Y, PITCH, ROW_PITCH, CELL_W, CELL_H = 100, 126, 96, 132, 88, 124
 # Original pedagogical color scheme. Hue families remain registered in each pair.
 PALETTE = {
     "alkali": ["#e9b8ad", "#603b37"],
@@ -51,8 +51,10 @@ def rect(element):
 
 
 def region(element):
+    # Keep the full symbol, including descenders, below the separate number band.
+    # Its clearance is checked against the native lens, without moving that lens.
     x, y, _, _ = rect(element)
-    return [x + 9, y + 30, 70, 48]
+    return [x + 9, y + 58, 70, 40]
 
 
 def svg(elements, theme, clean=False):
@@ -72,16 +74,16 @@ def svg(elements, theme, clean=False):
     for group in range(1, 19):
         text(X + (group - 1) * PITCH + CELL_W / 2, 94, group)
     for row in range(1, 8):
-        text(55, Y + (row - 1) * ROW_PITCH + 55, row)
+        text(55, Y + (row - 1) * ROW_PITCH + CELL_H / 2 + 9, row)
     for row, period in [(8, 6), (9, 7)]:
-        text(X + 2 * PITCH + CELL_W / 2, Y + (row - 1) * ROW_PITCH + 91, period)
+        text(X + 2 * PITCH + CELL_W / 2, Y + (row - 1) * ROW_PITCH + CELL_H - 1, period)
     for period, span in [(6, "57–71"), (7, "89–103")]:
         x = X + 2 * PITCH
         y = Y + (period - 1) * ROW_PITCH
         parts.append(
             f'<rect x="{x}" y="{y}" width="{CELL_W}" height="{CELL_H}" rx="4" fill="none" stroke="{p["muted"]}" stroke-opacity="0.4"/>'
         )
-        text(x + CELL_W / 2, y + 53, span, 15)
+        text(x + CELL_W / 2, y + CELL_H / 2 + 7, span, 15)
     for e in elements:
         x, y, w, h = rect(e)
         fill = PALETTE[e["family"]][idx]
@@ -90,7 +92,7 @@ def svg(elements, theme, clean=False):
         )
         text(x + 10, y + 21, e["atomicNumber"], 14, p["ink"], "start")
         if not clean:
-            text(x + w / 2, y + 67, e["symbol"], 36, p["ink"], "middle", 600)
+            text(x + w / 2, y + 89, e["symbol"], 36, p["ink"], "middle", 600)
     parts.append("</g></svg>")
     return "\n".join(parts) + "\n"
 
@@ -128,11 +130,12 @@ def main():
             name = "rv-periodic-" + theme + ("-clean" if clean else "")
             vector = svg(elements, theme, clean)
             (ROOT / "artwork" / f"{name}.svg").write_text(vector)
-            images[clean] = render(vector, args.out / f"{name}.png")
+            filename = f"{name}-v2.png"
+            images[clean] = render(vector, args.out / filename)
             assets[name] = {
-                "file": name + ".png",
+                "file": filename,
                 "sha256": hashlib.sha256(
-                    (args.out / f"{name}.png").read_bytes()
+                    (args.out / filename).read_bytes()
                 ).hexdigest(),
                 "width": WIDTH * SCALE,
                 "height": HEIGHT * SCALE,
