@@ -17,3 +17,7 @@ Candidat local, sans publication. Anki **26.09.3** ; quatre images partagées de
 Anki conserve ses masques natifs neutres. RectoVerso peut utiliser les images nettoyées enregistrées qui conservent les couleurs des cellules. Une couleur native par forme est possible, mais une valeur unique ne correspond pas aux deux palettes ; aucun moteur de masque de remplacement n'a été ajouté.
 
 Le workflow de CI s’exécute sur la branche et la pull request de revue ; ses résultats courants sont liés dans la [revue des sources](review.md). Les contrôles propres à RectoVerso et aux appareils physiques relèvent de la tâche applicative séparée. Aucun paquet ni aucune release n’est publié.
+
+## Contrôles de la CI de revue
+
+Sans affichage, le canevas est rendu sans GPU. Le vérificateur attend le document exact et le rappel de fin de dessin d’Anki, puis applique ses assertions intactes : une réponse incorrecte ou un masque transparent reste un échec. La CI vérifie 944 pages et 64 pages supplémentaires avec navigation volontairement retardée. La [revue des sources](review.md) conserve les échecs initiaux et leurs contrôles. Aucun contenu de carte ni moteur de rendu Anki n’est modifié.

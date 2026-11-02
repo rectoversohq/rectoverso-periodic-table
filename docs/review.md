@@ -21,6 +21,12 @@ The manifest describes the frozen reviewed package candidate, including its reco
 
 The existing mask-alpha assertions caught a real CI-environment failure: offscreen Qt reported lost GPU contexts and left question canvases transparent. A representative 64-page run failed 31 questions. Changing only `QTWEBENGINE_CHROMIUM_FLAGS=--disable-gpu` produced 64/64 passing pages. CI uses this software canvas path, while retaining every mask, ordinal, theme and answer-leak assertion. Full and clean-clone runs are recorded with the PR; no card or renderer code changed.
 
+## Hosted document readiness
+
+The first hosted reviewer run passed 942 of 944 pages. Its two failures sampled an unfinished 300 × 150 canvas or the preceding question while expecting the answer. A controlled 300 ms document delay reproduced the navigation race: 1/64 passed before the fix, 64/64 after it. The harness now identifies its exact document and observes Anki’s supported `onDidDrawShapes` callback before checking pixels and text. It does not replace Anki’s drawing or wait for failed assertions to become true. An intentionally transparent target still fails the mask-alpha gate.
+
+CI also runs `--sample --document-delay-ms 300` after the full reviewer. These are checker changes only; source artwork, card templates, package-generation code and identities are unchanged. The previous failed hosted reports remain attached to their runs.
+
 ## En français
 
 Le propriétaire a autorisé le dépôt et l’envoi des sources pour revue. Le premier commit de sources reproduit exactement l’arbre du candidat testé indiqué ci-dessus ; son historique local d’origine est conservé. Les modifications de mise en place concernent la documentation et la présentation de la licence ainsi que la configuration du contrôle CI, sans changer les cartes, médias, identités ni générateurs. Vérifier le résultat réel d’**Anki packages** sur la pull request. La revue Anki Desktop, l’approbation éditoriale et la publication restent des étapes distinctes. Aucun paquet n’est publié à ce stade.

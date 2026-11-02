@@ -16,7 +16,15 @@ p.add_argument("--evidence", type=Path, required=True)
 p.add_argument("--web", type=Path, required=True)
 p.add_argument("--out", type=Path, required=True)
 p.add_argument("--sample", action="store_true")
+p.add_argument(
+    "--document-delay-ms",
+    type=int,
+    default=0,
+    help="Exercise asynchronous navigation with a delayed document load",
+)
 a = p.parse_args()
+if not 0 <= a.document_delay_ms <= 2000:
+    p.error("--document-delay-ms must be between 0 and 2000")
 a.out.mkdir(parents=True, exist_ok=False)
 app = QApplication(["periodic-table-native-review"])
 profile = QWebEngineProfile()
@@ -91,19 +99,40 @@ def start():
     body = (a.evidence / lang / f"{z:03d}-{side}.html").read_text()
     cls = "card nightMode" if theme == "dark" else "card"
     document = '<!doctype html><html><head><meta charset="utf-8"><script>window.pycmd=()=>{};</script>'
-    document += f'<link rel="stylesheet" href="{(a.web / "css/reviewer.css").as_uri()}"><script src="{(a.web / "js/reviewer.js").as_uri()}"></script></head><body class="{cls}">{body}</body></html>'
-    view.setHtml(
-        document, QUrl.fromLocalFile(str(a.evidence / lang / "source.media") + "/")
+    document += f'<link rel="stylesheet" href="{(a.web / "css/reviewer.css").as_uri()}"><script src="{(a.web / "js/reviewer.js").as_uri()}"></script>'
+    # Observe Anki's own completed draw; never replace its shapes or rendering.
+    document += """<script>
+const originalSetup = anki.imageOcclusion.setup;
+anki.imageOcclusion.setup = function(options = {}) {
+  return originalSetup.call(this, {...options, onDidDrawShapes: (...args) => {
+    options.onDidDrawShapes?.(...args);
+    window.rvReviewDrawn = true;
+  }});
+};
+</script>"""
+    case = "-".join(map(str, current))
+    document += (
+        f'</head><body class="{cls}" data-rv-review-case="{case}">{body}</body></html>'
     )
-    QTimer.singleShot(150, poll)
+
+    def load_document():
+        view.setHtml(
+            document, QUrl.fromLocalFile(str(a.evidence / lang / "source.media") + "/")
+        )
+
+    QTimer.singleShot(a.document_delay_ms, load_document)
+    QTimer.singleShot(0, poll)
 
 
 def poll():
     lang, theme, z, side = current
-    script = """(() => {const c=document.querySelector('canvas'),img=document.querySelector('#image-occlusion-container img');if(!c||!c.width||!img?.complete)return null;
+    case = json.dumps("-".join(map(str, current)))
+    script = """(() => {if(document.body?.dataset.rvReviewCase !== CASE || document.readyState !== "complete" || !window.rvReviewDrawn)return null;const c=document.querySelector('canvas'),img=document.querySelector('#image-occlusion-container img');if(!c||!c.width||!img?.complete)return null;
  const target=document.querySelector('.cloze,.cloze-highlight');let alpha=null,pixelError=null;
  try{const d=target.dataset;alpha=c.getContext('2d').getImageData((+d.left + +d.width/2)*c.width,(+d.top + +d.height/2)*c.height,1,1).data[3];}catch(e){pixelError=String(e)}
- return JSON.stringify({api:!!window.anki?.imageOcclusion,canvas:[c.width,c.height],image:img.getAttribute('src'),ordinal:+target?.dataset.ordinal,targetClass:target?.className,alpha,pixelError,names:[...document.querySelectorAll('.rv-fact:not([hidden]) .rv-name')].map(e=>e.textContent),detail:[...document.querySelectorAll('.rv-fact:not([hidden]) .rv-detail')].map(e=>e.textContent),error:document.getElementById('err')?.textContent,metadata:document.body.innerText.includes('RV-OCCLUSION-1:')});})()"""
+ return JSON.stringify({api:!!window.anki?.imageOcclusion,canvas:[c.width,c.height],image:img.getAttribute('src'),ordinal:+target?.dataset.ordinal,targetClass:target?.className,alpha,pixelError,names:[...document.querySelectorAll('.rv-fact:not([hidden]) .rv-name')].map(e=>e.textContent),detail:[...document.querySelectorAll('.rv-fact:not([hidden]) .rv-detail')].map(e=>e.textContent),error:document.getElementById('err')?.textContent,metadata:document.body.innerText.includes('RV-OCCLUSION-1:')});})()""".replace(
+        "CASE", case
+    )
 
     def ready(value):
         if not value:

@@ -44,3 +44,7 @@ Local evidence root (outside source Git): `/Volumes/SSD/RectoVerso/raw/periodic-
 - `evidence/anki-fresh/report.json`, `evidence/fresh-artwork.log`, `evidence/fresh-build.json`, `evidence/fresh-rebuild.json`: fresh-clone checks. `fresh-source/` contains the isolated checkout; `fresh-build/` contains its rebuilds.
 
 Rebuilds may differ in timestamp-dependent archive bytes. Compare validated media, fields and stable identities; each generated sidecar describes its own package.
+
+## Source-review CI regression checks
+
+Headless runs use software canvas rendering. The reviewer waits for its exact document and Anki’s drawing-complete callback, then checks the original assertions once; a rendered wrong answer or transparent mask still fails. CI runs all 944 pages plus a 64-page delayed-navigation regression. The [source-review record](review.md) preserves the initial GPU and asynchronous-navigation failures and their controls. These harness changes do not alter card content or native Anki rendering.
