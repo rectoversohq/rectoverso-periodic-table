@@ -174,7 +174,21 @@ button {font:inherit;font-size:14px;padding:8px 16px;border-radius:18px;}
         )
     note["Back Extra"] = (
         "".join(extras)
-        + """<script>setTimeout(() => {const ordinal=document.querySelector('.cloze-highlight')?.dataset.ordinal;document.querySelectorAll('[data-rv-ordinal]').forEach(el=>{if(el.dataset.rvOrdinal===ordinal)el.hidden=false;else el.remove();});},0);</script>"""
+        + """<script>(() => {
+  const showFact = () => {
+    const ordinal = document.querySelector('.cloze-highlight')?.dataset.ordinal;
+    if (!ordinal) return;
+    document.querySelectorAll('[data-rv-ordinal]').forEach(el => {
+      if (el.dataset.rvOrdinal === ordinal) el.hidden = false;
+      else el.remove();
+    });
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showFact, {once: true});
+  } else {
+    showFact();
+  }
+})();</script>"""
     )
     note["Comments"] = (
         "Original artwork and deck © Simon Pinkas, CC BY 4.0. Element facts: Wikidata CC0, checked against IUPAC. "

@@ -6,7 +6,7 @@ The owner approved creating this repository and pushing this candidate for sourc
 
 The initial source commit is an exact Git-tree snapshot of the previously tested local candidate `4665e527c32770eeeb036827e971a904b9efa2b7` (tree `b1a485dfe20bb5d6a1a2600a1528e23040337eb8`). Its original local branch and history remain intact. The following setup commit updates repository/build instructions and the Periodic table check name/action pins plus full CC BY 4.0 license text; it does not change learning content, images, identities, templates or package-generation code. Source history was inspected for packaged decks, font binaries, credentials and inappropriate private content before pushing. Build output and evidence stay outside source Git.
 
-The manifest describes the frozen reviewed package candidate, including its recorded local status; it does not announce a release. Regenerated archives may have different timestamp-dependent bytes. Use the sidecars from the actual build.
+The manifest describes the current reviewed source package candidate; it does not announce a release. Regenerated archives may have different timestamp-dependent bytes. Use the sidecars from the actual build.
 
 ## Checks and next steps
 
@@ -26,6 +26,14 @@ The existing mask-alpha assertions caught a real CI-environment failure: offscre
 The first hosted reviewer run passed 942 of 944 pages. Its two failures sampled an unfinished 300 × 150 canvas or the preceding question while expecting the answer. A controlled 300 ms document delay reproduced the navigation race: 1/64 passed before the fix, 64/64 after it. The harness now identifies its exact document and observes Anki’s supported `onDidDrawShapes` callback before checking pixels and text. It does not replace Anki’s drawing or wait for failed assertions to become true. An intentionally transparent target still fails the mask-alpha gate.
 
 CI also runs `--sample --document-delay-ms 300` after the full reviewer. These are checker changes only; source artwork, card templates, package-generation code and identities are unchanged. The previous failed hosted reports remain attached to their runs.
+
+## Caption initialization correction
+
+A later hosted run reached the correct document and completed drawing but still missed one element caption. The answer’s early zero-delay timer could run before the browser had parsed the later active-mask element, then remove every fact. A parser-blocking resource reproduced the missing-caption result. The builder now selects the fact after DOM parsing, or immediately when the document is already ready. It never deletes facts without finding the active ordinal.
+
+This is a narrow answer-script change. Facts, artwork, geometry, prepared asset hashes and all card/note identities stay unchanged. Source CI rebuilds both language artifacts and runs all 944 pages plus delayed navigation and parsing. Default **If Newer** import from the earlier local candidate updates this script in both languages while preserving all 118 card IDs and the studied schedule/review log. This is a tested local-candidate transition, not a published-release upgrade claim.
+
+The manifest’s package hashes now identify the corrected local candidate; generated archives from subsequent runs can differ by timestamp. The source PR links the current hosted check and retained initial failures.
 
 ## En français
 

@@ -36,7 +36,7 @@ python scripts/checks/render_anki.py --evidence "$DECK_OUT/anki-check" \
   --out "$DECK_OUT/render-check"
 ```
 
-`--web` must point to the **same Anki version's** installed reviewer assets. The render check uses a Qt window. In a graphical session, run it normally; for headless CI set `QT_QPA_PLATFORM=offscreen` and `QTWEBENGINE_CHROMIUM_FLAGS=--disable-gpu` so canvas masks use software rendering. `--sample` checks eight representative elements before the full 944-page pass. Adding `--document-delay-ms 300` exercises slow navigation without changing the expected card result. For an installed `aqt` distribution, its `_aqt/data/web` directory is equivalent.
+`--web` must point to the **same Anki version's** installed reviewer assets. The render check uses a Qt window. In a graphical session, run it normally; for headless CI set `QT_QPA_PLATFORM=offscreen` and `QTWEBENGINE_CHROMIUM_FLAGS=--disable-gpu` so canvas masks use software rendering. `--sample` checks eight representative elements before the full 944-page pass. Adding `--document-delay-ms 300 --parser-delay-ms 300` exercises slow navigation and HTML parsing without changing the expected card result. For an installed `aqt` distribution, its `_aqt/data/web` directory is equivalent.
 
 Outputs: `Periodic-table-en.apkg`, `Tableau-periodique-fr.apkg`, each package's `.rectoverso.json`, four PNGs and their geometry/hash record, backend reports and native-reviewer captures. `rectoverso.json` in this repository describes the reviewed local candidate; rebuilding Anki archives may change their timestamp-dependent bytes and checksums. Compare validated content and identities, and use the sidecars belonging to the actual packages.
 

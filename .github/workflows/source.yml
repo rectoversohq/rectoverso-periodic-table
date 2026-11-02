@@ -35,7 +35,7 @@ jobs:
         run: |
           ANKI_WEB=$(python -c 'from importlib.metadata import distribution; print(distribution("aqt").locate_file("_aqt/data/web"))')
           python scripts/checks/render_anki.py --evidence "$RUNNER_TEMP/periodic/anki-check" --web "$ANKI_WEB" --out "$RUNNER_TEMP/periodic/render-check"
-          python scripts/checks/render_anki.py --evidence "$RUNNER_TEMP/periodic/anki-check" --web "$ANKI_WEB" --out "$RUNNER_TEMP/periodic/navigation-check" --sample --document-delay-ms 300
+          python scripts/checks/render_anki.py --evidence "$RUNNER_TEMP/periodic/anki-check" --web "$ANKI_WEB" --out "$RUNNER_TEMP/periodic/navigation-check" --sample --document-delay-ms 300 --parser-delay-ms 300
       - name: Retain validation evidence, including failures
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

@@ -48,3 +48,14 @@ Rebuilds may differ in timestamp-dependent archive bytes. Compare validated medi
 ## Source-review CI regression checks
 
 Headless runs use software canvas rendering. The reviewer waits for its exact document and Anki’s drawing-complete callback, then checks the original assertions once; a rendered wrong answer or transparent mask still fails. CI runs all 944 pages plus a 64-page delayed-navigation regression. The [source-review record](review.md) preserves the initial GPU and asynchronous-navigation failures and their controls. These harness changes do not alter card content or native Anki rendering.
+
+## Corrected source-review package candidate
+
+The answer caption now waits for its active target to be parsed. A controlled parser pause reproduced missing names, and the same native-renderer control passes with this correction. Artwork, preparation and stable identities are unchanged; both packages were rebuilt. Full source/native-backend, 944-page reviewer and 64-page delayed-navigation/parser checks pass. Default **If Newer** imports from candidate-7 apply the caption script and preserve all 118 card IDs plus studied scheduling and one review-log entry in each language. This prior candidate was local, not a released version.
+
+| Package | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `Periodic-table-en.apkg` | 1,014,320 | `2ef37152d99fc795f5ef9853990fb01c2e06e588cd3651b170a9272d152be6c8` |
+| `Tableau-periodique-fr.apkg` | 1,014,351 | `0965222794fd54b3567a5762e30b1eb867bf7bdb8351934a3a5917c12c553071` |
+
+Evidence is in the source-push packet’s `working-ci-caption/`, `caption-default-upgrade/` and `parser-regression-green/`; hosted checks retain their own generated reports. The earlier candidate-7 table remains historical evidence.

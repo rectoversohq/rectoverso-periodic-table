@@ -7,7 +7,11 @@ import time
 from pathlib import Path
 from PyQt6.QtCore import QTimer, QUrl
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile
+from PyQt6.QtWebEngineCore import (
+    QWebEnginePage,
+    QWebEngineProfile,
+    QWebEngineUrlRequestInterceptor,
+)
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -22,14 +26,35 @@ p.add_argument(
     default=0,
     help="Exercise asynchronous navigation with a delayed document load",
 )
+p.add_argument(
+    "--parser-delay-ms",
+    type=int,
+    default=0,
+    help="Pause answer parsing after its caption script to test initialization order",
+)
 a = p.parse_args()
 if not 0 <= a.document_delay_ms <= 2000:
     p.error("--document-delay-ms must be between 0 and 2000")
+if not 0 <= a.parser_delay_ms <= 2000:
+    p.error("--parser-delay-ms must be between 0 and 2000")
 a.out.mkdir(parents=True, exist_ok=False)
 app = QApplication(["periodic-table-native-review"])
 profile = QWebEngineProfile()
 profile.setCachePath(str(a.out / "qt-cache"))
 profile.setPersistentStoragePath(str(a.out / "qt-storage"))
+# A blocking resource makes the parser yield after Back Extra's caption script.
+# It exercises real browser ordering without changing the script or its assertions.
+if a.parser_delay_ms:
+    parser_gate = a.out / "parser-gate.js"
+    parser_gate.write_text("// Deliberate parser-order regression fixture.\n")
+
+    class ParserDelay(QWebEngineUrlRequestInterceptor):
+        def interceptRequest(self, info):
+            if info.requestUrl().fileName() == "parser-gate.js":
+                time.sleep(a.parser_delay_ms / 1000)
+
+    parser_delay = ParserDelay()
+    profile.setUrlRequestInterceptor(parser_delay)
 errors = []
 
 
@@ -97,6 +122,12 @@ def start():
     errors.clear()
     started = time.monotonic()
     body = (a.evidence / lang / f"{z:03d}-{side}.html").read_text()
+    if side == "answer" and a.parser_delay_ms:
+        body = body.replace(
+            "</script>",
+            f'</script><script src="{parser_gate.as_uri()}?{lang}-{theme}-{z}"></script>',
+            1,
+        )
     cls = "card nightMode" if theme == "dark" else "card"
     document = '<!doctype html><html><head><meta charset="utf-8"><script>window.pycmd=()=>{};</script>'
     document += f'<link rel="stylesheet" href="{(a.web / "css/reviewer.css").as_uri()}"><script src="{(a.web / "js/reviewer.js").as_uri()}"></script>'

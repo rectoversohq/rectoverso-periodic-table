@@ -21,3 +21,7 @@ Le workflow de CI s’exécute sur la branche et la pull request de revue ; ses 
 ## Contrôles de la CI de revue
 
 Sans affichage, le canevas est rendu sans GPU. Le vérificateur attend le document exact et le rappel de fin de dessin d’Anki, puis applique ses assertions intactes : une réponse incorrecte ou un masque transparent reste un échec. La CI vérifie 944 pages et 64 pages supplémentaires avec navigation volontairement retardée. La [revue des sources](review.md) conserve les échecs initiaux et leurs contrôles. Aucun contenu de carte ni moteur de rendu Anki n’est modifié.
+
+## Candidat de revue corrigé
+
+Le nom et les faits attendent maintenant que la cible active soit présente dans le document. Une pause contrôlée de l’analyse HTML reproduisait leur absence ; le même contrôle réussit après correction. Les deux paquets ont été reconstruits, sans modifier les données, illustrations, régions ni identités. Les nouvelles empreintes figurent dans le [rapport anglais](validation.md) et le manifeste. L’importation normale **Si plus récent** depuis le candidat local précédent applique le script en conservant les 118 identifiants et la progression étudiée dans chaque langue. Ce contrôle ne prétend pas à une migration depuis une version publiée.

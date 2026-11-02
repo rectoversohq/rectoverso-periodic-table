@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "id": "rectoverso-periodic-table",
   "version": "0.1.0-rc.1",
-  "status": "local-review-candidate",
+  "status": "source-review-candidate",
   "title": {
     "en": "Periodic table",
     "fr": "Tableau périodique"
@@ -65,8 +65,8 @@
     "en": {
       "id": "rectoverso-periodic-table-en",
       "package": {
-        "bytes": 1014178,
-        "sha256": "4505282f252978be1a94ca80b387fb223226490980d5289bde89c181b2ca2f67",
+        "bytes": 1014320,
+        "sha256": "2ef37152d99fc795f5ef9853990fb01c2e06e588cd3651b170a9272d152be6c8",
         "file": "Periodic-table-en.apkg"
       },
       "sourceFiles": {
@@ -84,8 +84,8 @@
     "fr": {
       "id": "rectoverso-periodic-table-fr",
       "package": {
-        "bytes": 1014251,
-        "sha256": "635671a16d3724fb96cff0aade12230ad07ad552e6662f87d1bb4deb4d0a04fc",
+        "bytes": 1014351,
+        "sha256": "0965222794fd54b3567a5762e30b1eb867bf7bdb8351934a3a5917c12c553071",
         "file": "Tableau-periodique-fr.apkg"
       },
       "sourceFiles": {
@@ -102,7 +102,7 @@
     }
   },
   "publication": {
-    "remote": null,
+    "remote": "https://github.com/rectoversohq/rectoverso-periodic-table",
     "release": null,
     "approved": false
   }
