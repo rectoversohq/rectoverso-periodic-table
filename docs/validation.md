@@ -18,7 +18,7 @@ This records the source candidate, not a published release. The tested packages 
 | Fresh source clone | Code revision `9162376`: `git clone --no-local`, 4 tests, lint/format, regenerated SVGs unchanged, two independent package builds and the strengthened native backend checks all passed. Four raster hashes, preparation hashes and IDs matched candidate-7. All 472 generated EN/FR front/back HTML files were byte-identical to the full reviewer run's inputs. |
 | Full Anki desktop editor | **Unverified.** An isolated SSD profile was launched with the installed `ANKI_SINGLE_INSTANCE_KEY` override. The available UI tool bound to the pre-existing user's Anki process instead; no UI actions were taken. Only the owned test process was stopped. The user's pending import and collection were untouched. |
 | RectoVerso / physical devices | Separate app-format task; not claimed by this source repository. |
-| Hosted source CI | Workflow supplied; no remote exists and no hosted run is claimed. |
+| Hosted source CI | The workflow runs on the source-review branch and PR. See [source review](review.md) and its linked checks for current results. |
 
 The source checker, backend and web reviewer are separate checks. A native reviewer pass does not stand in for a complete manual Anki editor session or a hardware review.
 

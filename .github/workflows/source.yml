@@ -4,13 +4,16 @@ permissions:
   contents: read
 jobs:
   source:
+    name: Anki packages
     runs-on: macos-15
     timeout-minutes: 25
     env:
       QT_QPA_PLATFORM: offscreen
+      # Offscreen Qt cannot reliably initialize Chromium GPU canvas surfaces.
+      QTWEBENGINE_CHROMIUM_FLAGS: --disable-gpu
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.13'
           cache: pip
@@ -32,3 +35,14 @@ jobs:
         run: |
           ANKI_WEB=$(python -c 'from importlib.metadata import distribution; print(distribution("aqt").locate_file("_aqt/data/web"))')
           python scripts/checks/render_anki.py --evidence "$RUNNER_TEMP/periodic/anki-check" --web "$ANKI_WEB" --out "$RUNNER_TEMP/periodic/render-check"
+      - name: Retain validation evidence, including failures
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: periodic-anki-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/periodic/artwork/artwork.json
+            ${{ runner.temp }}/periodic/anki-check/report.json
+            ${{ runner.temp }}/periodic/render-check/render-report.json
+          if-no-files-found: warn
+          retention-days: 14

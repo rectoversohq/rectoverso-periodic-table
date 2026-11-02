@@ -26,7 +26,7 @@ Anki uses the original figure and its native masks. The back selects only its or
 
 `IDS` in `scripts/build.py` is the authoritative identity table. The two languages have different deck, model, note, GUID, template, field and card identities. Card ordinals remain atomic-number minus one. Anki's add APIs require newly allocated rows, so the source builder assigns deterministic note/card rows after native creation; validators then exercise the generated package through Anki's importer and scheduler. Anki assigns local deck IDs when importing into another collection; stable package IDs and names do not imply that every user's database has the source deck ID.
 
-A patch fixes content without changing identities. A minor version adds compatible content. A major version is required only if notes cannot carry over. Rebuild both languages and run `scripts/checks/validate_anki.py` against an independently rebuilt package: no duplicates, lost review history or media changes are accepted. Publish only after owner review; no source remote or release currently exists.
+A patch fixes content without changing identities. A minor version adds compatible content. A major version is required only if notes cannot carry over. Rebuild both languages and run `scripts/checks/validate_anki.py` against an independently rebuilt package: no duplicates, lost review history or media changes are accepted. The source is reviewed in this repository; merge and package publication require owner approval. No package release exists. See [source review](review.md).
 
 ## Validation boundary
 

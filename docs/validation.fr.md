@@ -16,4 +16,4 @@ Candidat local, sans publication. Anki **26.09.3** ; quatre images partagées de
 
 Anki conserve ses masques natifs neutres. RectoVerso peut utiliser les images nettoyées enregistrées qui conservent les couleurs des cellules. Une couleur native par forme est possible, mais une valeur unique ne correspond pas aux deux palettes ; aucun moteur de masque de remplacement n'a été ajouté.
 
-Le workflow de CI est fourni sans prétendre à une exécution distante. Les contrôles propres à RectoVerso et aux appareils physiques relèvent de la tâche applicative séparée. Aucun dépôt distant, paquet ou release n'a été publié.
+Le workflow de CI s’exécute sur la branche et la pull request de revue ; ses résultats courants sont liés dans la [revue des sources](review.md). Les contrôles propres à RectoVerso et aux appareils physiques relèvent de la tâche applicative séparée. Aucun paquet ni aucune release n’est publié.

@@ -4,7 +4,18 @@
 
 An original, bilingual image-occlusion deck: **118 symbols**, with the full element name and compact atomic-number, group and period facts after answering. English and French are separate packages built from one source. The 18-column figure has registered light/dark original and clean pairs; only symbol regions are removed.
 
-This is a **local review candidate**, version **0.1.0-rc.1**. No repository, release or package has been published. Original artwork and deck: © Simon Pinkas, **CC BY 4.0**. Factual Wikidata records: **CC0**. See [credits](NOTICE.md), [source and identity rules](docs/source.md), and [validation](docs/validation.md).
+This is a **source review candidate**, version **0.1.0-rc.1**. The source is available for review; no package release is published. Original artwork and deck: © Simon Pinkas, **CC BY 4.0**. Factual Wikidata records: **CC0**. See [credits](NOTICE.md), [source and identity rules](docs/source.md), and [validation](docs/validation.md).
+
+## Get the source
+
+The complete candidate is reviewed in [source issue #1](https://github.com/rectoversohq/rectoverso-periodic-table/issues/1). The default branch is a landing page until the source PR is merged. Clone the review branch to run the commands below:
+
+```sh
+git clone --branch codex/1-source-candidate https://github.com/rectoversohq/rectoverso-periodic-table.git
+cd rectoverso-periodic-table
+```
+
+See [source review and validation status](docs/review.md).
 
 ## Build and check
 
@@ -25,7 +36,7 @@ python scripts/checks/render_anki.py --evidence "$DECK_OUT/anki-check" \
   --out "$DECK_OUT/render-check"
 ```
 
-`--web` must point to the **same Anki version's** installed reviewer assets. The render check uses a Qt window, so run it in a graphical session. `--sample` checks eight representative elements before the full 944-page pass. For an installed `aqt` distribution, its `_aqt/data/web` directory is equivalent.
+`--web` must point to the **same Anki version's** installed reviewer assets. The render check uses a Qt window. In a graphical session, run it normally; for headless CI set `QT_QPA_PLATFORM=offscreen` and `QTWEBENGINE_CHROMIUM_FLAGS=--disable-gpu` so canvas masks use software rendering. `--sample` checks eight representative elements before the full 944-page pass. For an installed `aqt` distribution, its `_aqt/data/web` directory is equivalent.
 
 Outputs: `Periodic-table-en.apkg`, `Tableau-periodique-fr.apkg`, each package's `.rectoverso.json`, four PNGs and their geometry/hash record, backend reports and native-reviewer captures. `rectoverso.json` in this repository describes the reviewed local candidate; rebuilding Anki archives may change their timestamp-dependent bytes and checksums. Compare validated content and identities, and use the sidecars belonging to the actual packages.
 
