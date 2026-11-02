@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 2,
+  "id": "rectoverso-periodic-table",
+  "version": "0.1.0-rc.1",
+  "status": "local-review-candidate",
+  "title": {
+    "en": "Periodic table",
+    "fr": "Tableau périodique"
+  },
+  "subject": {
+    "en": "Chemistry",
+    "fr": "Chimie"
+  },
+  "cards": 118,
+  "notes": 1,
+  "pictures": 4,
+  "sounds": 0,
+  "license": "CC-BY-4.0",
+  "cardKinds": [
+    {
+      "en": "Image occlusion → Symbol",
+      "fr": "Occlusion d’image → Symbole"
+    }
+  ],
+  "credits": {
+    "en": "Original artwork and deck © Simon Pinkas, CC BY 4.0. Element facts: Wikidata CC0; selectively verified against IUPAC and French primary sources.",
+    "fr": "Illustrations originales et paquet © Simon Pinkas, CC BY 4.0. Données des éléments : Wikidata CC0 ; vérifications ciblées auprès de l’IUPAC et de sources primaires françaises."
+  },
+  "source": [
+    {
+      "name": "Wikidata structured data",
+      "license": "CC0-1.0",
+      "version": "2026-11-01 snapshot",
+      "url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "provenance": "source/provenance.json"
+    }
+  ],
+  "imageCredits": [
+    {
+      "file": "rv-periodic-light.png",
+      "creator": "Simon Pinkas",
+      "license": "CC-BY-4.0",
+      "source": "artwork/rv-periodic-light.svg"
+    },
+    {
+      "file": "rv-periodic-light-clean.png",
+      "creator": "Simon Pinkas",
+      "license": "CC-BY-4.0",
+      "source": "artwork/rv-periodic-light-clean.svg"
+    },
+    {
+      "file": "rv-periodic-dark.png",
+      "creator": "Simon Pinkas",
+      "license": "CC-BY-4.0",
+      "source": "artwork/rv-periodic-dark.svg"
+    },
+    {
+      "file": "rv-periodic-dark-clean.png",
+      "creator": "Simon Pinkas",
+      "license": "CC-BY-4.0",
+      "source": "artwork/rv-periodic-dark-clean.svg"
+    }
+  ],
+  "languages": {
+    "en": {
+      "id": "rectoverso-periodic-table-en",
+      "package": {
+        "bytes": 1014178,
+        "sha256": "4505282f252978be1a94ca80b387fb223226490980d5289bde89c181b2ca2f67",
+        "file": "Periodic-table-en.apkg"
+      },
+      "sourceFiles": {
+        "shared": "source/elements.json",
+        "translation": "source/translations/en.json"
+      },
+      "identities": {
+        "deck": 619101000001,
+        "model": 619102000001,
+        "note": 619103000001,
+        "guid": "rvPTenV1001",
+        "cardBase": 619104100000
+      }
+    },
+    "fr": {
+      "id": "rectoverso-periodic-table-fr",
+      "package": {
+        "bytes": 1014251,
+        "sha256": "635671a16d3724fb96cff0aade12230ad07ad552e6662f87d1bb4deb4d0a04fc",
+        "file": "Tableau-periodique-fr.apkg"
+      },
+      "sourceFiles": {
+        "shared": "source/elements.json",
+        "translation": "source/translations/fr.json"
+      },
+      "identities": {
+        "deck": 619101000002,
+        "model": 619102000002,
+        "note": 619103000002,
+        "guid": "rvPTfrV1001",
+        "cardBase": 619104200000
+      }
+    }
+  },
+  "publication": {
+    "remote": null,
+    "release": null,
+    "approved": false
+  }
+}

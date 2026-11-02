@@ -1,0 +1,15 @@
+# Source et identités
+
+Le tableau pose une question sur le **symbole**. Le nom français ou anglais et les faits compacts sont des informations qui suivent la réponse. Une note Anki native possède 118 cartes, dont le numéro d’ordre correspond au numéro atomique moins un. Les deux langues ont des identifiants distincts et stables.
+
+Le dessin original conserve 18 colonnes et deux séries détachées. Le numéro de groupe est omis pour La–Lu et Ac–Lr. Les catégories de couleurs sont pédagogiques : métaux alcalins, alcalino-terreux, de transition, post-transition, métalloïdes, non-métaux, halogènes, gaz nobles, lanthanoïdes et actinoïdes. Le polonium est classé parmi les métaux post-transition. La couleur d’un élément superlourd suit sa colonne sans prétendre prouver expérimentalement ses propriétés.
+
+Les données structurées de Wikidata sont CC0. Chaque élément conserve son identifiant Wikidata. Les graphies choisies et les sources primaires de vérification sont dans `source/provenance.json`. Aucun dessin ni texte explicatif d’un tableau externe n’est repris. Les créations originales sont CC BY 4.0.
+
+`scripts/artwork.py` définit le dessin et génère quatre SVG originaux dans un même repère de 1920 × 1200. Chaque exécution remplace les fichiers précédents dans `artwork/` et produit les PNG sRGB à 3840 × 2400 à partir de ces mêmes tracés. Modifier le dessin dans le générateur Python ; les modifications directes des SVG sont écrasées à l’exécution suivante. Le contrôle compare tous les pixels : seules les zones des symboles peuvent différer entre l’original et l’image nettoyée. Les numéros, couleurs, coins, espaces et arrière-plans restent identiques. La famille réelle de police chargée et son empreinte sont consignées.
+
+Le champ facultatif **RectoVerso Occlusion** utilise exactement `RV-OCCLUSION-1:` : JSON encodé en base64, puis références HTML aux médias. Il contient la version, les quatre fichiers avec dimensions et SHA-256, l’empreinte du champ **Occlusion** brut, le mode `hideAll`, 118 régions de type `label`, leur géométrie normalisée, le symbole, le titre et le détail traduits. Le fond continu est décrit par `flat-srgb-v1`. Ce champ n’est appelé par aucun modèle de recto ou de verso.
+
+Anki conserve son moteur natif de masques. Son verso ne montre que le nom et les faits de la carte courante. Les deux images originales restent référencées par le champ **Image**, même si le champ facultatif est retiré. Les images nettoyées ne remplacent pas les réponses originales.
+
+Avant une version, reconstruire les deux langues, vérifier l’édition native et les allers-retours Anki, préserver l’historique après mise à jour, et examiner les rendus clair/sombre. Un changement de contenu compatible garde les identités. La publication et toute modification de l’application parente nécessitent l’accord explicite du propriétaire.
