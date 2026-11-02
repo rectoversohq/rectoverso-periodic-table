@@ -59,7 +59,7 @@ def state(card):
     }
 
 
-def validate(col, lang, expected=None):
+def validate(col, lang, expected=None, allowed_unused=()):
     note = note_for(col, lang)
     cards = note.cards()
     assert len(cards) == 118
@@ -96,13 +96,13 @@ def validate(col, lang, expected=None):
         a = data[key]
         blob = (Path(col.media.dir()) / a["file"]).read_bytes()
         assert digest(blob) == a["sha256"]
-        assert a["width"] == 3840 and a["height"] == 2400
+        assert a["width"] == 3840 and a["height"] == 2960
         assert blob[:8] == b"\x89PNG\r\n\x1a\n"
         assert int.from_bytes(blob[16:20], "big") == 3840
-        assert int.from_bytes(blob[20:24], "big") == 2400
+        assert int.from_bytes(blob[20:24], "big") == 2960
         assets[a["file"]] = digest(blob)
     media = col.media.check()
-    assert not media.missing and not media.unused
+    assert not media.missing and set(media.unused) <= set(allowed_unused)
     for c in cards:
         q, a = c.question(), c.answer()
         assert q.strip() and a.strip()
@@ -115,10 +115,76 @@ def validate(col, lang, expected=None):
     return {"field": value, "assets": assets, "cards": cards, "note": note}
 
 
+def validate_prior_update(previous, packages, folder):
+    """Default If Newer update; exact prepared media must survive name conflicts."""
+    folder.mkdir()
+    results = []
+    for lang in IDS:
+        target = folder / lang
+        target.mkdir()
+        col = Collection(str(target / "prior.anki2"))
+        imported(col, next(previous.glob("*-" + lang + ".apkg")))
+        note = note_for(col, lang)
+        identity = (note.id, note.mid, note.guid)
+        card_ids = [(card.id, card.nid, card.ord) for card in note.cards()]
+        field_ids = [field["id"] for field in col.models.get(note.mid)["flds"]]
+        old_assets = {path.name for path in Path(col.media.dir()).iterdir()}
+        col.decks.select(note.cards()[0].did)
+        card = col.sched.getCard()
+        col.sched.answerCard(card, 3)
+        studied = state(col.get_card(card.id))
+        reviews = col.db.all("select * from revlog")
+        imported(col, packages[lang], scheduling=False)
+        result = validate(col, lang, allowed_unused=old_assets)
+        note = result["note"]
+        assert (note.id, note.mid, note.guid) == identity
+        assert [(card.id, card.nid, card.ord) for card in note.cards()] == card_ids
+        assert [field["id"] for field in col.models.get(note.mid)["flds"]] == field_ids
+        assert state(col.get_card(card.id)) == studied
+        assert col.db.all("select * from revlog") == reviews
+        # Assert current content, not just valid old data after a skipped update.
+        expected = Collection(str(target / "expected.anki2"))
+        imported(expected, packages[lang])
+        assert note[FIELD] == note_for(expected, lang)[FIELD]
+        assert note["Occlusion"] == note_for(expected, lang)["Occlusion"]
+        expected.close()
+        exported = target / "studied.apkg"
+        col.export_anki_package(
+            out_path=str(exported),
+            options=ExportAnkiPackageOptions(
+                with_scheduling=True,
+                with_media=True,
+                with_deck_configs=False,
+                legacy=False,
+            ),
+            limit=None,
+        )
+        col.close()
+        again = Collection(str(target / "roundtrip.anki2"))
+        imported(again, exported)
+        validate(again, lang)
+        assert state(again.get_card(card.id)) == studied
+        assert again.db.all("select * from revlog") == reviews
+        again.close()
+        results.append(
+            {
+                "language": lang,
+                "cardIDsPreserved": len(card_ids),
+                "defaultIfNewer": True,
+                "preparedHashesAndMasksCurrent": True,
+                "noteModelFieldIDsPreserved": True,
+                "studiedStateAndReviewLogPreserved": True,
+                "exportReimport": True,
+            }
+        )
+    return {"source": str(previous), "languages": results}
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--packages", type=Path, required=True)
     p.add_argument("--update-packages", type=Path)
+    p.add_argument("--prior-packages", type=Path, action="append", default=[])
     p.add_argument("--out", type=Path, required=True)
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=False)
@@ -218,8 +284,8 @@ def main():
         media_without = ordinary.media.check()
         assert not media_without.missing
         assert set(media_without.unused) == {
-            "rv-periodic-light-clean.png",
-            "rv-periodic-dark-clean.png",
+            "rv-periodic-light-clean-v2.png",
+            "rv-periodic-dark-clean-v2.png",
         }
         ordinary.close()
         results.append(
@@ -253,6 +319,10 @@ def main():
         "languages": results,
         "combinedCards": 236,
         "combinedNotes": 2,
+        "priorUpdates": [
+            validate_prior_update(prior, packages, a.out / f"prior-{index}")
+            for index, prior in enumerate(a.prior_packages)
+        ],
     }
     (a.out / "report.json").write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report))

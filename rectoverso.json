@@ -37,25 +37,25 @@
   ],
   "imageCredits": [
     {
-      "file": "rv-periodic-light.png",
+      "file": "rv-periodic-light-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
       "source": "artwork/rv-periodic-light.svg"
     },
     {
-      "file": "rv-periodic-light-clean.png",
+      "file": "rv-periodic-light-clean-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
       "source": "artwork/rv-periodic-light-clean.svg"
     },
     {
-      "file": "rv-periodic-dark.png",
+      "file": "rv-periodic-dark-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
       "source": "artwork/rv-periodic-dark.svg"
     },
     {
-      "file": "rv-periodic-dark-clean.png",
+      "file": "rv-periodic-dark-clean-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
       "source": "artwork/rv-periodic-dark-clean.svg"
@@ -65,8 +65,8 @@
     "en": {
       "id": "rectoverso-periodic-table-en",
       "package": {
-        "bytes": 1014320,
-        "sha256": "2ef37152d99fc795f5ef9853990fb01c2e06e588cd3651b170a9272d152be6c8",
+        "bytes": 1016539,
+        "sha256": "96b73a0ab62a1dd0f6fb5822a9d13c4c226d71767ee88f10e25a1ff4a92db010",
         "file": "Periodic-table-en.apkg"
       },
       "sourceFiles": {
@@ -84,8 +84,8 @@
     "fr": {
       "id": "rectoverso-periodic-table-fr",
       "package": {
-        "bytes": 1014351,
-        "sha256": "0965222794fd54b3567a5762e30b1eb867bf7bdb8351934a3a5917c12c553071",
+        "bytes": 1016597,
+        "sha256": "f13b2fed311c3cbddff5a82def1e3b0a1c4363dcf9d884bf77787046ac770111",
         "file": "Tableau-periodique-fr.apkg"
       },
       "sourceFiles": {

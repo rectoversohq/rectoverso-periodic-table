@@ -10,7 +10,7 @@ The original 18-column drawing contains atomic numbers as position cues, symbols
 
 ## Artwork
 
-`scripts/artwork.py` defines the drawing and generates four original SVG masters in one 1920 × 1200 coordinate system. Each run writes those masters to `artwork/`, replacing the previous SVG files, and renders the same generated vectors as 3840 × 2400 sRGB PNGs using the supplied macOS SF Pro font. Edit the drawing in the Python generator; direct SVG edits are overwritten on the next run. The clean image omits only the 118 symbol rectangles; numbers, cell colors, corners, spacing and canvas are identical. The renderer exhaustively checks that every changed pixel lies inside a symbol region. Both themes have a flat continuous canvas.
+`scripts/artwork.py` defines the drawing and generates four original SVG masters in one 1920 × 1480 coordinate system. Each run writes those masters to `artwork/`, replacing the previous SVG files, and renders the same generated vectors as 3840 × 2960 sRGB PNGs using the supplied macOS SF Pro font. Edit the drawing in the Python generator; direct SVG edits are overwritten on the next run. The clean image omits only the 118 symbol rectangles; numbers, cell colors, corners, spacing and canvas are identical. The renderer exhaustively checks that every changed pixel lies inside a symbol region. Both themes have a flat continuous canvas.
 
 `artwork.json` in the output folder records the four PNG hashes and dimensions, normalized region coordinates, canvas RGB and resolved font identity. Generated PNGs, packages and validation collections stay outside source Git.
 
@@ -33,3 +33,11 @@ A patch fixes content without changing identities. A minor version adds compatib
 The backend check imports both language packages, exercises the native editor update API, checks every front/back, validates media and metadata, answers a card, exports and reimports its schedule, then applies an independently rebuilt package and checks that history survives. A combined collection must contain two notes and 236 distinct cards.
 
 The bundled Anki reviewer check renders all 118 fronts and backs, both languages, both themes: 944 pages. It verifies the selected ordinal, actual target mask alpha, correct theme image, one correct answer name, and absence of optional metadata. Saved screenshots supplement these checks. This is Anki's real bundled web renderer in Qt, not a screenshot of the full desktop editor. A complete manual Anki desktop editing session and physical-device behavior are separate review gates.
+
+## Atomic-number clearance
+
+The cell keeps an atomic-number band above the symbol. Its height is 124 source units, its row pitch 132, and the symbol baseline 89; the number remains at baseline 21. The 70 × 40 symbol region begins at (9, 58) within the cell. SF Pro sizes and weights remain 14 for numbers and 36 semibold for symbols. All 118 symbols, including descenders, fit their regions.
+
+The raster regression checks every number in both themes against RectoVerso's unchanged capsule geometry and black rim: at least 10 source units remain clear. The app's margin, centering, source registration and imported-deck behavior are unchanged. Native screenshots check opening and actual pinch zoom separately from this source-level test.
+
+This artwork revision uses `-v2.png` media names. Changed artwork must receive new names: Anki may rename same-name media on update, while the optional preparation's base64 JSON keeps its original filename and hash. An update is checked with the ordinary **If Newer** policy, preserving card/note/model/field IDs, studied state and review history. `scripts/checks/validate_anki.py --prior-packages OLD_PACKAGE_DIRECTORY` adds that check and a scheduled export/reimport; the option may be repeated. Earlier candidate media may remain unused in an existing Anki collection and are not deleted.
