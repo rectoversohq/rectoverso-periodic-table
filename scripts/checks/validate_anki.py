@@ -14,7 +14,7 @@ from anki.buildinfo import version
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
-from build import FIELD, IDS, detail  # noqa: E402 — sibling source module, not installed.
+from build import ELEMENT_KINDS, FIELD, HEADERS, IDS, detail, position  # noqa: E402 — sibling source module, not installed.
 
 
 def digest(data):
@@ -112,7 +112,52 @@ def validate(col, lang, expected=None, allowed_unused=()):
         assert "cloze" in q and "cloze-highlight" in a
     if expected:
         assert value == expected["field"] and assets == expected["assets"]
+    validate_elements(col, lang, elements, names, data)
     return {"field": value, "assets": assets, "cards": cards, "note": note}
+
+
+def text_of(page):
+    page = re.sub(r"<(style|script)[^>]*>.*?</\1>", "", page, flags=re.S)
+    return " ".join(re.sub(r"<[^>]+>", " ", page).split())
+
+
+def validate_elements(col, lang, elements, names, occlusion):
+    """Each element's name → symbol and lit symbol → name notes (#5)."""
+    for e, symbol_region in zip(elements, occlusion["regions"]):
+        z, name, symbol = e["atomicNumber"], names[str(e["atomicNumber"])], e["symbol"]
+        for kind in ("name-symbol", "symbol-name"):
+            ids = ELEMENT_KINDS[kind][lang]
+            note = col.get_note(col.db.scalar("select id from notes where guid=?", f"{ids['guid']}{z:03d}"))
+            assert (note.id, note.mid) == (ids["noteBase"] + z, ids["model"])
+            [card] = note.cards()
+            assert (card.id, card.ord) == (ids["cardBase"] + z, 0)
+            assert [f["id"] for f in col.models.get(note.mid)["flds"]] == [ids["fieldBase"] + i for i in range(len(note.keys()))]
+            assert note["Header"] == HEADERS[kind][lang]
+            q, a = text_of(card.question()), text_of(card.answer())
+            assert "RV-OCCLUSION-1" not in card.question() + card.answer()
+            if kind == "name-symbol":
+                assert q == f"{HEADERS[kind][lang]} {name}", q
+                assert symbol in a.split() and detail(e, lang) in a
+            else:
+                # The front shows the drawing and the lit frame, never the answer.
+                assert q == HEADERS[kind][lang], q
+                assert name in a and detail(e, lang) in a
+                data = json.loads(base64.b64decode(note[FIELD].split(":", 1)[1].split("<", 1)[0]))
+                assert data["version"] == 1 and data["mode"] == "lit"
+                assert data["masksSHA256"] == digest(b"") and "Occlusion" not in note.keys()
+                for key in ("source", "clean", "darkSource", "darkClean", "canvas"):
+                    assert data[key] == occlusion[key]
+                [r] = data["regions"]
+                assert (r["id"], r["ordinal"], r["kind"]) == (f"element-{z:03d}-cell", 1, "label")
+                assert r["answer"] == r["title"] == name and r["detail"] == detail(e, lang)
+                assert r["position"] == position(e, lang) and name not in r["position"]
+                # The cell, independently of the artwork record: the symbol region sits at (9, 58)
+                # in an 88 × 124 cell of the 1920 × 1480 drawing.
+                left, top, _, _ = symbol_region["geometry"]["coordinates"]
+                cell = [left - 9 / 1920, top - 58 / 1480, 88 / 1920, 124 / 1480]
+                assert all(abs(x - y) < 1e-9 for x, y in zip(r["geometry"]["coordinates"], cell))
+                lit = dict(part.split(":") for part in note["Lit"].split(";"))
+                assert all(abs(float(lit[k].rstrip("%")) / 100 - v) < 1e-6 for k, v in zip(("left", "top", "width", "height"), cell))
 
 
 def validate_prior_update(previous, packages, folder):
@@ -270,10 +315,12 @@ def main():
         # The optional preparation field must not be required for native Anki cards.
         ordinary = Collection(str(folder / "without-preparation.anki2"))
         imported(ordinary, package)
-        model = ordinary.models.get(IDS[lang]["model"])
-        field = next(f for f in model["flds"] if f["name"] == FIELD)
-        ordinary.models.remove_field(model, field)
-        ordinary.models.save(model)
+        # Every note type that carries the optional field loses it, the lit notes' too.
+        for mid in (IDS[lang]["model"], ELEMENT_KINDS["symbol-name"][lang]["model"]):
+            model = ordinary.models.get(mid)
+            field = next(f for f in model["flds"] if f["name"] == FIELD)
+            ordinary.models.remove_field(model, field)
+            ordinary.models.save(model)
         ordinary_note = note_for(ordinary, lang)
         assert FIELD not in ordinary_note.keys()
         assert len(ordinary_note.cards()) == 118
@@ -291,8 +338,9 @@ def main():
         results.append(
             {
                 "language": lang,
-                "cards": 118,
+                "cards": 3 * 118,
                 "ordinals": 118,
+                "elementNotes": 2 * 118,
                 "missingMedia": 0,
                 "unusedMedia": 0,
                 "editorPreservesOptionalField": True,
@@ -310,15 +358,16 @@ def main():
     for lang, package in packages.items():
         imported(combined, package)
         validate(combined, lang)
-    assert combined.card_count() == 236
-    assert combined.note_count() == 2
+    assert combined.card_count() == 2 * 3 * 118
+    assert combined.note_count() == 2 * (1 + 2 * 118)
     assert len({c.id for lang in IDS for c in note_for(combined, lang).cards()}) == 236
+    assert len(set(combined.db.list("select id from cards"))) == 2 * 3 * 118
     combined.close()
     report = {
         "ankiVersion": version,
         "languages": results,
-        "combinedCards": 236,
-        "combinedNotes": 2,
+        "combinedCards": 2 * 3 * 118,
+        "combinedNotes": 2 * (1 + 2 * 118),
         "priorUpdates": [
             validate_prior_update(prior, packages, a.out / f"prior-{index}")
             for index, prior in enumerate(a.prior_packages)

@@ -2,7 +2,7 @@
 
 [Français](README.fr.md)
 
-An original, bilingual image-occlusion deck: **118 symbols**, with the full element name and compact atomic-number, group and period facts after answering. English and French are separate packages built from one source. The 18-column figure has registered light/dark original and clean pairs; only symbol regions are removed.
+An original, bilingual deck of the 118 elements, three cards each: the table with a symbol masked (**which symbol belongs here?**), the table with an element’s cell lit (**which element is this?**), and an element’s name (**what’s its symbol?**). The full element name and compact atomic-number, group and period facts follow each answer. English and French are separate packages built from one source. The 18-column figure has registered light/dark original and clean pairs; only symbol regions are removed.
 
 This is a **source review candidate**, version **0.1.0-rc.1**. The source is available for review; no package release is published. Original artwork and deck: © Simon Pinkas, **CC BY 4.0**. Factual Wikidata records: **CC0**. See [credits](NOTICE.md), [source and identity rules](docs/source.md), and [validation](docs/validation.md).
 

@@ -2,7 +2,9 @@
 
 ## Content
 
-The deck asks for the **symbol**, not the name: 118 elements, one native Anki image-occlusion note with 118 ordinals per language. After answering, the full localized name appears with atomic number, group and period. Detached La–Lu and Ac–Lr entries omit group rather than asserting a disputed group-3 placement.
+The deck asks three ways, per language: one native Anki image-occlusion note with 118 ordinals asks for the **symbol** at a position; 118 **symbol → name** notes show the whole drawing with one element’s cell lit (outlined, nothing masked) and ask its name; 118 **name → symbol** notes give the name as text and ask its symbol. After answering, the full localized name appears with atomic number, group and period.
+
+The lit notes carry the drawing with every symbol and a CSS outline over the cell for Anki; their optional **RectoVerso Occlusion** record has `"mode": "lit"`, no Anki masks (`masksSHA256` of the empty string) and one region: the whole cell (88 × 124 source units), its `title` and `answer` the name, and a `position` (« period 4, group 8 »; « lanthanoid row, 1 of 15 » in the detached rows) that VoiceOver reads instead of the name. Each element note has one card and its own identities (`ELEMENT_KINDS` in `scripts/build.py`); the occlusion note’s are unchanged. Every name and symbol is checked against sources independent of Wikidata: PubChem for symbols and English names, French references for French names. Detached La–Lu and Ac–Lr entries omit group rather than asserting a disputed group-3 placement.
 
 The English deck uses American **Aluminum** and **Cesium**. French uses **Lutétium** (the older **Lutécium** remains the upstream Wikidata label) and **Tennesse**. `source/provenance.json` records the source and exceptions. The symbol is identical in both languages.
 

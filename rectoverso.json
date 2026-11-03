@@ -11,8 +11,8 @@
     "en": "Chemistry",
     "fr": "Chimie"
   },
-  "cards": 118,
-  "notes": 1,
+  "cards": 354,
+  "notes": 237,
   "pictures": 4,
   "sounds": 0,
   "license": "CC-BY-4.0",
@@ -20,11 +20,19 @@
     {
       "en": "Image occlusion → Symbol",
       "fr": "Occlusion d’image → Symbole"
+    },
+    {
+      "en": "Symbol → Name",
+      "fr": "Symbole → Nom"
+    },
+    {
+      "en": "Name → Symbol",
+      "fr": "Nom → Symbole"
     }
   ],
   "credits": {
-    "en": "Original artwork and deck © Simon Pinkas, CC BY 4.0. Element facts: Wikidata CC0; selectively verified against IUPAC and French primary sources.",
-    "fr": "Illustrations originales et paquet © Simon Pinkas, CC BY 4.0. Données des éléments : Wikidata CC0 ; vérifications ciblées auprès de l’IUPAC et de sources primaires françaises."
+    "en": "Original artwork and deck © Simon Pinkas, CC BY 4.0. Element facts: Wikidata CC0; names and symbols checked against PubChem and French references, with targeted checks against IUPAC.",
+    "fr": "Illustrations originales et paquet © Simon Pinkas, CC BY 4.0. Données des éléments : Wikidata CC0 ; noms et symboles vérifiés auprès de PubChem et de références françaises, avec des vérifications ciblées auprès de l’IUPAC."
   },
   "source": [
     {

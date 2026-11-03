@@ -174,6 +174,13 @@ def main():
                             region(e)[2] / WIDTH,
                             region(e)[3] / HEIGHT,
                         ],
+                        # The whole cell, which a symbol → name card lights (#5).
+                        "cell": [
+                            rect(e)[0] / WIDTH,
+                            rect(e)[1] / HEIGHT,
+                            rect(e)[2] / WIDTH,
+                            rect(e)[3] / HEIGHT,
+                        ],
                     }
                     for e in elements
                 ],
