@@ -14,7 +14,15 @@ from anki.buildinfo import version
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
-from build import ELEMENT_KINDS, FIELD, HEADERS, IDS, detail, position  # noqa: E402 — sibling source module, not installed.
+from build import (  # noqa: E402 — sibling source module, not installed.
+    ELEMENT_KINDS,
+    FIELD,
+    HEADERS,
+    IDS,
+    content_modified,
+    detail,
+    position,
+)
 
 
 def digest(data):
@@ -263,6 +271,15 @@ def main():
         folder.mkdir()
         col = Collection(str(folder / "source.anki2"))
         imported(col, package)
+        # Every note and note type carries the reviewed content's time, not the build's.
+        assert set(col.db.list("select mod from notes")) == {content_modified()}
+        models = [IDS[lang]["model"]] + [
+            k[lang]["model"] for k in ELEMENT_KINDS.values()
+        ]
+        assert [
+            col.db.scalar("select mtime_secs from notetypes where id=?", m)
+            for m in models
+        ] == [content_modified()] * 3
         before = validate(col, lang)
         note = before["note"]
         original_header = note["Header"]
@@ -319,6 +336,9 @@ def main():
         original_comments = updated_note["Comments"]
         updated_note["Comments"] = "Outdated fixture: replaced by the source update"
         again.update_note(updated_note)
+        # Anki skips an update whose note has the collection's modification second, even with
+        # Always. The fixture models a learner's edit made after the release: assert it.
+        assert note_for(again, lang).mod > content_modified()
         imported(again, update, False, always_update=True)
         assert note_for(again, lang)["Comments"] == original_comments
         validate(again, lang, before)

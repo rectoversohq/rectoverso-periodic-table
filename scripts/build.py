@@ -6,6 +6,7 @@ import base64
 import hashlib
 import html
 import json
+from datetime import datetime
 from pathlib import Path
 from anki.collection import Collection, ExportAnkiPackageOptions
 from anki.buildinfo import version as anki_version
@@ -29,6 +30,19 @@ IDS = {
     },
 }
 TITLES = {"en": "Periodic table", "fr": "Tableau périodique"}
+
+
+def content_modified():
+    """The reviewed content's time (rectoverso.json), in seconds: every note and note type carries it.
+
+    Anki applies an update to a note only when the package's modification second differs from the
+    collection's (If Newer: only when it is later). Stamping the build's wall-clock time made that
+    second depend on when the build ran, so an edit made in the same second as a build was skipped.
+    """
+    stamp = json.loads((ROOT / "rectoverso.json").read_text())["contentModifiedAt"]
+    return int(datetime.fromisoformat(stamp.replace("Z", "+00:00")).timestamp())
+
+
 # One note per element and language for each added card kind (#5). The occlusion note above
 # keeps its identities; these never reuse its rows. Element z's note, card and GUID derive from z.
 ELEMENT_KINDS = {
@@ -420,6 +434,12 @@ button {font:inherit;font-size:14px;padding:8px 16px;border-radius:18px;}
     add_elements(col, lang, elements, names, artwork, ids["deck"])
     assert col.card_count() == 3 * 118
     assert col.note_count() == 1 + 2 * 118
+    modified = content_modified()
+    models = [ids["model"]] + [kind[lang]["model"] for kind in ELEMENT_KINDS.values()]
+    col.db.execute("update notes set mod=?", modified)
+    col.db.execute(
+        "update notetypes set mtime_secs=? where id in (?, ?, ?)", modified, *models
+    )
     (folder / "preparation.json").write_text(
         json.dumps(preparation, ensure_ascii=False, indent=2) + "\n"
     )
