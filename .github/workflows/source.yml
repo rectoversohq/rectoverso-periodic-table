@@ -15,22 +15,37 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
-          python-version: '3.13'
+          python-version: '3.14'
           cache: pip
       - run: python -m pip install -r requirements.txt ruff==0.14.3
       - run: |
           ruff format --check scripts tests
           ruff check --select E4,E7,E9,F scripts tests
           python -m unittest discover -s tests
-      - name: Build registered artwork and both languages
+      - name: Render the artwork, and check it against the pinned record
         run: |
           python scripts/artwork.py --font /System/Library/Fonts/SFNS.ttf --out "$RUNNER_TEMP/periodic/artwork"
           git diff --exit-code -- artwork
-          python scripts/build.py --artwork "$RUNNER_TEMP/periodic/artwork" --out "$RUNNER_TEMP/periodic/packages"
-          python scripts/build.py --artwork "$RUNNER_TEMP/periodic/artwork" --out "$RUNNER_TEMP/periodic/rebuild"
+          python scripts/checks/verify-artwork.py --render "$RUNNER_TEMP/periodic/artwork"
+      # The runner's font isn't the pinned one, so its builds use its own render (--artwork): they
+      # check the source and the tools. Release builds render the pinned pictures on the Mac.
+      - name: Build both languages, twice
+        run: |
+          for lang in en fr; do
+            file=$(python -c "import json, sys; print(json.load(open('rectoverso.json'))['languages'][sys.argv[1]]['package']['file'])" "$lang")
+            python scripts/build.py --language "$lang" --artwork "$RUNNER_TEMP/periodic/artwork" --out "$RUNNER_TEMP/periodic/packages/$file"
+            python scripts/build.py --language "$lang" --artwork "$RUNNER_TEMP/periodic/artwork" --out "$RUNNER_TEMP/periodic/rebuild/$file"
+          done
       - name: Native import, editing, update and scheduling
         run: |
-          python scripts/checks/validate_anki.py --packages "$RUNNER_TEMP/periodic/packages" --update-packages "$RUNNER_TEMP/periodic/rebuild" --out "$RUNNER_TEMP/periodic/anki-check"
+          python scripts/checks/validate_source.py --packages "$RUNNER_TEMP/periodic/packages" --update-packages "$RUNNER_TEMP/periodic/rebuild" --out "$RUNNER_TEMP/periodic/anki-check"
+      - name: Each package, and the rebuild's identities
+        run: |
+          python scripts/checks/validate-anki.py --output "$RUNNER_TEMP/periodic/anki-packages" "$RUNNER_TEMP"/periodic/packages/*.apkg
+          for package in "$RUNNER_TEMP"/periodic/packages/*.apkg; do
+            name=$(basename "$package" .apkg)
+            python scripts/checks/validate-rebuild.py "$package" "$RUNNER_TEMP/periodic/rebuild/$name.apkg" "$RUNNER_TEMP/periodic/rebuild-check/$name.json"
+          done
       - name: Native reviewer, every ordinal and theme
         run: |
           ANKI_WEB=$(python -c 'from importlib.metadata import distribution; print(distribution("aqt").locate_file("_aqt/data/web"))')
@@ -44,6 +59,8 @@ jobs:
           path: |
             ${{ runner.temp }}/periodic/artwork/artwork.json
             ${{ runner.temp }}/periodic/anki-check/report.json
+            ${{ runner.temp }}/periodic/anki-packages/anki-validation.json
+            ${{ runner.temp }}/periodic/rebuild-check/
             ${{ runner.temp }}/periodic/render-check/render-report.json
             ${{ runner.temp }}/periodic/navigation-check/render-report.json
           if-no-files-found: warn

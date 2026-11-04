@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
-"""Draw the original registered table pair; raster outputs stay outside source Git."""
+"""Draw the original table pair; the pictures stay outside source Git, pinned by their record."""
 
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 from xml.sax.saxutils import escape
-from PyQt6.QtCore import QByteArray
+from PyQt6.QtCore import PYQT_VERSION_STR, QByteArray, qVersion
 from PyQt6.QtGui import (
     QColor,
     QColorSpace,
     QFont,
     QFontDatabase,
     QFontInfo,
+    QGuiApplication,
     QImage,
     QPainter,
     QRawFont,
@@ -108,20 +110,31 @@ def render(vector, path):
     return image
 
 
-def main():
-    a = argparse.ArgumentParser(description=__doc__)
-    a.add_argument("--out", type=Path, required=True)
-    a.add_argument("--font", type=Path, required=True)
-    args = a.parse_args()
-    args.out.mkdir(parents=True, exist_ok=True)
-    _app = QApplication([])  # Keep the GUI application alive while Qt renders.
-    font_id = QFontDatabase.addApplicationFont(str(args.font))
+# The pinned renderer: Qt's offscreen platform draws text the same way on every run of one Mac; a
+# window-system platform (cocoa) draws it differently. The font is pinned by its SHA-256 in
+# source/artwork.json, and so are the pictures it gives.
+PLATFORM = "offscreen"
+
+
+def render_artwork(font_path, out, write_vectors=True, check_clean=True):
+    """Draw the four pictures into `out` and return their record (what artwork.json holds).
+
+    With `write_vectors`, the SVG masters in artwork/ are written too (scripts/artwork.py); a build
+    renders without touching the checkout. `check_clean` proves, pixel by pixel, that each clean
+    picture differs only inside the symbol regions; a build that matches the pinned pictures' hashes
+    can skip it, since the pinned pictures passed it.
+    """
+    os.environ["QT_QPA_PLATFORM"] = PLATFORM
+    out.mkdir(parents=True, exist_ok=True)
+    _app = QApplication.instance() or QApplication([])  # Alive while Qt renders.
+    font_id = QFontDatabase.addApplicationFont(str(font_path))
     assert font_id >= 0, "Font did not load"
     font = QFont(".SF NS")
     font.setPixelSize(36)
     info = QFontInfo(font)
     rawfont = QRawFont.fromFont(font)
     assert info.family() == ".SF NS", info.family()
+    assert QGuiApplication.platformName() == PLATFORM, QGuiApplication.platformName()
     elements = json.loads((ROOT / "source/elements.json").read_text())
     assets = {}
     for theme in THEMES:
@@ -129,17 +142,18 @@ def main():
         for clean in (False, True):
             name = "rv-periodic-" + theme + ("-clean" if clean else "")
             vector = svg(elements, theme, clean)
-            (ROOT / "artwork" / f"{name}.svg").write_text(vector)
+            if write_vectors:
+                (ROOT / "artwork" / f"{name}.svg").write_text(vector)
             filename = f"{name}-v2.png"
-            images[clean] = render(vector, args.out / filename)
+            images[clean] = render(vector, out / filename)
             assets[name] = {
                 "file": filename,
-                "sha256": hashlib.sha256(
-                    (args.out / filename).read_bytes()
-                ).hexdigest(),
+                "sha256": hashlib.sha256((out / filename).read_bytes()).hexdigest(),
                 "width": WIDTH * SCALE,
                 "height": HEIGHT * SCALE,
             }
+        if not check_clean:
+            continue
         # Prove the clean image differs only inside the 118 symbol rectangles.
         changed = 0
         boxes = [[v * SCALE for v in region(e)] for e in elements]
@@ -152,43 +166,56 @@ def main():
                     ), (theme, x, y)
                     changed += 1
         assert changed > 118
-    (args.out / "artwork.json").write_text(
-        json.dumps(
+    record = {
+        "assets": assets,
+        "canvas": {
+            "method": "flat-srgb-v1",
+            "light": [247 / 255, 245 / 255, 239 / 255],
+            "dark": [24 / 255, 26 / 255, 24 / 255],
+        },
+        "fontFamily": rawfont.familyName(),
+        "fontStyle": rawfont.styleName(),
+        "fontSHA256": hashlib.sha256(Path(font_path).read_bytes()).hexdigest(),
+        "renderer": {"qt": qVersion(), "pyqt": PYQT_VERSION_STR, "platform": PLATFORM},
+        "regions": [
             {
-                "assets": assets,
-                "canvas": {
-                    "method": "flat-srgb-v1",
-                    "light": [247 / 255, 245 / 255, 239 / 255],
-                    "dark": [24 / 255, 26 / 255, 24 / 255],
-                },
-                "fontFamily": rawfont.familyName(),
-                "fontStyle": rawfont.styleName(),
-                "fontSHA256": hashlib.sha256(args.font.read_bytes()).hexdigest(),
-                "regions": [
-                    {
-                        "atomicNumber": e["atomicNumber"],
-                        "pixels": region(e),
-                        "coordinates": [
-                            region(e)[0] / WIDTH,
-                            region(e)[1] / HEIGHT,
-                            region(e)[2] / WIDTH,
-                            region(e)[3] / HEIGHT,
-                        ],
-                    }
-                    for e in elements
+                "atomicNumber": e["atomicNumber"],
+                "pixels": region(e),
+                "coordinates": [
+                    region(e)[0] / WIDTH,
+                    region(e)[1] / HEIGHT,
+                    region(e)[2] / WIDTH,
+                    region(e)[3] / HEIGHT,
                 ],
-            },
-            indent=2,
-        )
-        + "\n"
-    )
+                # The whole cell, which a symbol → name card lights (#5).
+                "cell": [
+                    rect(e)[0] / WIDTH,
+                    rect(e)[1] / HEIGHT,
+                    rect(e)[2] / WIDTH,
+                    rect(e)[3] / HEIGHT,
+                ],
+            }
+            for e in elements
+        ],
+    }
+    (out / "artwork.json").write_text(json.dumps(record, indent=2) + "\n")
+    return record
+
+
+def main():
+    a = argparse.ArgumentParser(description=__doc__)
+    a.add_argument("--out", type=Path, required=True)
+    a.add_argument("--font", type=Path, required=True)
+    args = a.parse_args()
+    record = render_artwork(args.font, args.out)
     print(
         json.dumps(
             {
                 "images": 4,
-                "registeredSymbolRegions": len(elements),
+                "registeredSymbolRegions": len(record["regions"]),
                 "size": [WIDTH * SCALE, HEIGHT * SCALE],
-                "fontFamily": rawfont.familyName(),
+                "fontFamily": record["fontFamily"],
+                "renderer": record["renderer"],
                 "outsideRegionPixelsChanged": 0,
                 "out": str(args.out),
             }

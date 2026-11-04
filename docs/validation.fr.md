@@ -50,3 +50,9 @@ Preuves locales : `/Volumes/SSD/RectoVerso/raw/periodic-clearance-20261102/`, no
 | --- | ---: | --- |
 | `Periodic-table-en.apkg` | 1 016 539 | `96b73a0ab62a1dd0f6fb5822a9d13c4c226d71767ee88f10e25a1ff4a92db010` |
 | `Tableau-periodique-fr.apkg` | 1 016 597 | `f13b2fed311c3cbddff5a82def1e3b0a1c4363dcf9d884bf77787046ac770111` |
+
+## Moment de la mise à jour dans le contrôle
+
+Un contrôle de version récent échouait à l’assertion de mise à jour : après une modification locale volontaire, l’import **Toujours** du paquet reconstruit laissait les Comments périmés. La cause est la règle de mise à jour d’Anki, pas le contenu du paquet. Anki 26.09.3 n’applique une note importée que si sa seconde de modification diffère de celle de la note de la collection (**Si plus récent** : seulement si elle est postérieure) ; une seconde égale est ignorée comme doublon, même avec **Toujours**. Le générateur datait les notes de son exécution : la note reconstruite et la modification du validateur, faite un instant plus tard, pouvaient partager une seconde. Dans l’exécution en échec, les deux portaient 1793659100. Un contrôle sur les mêmes paquets montre la règle : avec la seconde de la modification 5 s avant, égale ou 5 s après celle du paquet, **Toujours** remplace, ignore, remplace ; **Si plus récent** remplace, ignore, ignore.
+
+Chaque note et les trois types de notes du paquet portent désormais le `contentModifiedAt` de `rectoverso.json`, le moment du contenu revu, au lieu de celui de la construction. Les constructions ne diffèrent plus par ces secondes, une modification ultérieure de l’apprenant tombe toujours sur une autre seconde, et un changement de contenu se date en avançant `contentModifiedAt` (jamais dans le futur). Le validateur vérifie cette date sur chaque paquet neuf et s’assure que sa modification lui est postérieure avant d’importer la mise à jour. L’assertion de mise à jour est inchangée.

@@ -1,8 +1,18 @@
 {
-  "schemaVersion": 2,
   "id": "rectoverso-periodic-table",
   "version": "0.1.0-rc.1",
-  "status": "source-review-candidate",
+  "status": "prerelease",
+  "releaseTag": "v0.1.0-rc.1",
+  "guidPrefix": "rvPT",
+  "guidForm": "compact",
+  "identityBase": 619100000000,
+  "contentModifiedAt": "2026-11-04T21:02:00Z",
+  "publication": {
+    "remote": "https://github.com/rectoversohq/rectoverso-periodic-table",
+    "release": "https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.1.0-rc.1",
+    "approved": true,
+    "visibility": "public"
+  },
   "title": {
     "en": "Periodic table",
     "fr": "Tableau périodique"
@@ -11,28 +21,29 @@
     "en": "Chemistry",
     "fr": "Chimie"
   },
-  "cards": 118,
-  "notes": 1,
+  "headline": {
+    "en": "Every element's symbol, name and place in the table.",
+    "fr": "Le symbole, le nom et la place de chaque élément dans le tableau."
+  },
+  "description": {
+    "en": "All 118 elements of the periodic table, three ways: name the symbol hidden in its cell, give an element's symbol from its name, and name the element whose cell is lit. Each answer adds the element's atomic number and its place in the table. An original drawing, in light and dark.",
+    "fr": "Les 118 éléments du tableau périodique, de trois façons : retrouver le symbole caché dans sa cellule, donner le symbole d’un élément à partir de son nom, et nommer l’élément dont la cellule est éclairée. Chaque réponse ajoute son numéro atomique et sa place dans le tableau. Un dessin original, en clair et en sombre."
+  },
+  "categories": [
+    "sciences"
+  ],
+  "cards": 354,
+  "notes": 237,
   "pictures": 4,
   "sounds": 0,
+  "creator": "Simon Pinkas",
   "license": "CC-BY-4.0",
-  "cardKinds": [
+  "sources": [
     {
-      "en": "Image occlusion → Symbol",
-      "fr": "Occlusion d’image → Symbole"
-    }
-  ],
-  "credits": {
-    "en": "Original artwork and deck © Simon Pinkas, CC BY 4.0. Element facts: Wikidata CC0; selectively verified against IUPAC and French primary sources.",
-    "fr": "Illustrations originales et paquet © Simon Pinkas, CC BY 4.0. Données des éléments : Wikidata CC0 ; vérifications ciblées auprès de l’IUPAC et de sources primaires françaises."
-  },
-  "source": [
-    {
-      "name": "Wikidata structured data",
-      "license": "CC0-1.0",
+      "name": "Wikidata",
       "version": "2026-11-01 snapshot",
       "url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
-      "provenance": "source/provenance.json"
+      "license": "CC0-1.0"
     }
   ],
   "imageCredits": [
@@ -40,70 +51,58 @@
       "file": "rv-periodic-light-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
-      "source": "artwork/rv-periodic-light.svg"
+      "source": "artwork/rv-periodic-light.svg",
+      "original": "artwork/rv-periodic-light.svg"
     },
     {
       "file": "rv-periodic-light-clean-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
-      "source": "artwork/rv-periodic-light-clean.svg"
+      "source": "artwork/rv-periodic-light-clean.svg",
+      "original": "artwork/rv-periodic-light-clean.svg"
     },
     {
       "file": "rv-periodic-dark-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
-      "source": "artwork/rv-periodic-dark.svg"
+      "source": "artwork/rv-periodic-dark.svg",
+      "original": "artwork/rv-periodic-dark.svg"
     },
     {
       "file": "rv-periodic-dark-clean-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
-      "source": "artwork/rv-periodic-dark-clean.svg"
+      "source": "artwork/rv-periodic-dark-clean.svg",
+      "original": "artwork/rv-periodic-dark-clean.svg"
     }
   ],
+  "proOnly": false,
+  "sourceFiles": {
+    "vectors": "artwork",
+    "artwork": "source/artwork.json",
+    "elements": "source/elements.json",
+    "translations": "source/translations",
+    "provenance": "source/provenance.json"
+  },
   "languages": {
     "en": {
       "id": "rectoverso-periodic-table-en",
+      "title": "Periodic table",
+      "cards": 354,
       "package": {
-        "bytes": 1016539,
-        "sha256": "96b73a0ab62a1dd0f6fb5822a9d13c4c226d71767ee88f10e25a1ff4a92db010",
         "file": "Periodic-table-en.apkg"
       },
-      "sourceFiles": {
-        "shared": "source/elements.json",
-        "translation": "source/translations/en.json"
-      },
-      "identities": {
-        "deck": 619101000001,
-        "model": 619102000001,
-        "note": 619103000001,
-        "guid": "rvPTenV1001",
-        "cardBase": 619104100000
-      }
+      "sample": "rvPTenV1001/79"
     },
     "fr": {
       "id": "rectoverso-periodic-table-fr",
+      "title": "Tableau périodique",
+      "cards": 354,
       "package": {
-        "bytes": 1016597,
-        "sha256": "f13b2fed311c3cbddff5a82def1e3b0a1c4363dcf9d884bf77787046ac770111",
         "file": "Tableau-periodique-fr.apkg"
       },
-      "sourceFiles": {
-        "shared": "source/elements.json",
-        "translation": "source/translations/fr.json"
-      },
-      "identities": {
-        "deck": 619101000002,
-        "model": 619102000002,
-        "note": 619103000002,
-        "guid": "rvPTfrV1001",
-        "cardBase": 619104200000
-      }
+      "sample": "rvPTfrV1001/79"
     }
   },
-  "publication": {
-    "remote": "https://github.com/rectoversohq/rectoverso-periodic-table",
-    "release": null,
-    "approved": false
-  }
+  "renderedPictures": true
 }

@@ -84,3 +84,9 @@ Current local evidence is `/Volumes/SSD/RectoVerso/raw/periodic-clearance-202611
 | --- | ---: | --- |
 | `Periodic-table-en.apkg` | 1,016,539 | `96b73a0ab62a1dd0f6fb5822a9d13c4c226d71767ee88f10e25a1ff4a92db010` |
 | `Tableau-periodique-fr.apkg` | 1,016,597 | `f13b2fed311c3cbddff5a82def1e3b0a1c4363dcf9d884bf77787046ac770111` |
+
+## Update fixture timing
+
+A fresh release check failed the source-update assertion: after a deliberate local edit, the Always import of the rebuilt package left the outdated Comments in place. The cause is Anki's update rule, not the package's content. Anki 26.09.3 applies an incoming note only when its modification second differs from the collection's note (If Newer: only when it is later); an equal second is skipped as a duplicate, even with Always. The builder stamped notes with the time it ran, so the rebuild's notes and the validator's edit, made moments later, could share a second: the failing run's rebuilt note and its edited note both carried 1793659100. A control on the same packages shows the rule: with the edit's second 5 s before, equal to and 5 s after the package's, Always replaces, skips and replaces; If Newer replaces, skips and skips.
+
+Every note and the deck's three note types now carry `contentModifiedAt` from `rectoverso.json`, the reviewed content's time, instead of the build's. Builds no longer differ in those seconds, a learner's later edit is always a different second, and a content change dates itself by moving `contentModifiedAt` forward (never into the future). The validator checks the stamp on every fresh package and asserts that its edit is later than it before importing the update. The source-update assertion is unchanged.
