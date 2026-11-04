@@ -154,11 +154,11 @@ def validate_elements(col, lang, elements, names, occlusion):
             q, a = text_of(card.question()), text_of(card.answer())
             assert "RV-OCCLUSION-1" not in card.question() + card.answer()
             if kind == "name-symbol":
-                assert q == f"{HEADERS[kind][lang]} {name}", q
+                assert q == " ".join(f"{HEADERS[kind][lang]} {name}".split()), q
                 assert symbol in a.split() and detail(e, lang) in a
             else:
                 # The front shows the drawing and the lit frame, never the answer.
-                assert q == HEADERS[kind][lang], q
+                assert q == " ".join(HEADERS[kind][lang].split()), q
                 assert name in a and detail(e, lang) in a
                 data = json.loads(
                     base64.b64decode(note[FIELD].split(":", 1)[1].split("<", 1)[0])

@@ -1,6 +1,5 @@
-"""rectoverso.json, the source's notes and the registered pictures agree (no Anki needed)."""
+"""rectoverso.json, the source's notes and the pinned artwork record agree (no Anki needed)."""
 
-import hashlib
 import json
 import re
 import sys
@@ -59,21 +58,29 @@ class MetadataTests(unittest.TestCase):
             guid, number = artifact["sample"].split("/")
             [note] = [n for n in notes if n["guid"] == guid]
             self.assertIn("{{c%s::" % number, note["fields"]["Occlusion"])
+            credited = {c["file"] for c in self.meta["imageCredits"]}
             for field in note["fields"].values():
                 for picture in re.findall(r'<img\b[^>]*?\bsrc="([^"]+)"', field):
-                    self.assertTrue(
-                        (ROOT / "source/media" / picture).is_file(), picture
-                    )
+                    self.assertIn(picture, credited)
             self.assertNotEqual(deck["id"], types["occlusion"]["id"])
 
-    def test_registered_pictures_match_the_record(self):
+    def test_pictures_are_pinned_and_rendered_not_committed(self):
         record = json.loads((ROOT / "source/artwork.json").read_text())
-        credits = {c["file"] for c in self.meta["imageCredits"]}
-        self.assertEqual(credits, {a["file"] for a in record["assets"].values()})
+        credits = {c["file"]: c for c in self.meta["imageCredits"]}
+        self.assertEqual(set(credits), {a["file"] for a in record["assets"].values()})
         self.assertEqual(self.meta["pictures"], len(credits))
-        for asset in record["assets"].values():
-            data = (ROOT / "source/media" / asset["file"]).read_bytes()
-            self.assertEqual(hashlib.sha256(data).hexdigest(), asset["sha256"])
+        self.assertIs(self.meta["renderedPictures"], True)
+        for credit in credits.values():
+            self.assertTrue((ROOT / credit["original"]).is_file(), credit["original"])
+        self.assertEqual(len(record["fontSHA256"]), 64)
+        self.assertEqual(record["renderer"]["platform"], "offscreen")
+        self.assertEqual(list(ROOT.glob("source/**/*.png")), [])
+
+    def test_french_card_headers_have_their_narrow_space(self):
+        from source_data import HEADERS, occlusion_note  # noqa: F401
+
+        for kind in HEADERS.values():
+            self.assertRegex(kind["fr"], "\u202f\\?$")
 
 
 if __name__ == "__main__":

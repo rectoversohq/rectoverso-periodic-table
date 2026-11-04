@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Build one language's package from the source and the registered artwork, with native Anki IO.
+"""Build one language's package from the source, rendering its pictures, with native Anki IO.
 
     python scripts/build.py --language en --out /outside/the/checkout/Periodic-table-en.apkg
 
-writes the package and, beside it, its sidecar (`.rectoverso.json`): the language's metadata from
-`rectoverso.json` with the package's bytes and SHA-256. `--artwork DIR` builds from a fresh
-`scripts/artwork.py` render instead of the registered pictures in `source/media`.
+renders the four pictures with the pinned renderer and font (`scripts/artwork.py`; macOS's
+/System/Library/Fonts/SFNS.ttf, or `--font`), refuses them unless they match the pinned record,
+source/artwork.json, byte for byte, then writes the package and, beside it, its sidecar
+(`.rectoverso.json`): the language's metadata from `rectoverso.json` with the package's bytes and
+SHA-256. `--artwork DIR` builds instead from a `scripts/artwork.py` output folder, unpinned: for a
+check on a machine with another font (the hosted CI), never for a release.
 """
 
 import argparse
@@ -22,7 +25,6 @@ from source_data import (
     HEADERS,
     IDS,
     KIND_NAMES,
-    MEDIA,
     TITLES,
     artwork,
     compact,
@@ -32,6 +34,8 @@ from source_data import (
     position,
     sha,
 )
+
+FONT = Path("/System/Library/Fonts/SFNS.ttf")
 
 __all__ = [
     "ELEMENT_KINDS",
@@ -144,14 +148,37 @@ def add_elements(col, lang, notes, art, deck_id):
         pin(col, note, source["model"], lang, source["atomicNumber"])
 
 
-def build(lang, out, art_dir=None):
-    record = art_dir / "artwork.json" if art_dir else ARTWORK
-    pictures = art_dir or MEDIA
-    meta, notes, _, _ = inputs(lang, record)
-    art = artwork(record)
-    ids = IDS[lang]
+def pinned_pictures(font, folder):
+    """Render the pictures into `folder`; refuse them unless they are the pinned ones."""
+    import artwork as renderer  # PyQt6: only a build that renders needs it.
+
+    pinned = artwork(ARTWORK)
+    rendered = renderer.render_artwork(
+        font, folder, write_vectors=False, check_clean=False
+    )
+    if rendered["fontSHA256"] != pinned["fontSHA256"]:
+        raise SystemExit(
+            f"{font} is not the pinned font (SHA-256 {pinned['fontSHA256']}); "
+            "build with --artwork from a render of your own, or pin a new font and pictures"
+        )
+    for key in ("assets", "renderer", "regions", "canvas"):
+        if rendered[key] != pinned[key]:
+            raise SystemExit(
+                f"The rendered pictures' {key} differ from source/artwork.json's"
+            )
+
+
+def build(lang, out, art_dir=None, font=FONT):
     out.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="periodic-build-", dir=out.parent) as temp:
+        if art_dir:
+            record, pictures = art_dir / "artwork.json", art_dir
+        else:
+            record, pictures = ARTWORK, Path(temp) / "pictures"
+            pinned_pictures(font, pictures)
+        meta, notes, _, _ = inputs(lang, record)
+        art = artwork(record)
+        ids = IDS[lang]
         col = Collection(str(Path(temp) / "collection.anki2"))
         col.add_image_occlusion_notetype()
         model = col.models.by_name("Image Occlusion")
@@ -269,13 +296,18 @@ def main():
     p.add_argument(
         "--artwork",
         type=Path,
-        help="A scripts/artwork.py output folder (default: the registered source/media)",
+        help="An unpinned scripts/artwork.py output folder (default: render the pinned pictures)",
     )
+    p.add_argument("--font", type=Path, default=FONT, help="The pinned font file")
     a = p.parse_args()
     assert anki_version == "26.09.3" or anki_version == "26.9.3", anki_version
     if a.out.suffix != ".apkg" or a.out.exists():
         p.error("--out must be a new .apkg path")
-    print(json.dumps(build(a.language, a.out.resolve(), a.artwork), ensure_ascii=False))
+    print(
+        json.dumps(
+            build(a.language, a.out.resolve(), a.artwork, a.font), ensure_ascii=False
+        )
+    )
 
 
 if __name__ == "__main__":

@@ -22,17 +22,19 @@ jobs:
           ruff format --check scripts tests
           ruff check --select E4,E7,E9,F scripts tests
           python -m unittest discover -s tests
-      - name: Registered artwork, and a fresh render against it
+      - name: Render the artwork, and check it against the pinned record
         run: |
           python scripts/artwork.py --font /System/Library/Fonts/SFNS.ttf --out "$RUNNER_TEMP/periodic/artwork"
           git diff --exit-code -- artwork
           python scripts/checks/verify-artwork.py --render "$RUNNER_TEMP/periodic/artwork"
+      # The runner's font isn't the pinned one, so its builds use its own render (--artwork): they
+      # check the source and the tools. Release builds render the pinned pictures on the Mac.
       - name: Build both languages, twice
         run: |
           for lang in en fr; do
             file=$(python -c "import json, sys; print(json.load(open('rectoverso.json'))['languages'][sys.argv[1]]['package']['file'])" "$lang")
-            python scripts/build.py --language "$lang" --out "$RUNNER_TEMP/periodic/packages/$file"
-            python scripts/build.py --language "$lang" --out "$RUNNER_TEMP/periodic/rebuild/$file"
+            python scripts/build.py --language "$lang" --artwork "$RUNNER_TEMP/periodic/artwork" --out "$RUNNER_TEMP/periodic/packages/$file"
+            python scripts/build.py --language "$lang" --artwork "$RUNNER_TEMP/periodic/artwork" --out "$RUNNER_TEMP/periodic/rebuild/$file"
           done
       - name: Native import, editing, update and scheduling
         run: |

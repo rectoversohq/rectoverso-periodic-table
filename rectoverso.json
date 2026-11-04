@@ -4,8 +4,9 @@
   "status": "source-review-candidate",
   "releaseTag": "v0.1.0-rc.1",
   "guidPrefix": "rvPT",
+  "guidForm": "compact",
   "identityBase": 619100000000,
-  "contentModifiedAt": "2026-11-04T20:30:00Z",
+  "contentModifiedAt": "2026-11-04T21:02:00Z",
   "publication": {
     "remote": "https://github.com/rectoversohq/rectoverso-periodic-table",
     "release": "https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.1.0-rc.1",
@@ -50,30 +51,34 @@
       "file": "rv-periodic-light-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
-      "source": "artwork/rv-periodic-light.svg"
+      "source": "artwork/rv-periodic-light.svg",
+      "original": "artwork/rv-periodic-light.svg"
     },
     {
       "file": "rv-periodic-light-clean-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
-      "source": "artwork/rv-periodic-light-clean.svg"
+      "source": "artwork/rv-periodic-light-clean.svg",
+      "original": "artwork/rv-periodic-light-clean.svg"
     },
     {
       "file": "rv-periodic-dark-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
-      "source": "artwork/rv-periodic-dark.svg"
+      "source": "artwork/rv-periodic-dark.svg",
+      "original": "artwork/rv-periodic-dark.svg"
     },
     {
       "file": "rv-periodic-dark-clean-v2.png",
       "creator": "Simon Pinkas",
       "license": "CC-BY-4.0",
-      "source": "artwork/rv-periodic-dark-clean.svg"
+      "source": "artwork/rv-periodic-dark-clean.svg",
+      "original": "artwork/rv-periodic-dark-clean.svg"
     }
   ],
   "proOnly": false,
   "sourceFiles": {
-    "pictures": "source/media",
+    "vectors": "artwork",
     "artwork": "source/artwork.json",
     "elements": "source/elements.json",
     "translations": "source/translations",
@@ -98,5 +103,6 @@
       },
       "sample": "rvPTfrV1001/79"
     }
-  }
+  },
+  "renderedPictures": true
 }

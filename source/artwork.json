@@ -41,6 +41,11 @@
   "fontFamily": ".SF NS",
   "fontStyle": "Regular",
   "fontSHA256": "44890958f3e0b997028121ed7c7a789f3f5cce227c7a93ce8f86ec0db26da571",
+  "renderer": {
+    "qt": "6.11.2",
+    "pyqt": "6.11.0",
+    "platform": "offscreen"
+  },
   "regions": [
     {
       "atomicNumber": 1,

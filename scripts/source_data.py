@@ -1,4 +1,4 @@
-"""Compose one language's notes from the shared facts, its names and the registered artwork.
+"""Compose one language's notes from the shared facts, its names and the pinned artwork record.
 
 `inputs(language)` is the interface RectoVerso's gallery check reads (its `scripts/gallery/decks.py`):
 the language's expanded metadata, its notes (GUID, note type, fields, cards), its note types and its
@@ -14,9 +14,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 FIELD = "RectoVerso Occlusion"
-# The registered artwork: its record (hashes, sizes, regions, cells, canvas) and its four pictures.
+# The pinned artwork record: the font, the renderer, the four pictures' hashes and sizes, the
+# regions, cells and canvas. The pictures themselves are rendered by each build (scripts/build.py).
 ARTWORK = ROOT / "source/artwork.json"
-MEDIA = ROOT / "source/media"
 IDS = {
     "en": {
         "deck": 619101000001,
@@ -75,8 +75,11 @@ ELEMENT_KINDS = {
     },
 }
 HEADERS = {
-    "name-symbol": {"en": "What’s its symbol?", "fr": "Quel est son symbole ?"},
-    "symbol-name": {"en": "Which element is this?", "fr": "Quel est cet élément ?"},
+    "name-symbol": {"en": "What’s its symbol?", "fr": "Quel est son symbole\u202f?"},
+    "symbol-name": {
+        "en": "Which element is this?",
+        "fr": "Quel est cet élément\u202f?",
+    },
 }
 KIND_NAMES = {
     "name-symbol": {"en": "Name → Symbol", "fr": "Nom → Symbole"},
@@ -137,7 +140,7 @@ def position(e, lang):
 
 
 def artwork(record=ARTWORK):
-    """The registered artwork record: the four pictures' files and hashes, regions, cells, canvas."""
+    """The artwork record: the four pictures' files and hashes, regions, cells, canvas, font, renderer."""
     return json.loads(Path(record).read_text())
 
 
