@@ -1,0 +1,49 @@
+{
+  "dataset": "Wikidata structured data",
+  "license": "CC0-1.0",
+  "retrieved": "2026-11-01",
+  "rawSha256": "c13610bcea4beb5096ad32890b3df4500a3b14f82432edad46468e576eca9b8c",
+  "query": "chemical elements (Q11344), atomic number (P1086), symbol (P246), EN/FR labels; atomic numbers 1–118",
+  "licenseURL": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+  "verification": [
+    "https://iupac.org/wp-content/uploads/2022/07/IUPAC_Periodic_Table-04May22_CRA.pdf",
+    "https://edu.ge.ch/secondaire2/system/files/2023-01/TableauPeriodique.pdf",
+    "https://www.culture.fr/franceterme/terme/CHIM594",
+    "https://www.utinam.cnrs.fr/lutecium/",
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON",
+    "https://fr.wikipedia.org/wiki/Liste_des_%C3%A9l%C3%A9ments_chimiques"
+  ],
+  "overrides": [
+    {
+      "atomicNumber": 13,
+      "language": "en",
+      "source": "Aluminium",
+      "chosen": "Aluminum",
+      "reason": "American English"
+    },
+    {
+      "atomicNumber": 55,
+      "language": "en",
+      "source": "Caesium",
+      "chosen": "Cesium",
+      "reason": "American English"
+    },
+    {
+      "atomicNumber": 71,
+      "language": "fr",
+      "source": "Lutécium",
+      "chosen": "Lutétium",
+      "reason": "CNRS UTINAM preferred name; lutécium is an older variant"
+    }
+  ],
+  "groupConvention": "Detached La–Lu and Ac–Lr rows do not assert a group number.",
+  "familyConvention": "Pedagogical color categories; superheavy placement follows columns and is not a claim about experimentally established chemical behavior.",
+  "checks": [
+    {
+      "date": "2026-11-04",
+      "scope": "All 118 symbols and English names against PubChem's periodic table; all 118 French names and symbols against the French Wikipedia list of chemical elements.",
+      "result": "Every symbol and English name matches PubChem. French: 117 match; Lutétium (71) is the documented override of Lutécium, as above.",
+      "for": "rectoversohq/rectoverso-periodic-table#5"
+    }
+  ]
+}

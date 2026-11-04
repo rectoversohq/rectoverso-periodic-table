@@ -1,0 +1,9 @@
+SELECT ?element ?number ?symbol ?en ?fr WHERE {
+  ?element wdt:P31 wd:Q11344;
+    wdt:P1086 ?number;
+    wdt:P246 ?symbol;
+    rdfs:label ?en;
+    rdfs:label ?fr.
+  FILTER(LANG(?en) = "en" && LANG(?fr) = "fr" && ?number <= 118)
+}
+ORDER BY ?number

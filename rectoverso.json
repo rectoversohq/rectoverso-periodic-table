@@ -1,0 +1,108 @@
+{
+  "id": "rectoverso-periodic-table",
+  "version": "0.1.0-rc.1",
+  "status": "prerelease",
+  "releaseTag": "v0.1.0-rc.1",
+  "guidPrefix": "rvPT",
+  "guidForm": "compact",
+  "identityBase": 619100000000,
+  "contentModifiedAt": "2026-11-04T21:02:00Z",
+  "publication": {
+    "remote": "https://github.com/rectoversohq/rectoverso-periodic-table",
+    "release": "https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.1.0-rc.1",
+    "approved": true,
+    "visibility": "public"
+  },
+  "title": {
+    "en": "Periodic table",
+    "fr": "Tableau périodique"
+  },
+  "subject": {
+    "en": "Chemistry",
+    "fr": "Chimie"
+  },
+  "headline": {
+    "en": "Every element's symbol, name and place in the table.",
+    "fr": "Le symbole, le nom et la place de chaque élément dans le tableau."
+  },
+  "description": {
+    "en": "All 118 elements of the periodic table, three ways: name the symbol hidden in its cell, give an element's symbol from its name, and name the element whose cell is lit. Each answer adds the element's atomic number and its place in the table. An original drawing, in light and dark.",
+    "fr": "Les 118 éléments du tableau périodique, de trois façons : retrouver le symbole caché dans sa cellule, donner le symbole d’un élément à partir de son nom, et nommer l’élément dont la cellule est éclairée. Chaque réponse ajoute son numéro atomique et sa place dans le tableau. Un dessin original, en clair et en sombre."
+  },
+  "categories": [
+    "sciences"
+  ],
+  "cards": 354,
+  "notes": 237,
+  "pictures": 4,
+  "sounds": 0,
+  "creator": "Simon Pinkas",
+  "license": "CC-BY-4.0",
+  "sources": [
+    {
+      "name": "Wikidata",
+      "version": "2026-11-01 snapshot",
+      "url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "license": "CC0-1.0"
+    }
+  ],
+  "imageCredits": [
+    {
+      "file": "rv-periodic-light-v2.png",
+      "creator": "Simon Pinkas",
+      "license": "CC-BY-4.0",
+      "source": "artwork/rv-periodic-light.svg",
+      "original": "artwork/rv-periodic-light.svg"
+    },
+    {
+      "file": "rv-periodic-light-clean-v2.png",
+      "creator": "Simon Pinkas",
+      "license": "CC-BY-4.0",
+      "source": "artwork/rv-periodic-light-clean.svg",
+      "original": "artwork/rv-periodic-light-clean.svg"
+    },
+    {
+      "file": "rv-periodic-dark-v2.png",
+      "creator": "Simon Pinkas",
+      "license": "CC-BY-4.0",
+      "source": "artwork/rv-periodic-dark.svg",
+      "original": "artwork/rv-periodic-dark.svg"
+    },
+    {
+      "file": "rv-periodic-dark-clean-v2.png",
+      "creator": "Simon Pinkas",
+      "license": "CC-BY-4.0",
+      "source": "artwork/rv-periodic-dark-clean.svg",
+      "original": "artwork/rv-periodic-dark-clean.svg"
+    }
+  ],
+  "proOnly": false,
+  "sourceFiles": {
+    "vectors": "artwork",
+    "artwork": "source/artwork.json",
+    "elements": "source/elements.json",
+    "translations": "source/translations",
+    "provenance": "source/provenance.json"
+  },
+  "languages": {
+    "en": {
+      "id": "rectoverso-periodic-table-en",
+      "title": "Periodic table",
+      "cards": 354,
+      "package": {
+        "file": "Periodic-table-en.apkg"
+      },
+      "sample": "rvPTenV1001/79"
+    },
+    "fr": {
+      "id": "rectoverso-periodic-table-fr",
+      "title": "Tableau périodique",
+      "cards": 354,
+      "package": {
+        "file": "Tableau-periodique-fr.apkg"
+      },
+      "sample": "rvPTfrV1001/79"
+    }
+  },
+  "renderedPictures": true
+}

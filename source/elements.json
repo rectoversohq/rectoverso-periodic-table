@@ -1,0 +1,1182 @@
+[
+  {
+    "atomicNumber": 1,
+    "symbol": "H",
+    "period": 1,
+    "group": 1,
+    "column": 1,
+    "row": 1,
+    "family": "nonmetal",
+    "wikidata": "Q556"
+  },
+  {
+    "atomicNumber": 2,
+    "symbol": "He",
+    "period": 1,
+    "group": 18,
+    "column": 18,
+    "row": 1,
+    "family": "noble-gas",
+    "wikidata": "Q560"
+  },
+  {
+    "atomicNumber": 3,
+    "symbol": "Li",
+    "period": 2,
+    "group": 1,
+    "column": 1,
+    "row": 2,
+    "family": "alkali",
+    "wikidata": "Q568"
+  },
+  {
+    "atomicNumber": 4,
+    "symbol": "Be",
+    "period": 2,
+    "group": 2,
+    "column": 2,
+    "row": 2,
+    "family": "alkaline-earth",
+    "wikidata": "Q569"
+  },
+  {
+    "atomicNumber": 5,
+    "symbol": "B",
+    "period": 2,
+    "group": 13,
+    "column": 13,
+    "row": 2,
+    "family": "metalloid",
+    "wikidata": "Q618"
+  },
+  {
+    "atomicNumber": 6,
+    "symbol": "C",
+    "period": 2,
+    "group": 14,
+    "column": 14,
+    "row": 2,
+    "family": "nonmetal",
+    "wikidata": "Q623"
+  },
+  {
+    "atomicNumber": 7,
+    "symbol": "N",
+    "period": 2,
+    "group": 15,
+    "column": 15,
+    "row": 2,
+    "family": "nonmetal",
+    "wikidata": "Q627"
+  },
+  {
+    "atomicNumber": 8,
+    "symbol": "O",
+    "period": 2,
+    "group": 16,
+    "column": 16,
+    "row": 2,
+    "family": "nonmetal",
+    "wikidata": "Q629"
+  },
+  {
+    "atomicNumber": 9,
+    "symbol": "F",
+    "period": 2,
+    "group": 17,
+    "column": 17,
+    "row": 2,
+    "family": "halogen",
+    "wikidata": "Q650"
+  },
+  {
+    "atomicNumber": 10,
+    "symbol": "Ne",
+    "period": 2,
+    "group": 18,
+    "column": 18,
+    "row": 2,
+    "family": "noble-gas",
+    "wikidata": "Q654"
+  },
+  {
+    "atomicNumber": 11,
+    "symbol": "Na",
+    "period": 3,
+    "group": 1,
+    "column": 1,
+    "row": 3,
+    "family": "alkali",
+    "wikidata": "Q658"
+  },
+  {
+    "atomicNumber": 12,
+    "symbol": "Mg",
+    "period": 3,
+    "group": 2,
+    "column": 2,
+    "row": 3,
+    "family": "alkaline-earth",
+    "wikidata": "Q660"
+  },
+  {
+    "atomicNumber": 13,
+    "symbol": "Al",
+    "period": 3,
+    "group": 13,
+    "column": 13,
+    "row": 3,
+    "family": "post-transition",
+    "wikidata": "Q663"
+  },
+  {
+    "atomicNumber": 14,
+    "symbol": "Si",
+    "period": 3,
+    "group": 14,
+    "column": 14,
+    "row": 3,
+    "family": "metalloid",
+    "wikidata": "Q670"
+  },
+  {
+    "atomicNumber": 15,
+    "symbol": "P",
+    "period": 3,
+    "group": 15,
+    "column": 15,
+    "row": 3,
+    "family": "nonmetal",
+    "wikidata": "Q674"
+  },
+  {
+    "atomicNumber": 16,
+    "symbol": "S",
+    "period": 3,
+    "group": 16,
+    "column": 16,
+    "row": 3,
+    "family": "nonmetal",
+    "wikidata": "Q682"
+  },
+  {
+    "atomicNumber": 17,
+    "symbol": "Cl",
+    "period": 3,
+    "group": 17,
+    "column": 17,
+    "row": 3,
+    "family": "halogen",
+    "wikidata": "Q688"
+  },
+  {
+    "atomicNumber": 18,
+    "symbol": "Ar",
+    "period": 3,
+    "group": 18,
+    "column": 18,
+    "row": 3,
+    "family": "noble-gas",
+    "wikidata": "Q696"
+  },
+  {
+    "atomicNumber": 19,
+    "symbol": "K",
+    "period": 4,
+    "group": 1,
+    "column": 1,
+    "row": 4,
+    "family": "alkali",
+    "wikidata": "Q703"
+  },
+  {
+    "atomicNumber": 20,
+    "symbol": "Ca",
+    "period": 4,
+    "group": 2,
+    "column": 2,
+    "row": 4,
+    "family": "alkaline-earth",
+    "wikidata": "Q706"
+  },
+  {
+    "atomicNumber": 21,
+    "symbol": "Sc",
+    "period": 4,
+    "group": 3,
+    "column": 3,
+    "row": 4,
+    "family": "transition",
+    "wikidata": "Q713"
+  },
+  {
+    "atomicNumber": 22,
+    "symbol": "Ti",
+    "period": 4,
+    "group": 4,
+    "column": 4,
+    "row": 4,
+    "family": "transition",
+    "wikidata": "Q716"
+  },
+  {
+    "atomicNumber": 23,
+    "symbol": "V",
+    "period": 4,
+    "group": 5,
+    "column": 5,
+    "row": 4,
+    "family": "transition",
+    "wikidata": "Q722"
+  },
+  {
+    "atomicNumber": 24,
+    "symbol": "Cr",
+    "period": 4,
+    "group": 6,
+    "column": 6,
+    "row": 4,
+    "family": "transition",
+    "wikidata": "Q725"
+  },
+  {
+    "atomicNumber": 25,
+    "symbol": "Mn",
+    "period": 4,
+    "group": 7,
+    "column": 7,
+    "row": 4,
+    "family": "transition",
+    "wikidata": "Q731"
+  },
+  {
+    "atomicNumber": 26,
+    "symbol": "Fe",
+    "period": 4,
+    "group": 8,
+    "column": 8,
+    "row": 4,
+    "family": "transition",
+    "wikidata": "Q677"
+  },
+  {
+    "atomicNumber": 27,
+    "symbol": "Co",
+    "period": 4,
+    "group": 9,
+    "column": 9,
+    "row": 4,
+    "family": "transition",
+    "wikidata": "Q740"
+  },
+  {
+    "atomicNumber": 28,
+    "symbol": "Ni",
+    "period": 4,
+    "group": 10,
+    "column": 10,
+    "row": 4,
+    "family": "transition",
+    "wikidata": "Q744"
+  },
+  {
+    "atomicNumber": 29,
+    "symbol": "Cu",
+    "period": 4,
+    "group": 11,
+    "column": 11,
+    "row": 4,
+    "family": "transition",
+    "wikidata": "Q753"
+  },
+  {
+    "atomicNumber": 30,
+    "symbol": "Zn",
+    "period": 4,
+    "group": 12,
+    "column": 12,
+    "row": 4,
+    "family": "transition",
+    "wikidata": "Q758"
+  },
+  {
+    "atomicNumber": 31,
+    "symbol": "Ga",
+    "period": 4,
+    "group": 13,
+    "column": 13,
+    "row": 4,
+    "family": "post-transition",
+    "wikidata": "Q861"
+  },
+  {
+    "atomicNumber": 32,
+    "symbol": "Ge",
+    "period": 4,
+    "group": 14,
+    "column": 14,
+    "row": 4,
+    "family": "metalloid",
+    "wikidata": "Q867"
+  },
+  {
+    "atomicNumber": 33,
+    "symbol": "As",
+    "period": 4,
+    "group": 15,
+    "column": 15,
+    "row": 4,
+    "family": "metalloid",
+    "wikidata": "Q871"
+  },
+  {
+    "atomicNumber": 34,
+    "symbol": "Se",
+    "period": 4,
+    "group": 16,
+    "column": 16,
+    "row": 4,
+    "family": "nonmetal",
+    "wikidata": "Q876"
+  },
+  {
+    "atomicNumber": 35,
+    "symbol": "Br",
+    "period": 4,
+    "group": 17,
+    "column": 17,
+    "row": 4,
+    "family": "halogen",
+    "wikidata": "Q879"
+  },
+  {
+    "atomicNumber": 36,
+    "symbol": "Kr",
+    "period": 4,
+    "group": 18,
+    "column": 18,
+    "row": 4,
+    "family": "noble-gas",
+    "wikidata": "Q888"
+  },
+  {
+    "atomicNumber": 37,
+    "symbol": "Rb",
+    "period": 5,
+    "group": 1,
+    "column": 1,
+    "row": 5,
+    "family": "alkali",
+    "wikidata": "Q895"
+  },
+  {
+    "atomicNumber": 38,
+    "symbol": "Sr",
+    "period": 5,
+    "group": 2,
+    "column": 2,
+    "row": 5,
+    "family": "alkaline-earth",
+    "wikidata": "Q938"
+  },
+  {
+    "atomicNumber": 39,
+    "symbol": "Y",
+    "period": 5,
+    "group": 3,
+    "column": 3,
+    "row": 5,
+    "family": "transition",
+    "wikidata": "Q941"
+  },
+  {
+    "atomicNumber": 40,
+    "symbol": "Zr",
+    "period": 5,
+    "group": 4,
+    "column": 4,
+    "row": 5,
+    "family": "transition",
+    "wikidata": "Q1038"
+  },
+  {
+    "atomicNumber": 41,
+    "symbol": "Nb",
+    "period": 5,
+    "group": 5,
+    "column": 5,
+    "row": 5,
+    "family": "transition",
+    "wikidata": "Q1046"
+  },
+  {
+    "atomicNumber": 42,
+    "symbol": "Mo",
+    "period": 5,
+    "group": 6,
+    "column": 6,
+    "row": 5,
+    "family": "transition",
+    "wikidata": "Q1053"
+  },
+  {
+    "atomicNumber": 43,
+    "symbol": "Tc",
+    "period": 5,
+    "group": 7,
+    "column": 7,
+    "row": 5,
+    "family": "transition",
+    "wikidata": "Q1054"
+  },
+  {
+    "atomicNumber": 44,
+    "symbol": "Ru",
+    "period": 5,
+    "group": 8,
+    "column": 8,
+    "row": 5,
+    "family": "transition",
+    "wikidata": "Q1086"
+  },
+  {
+    "atomicNumber": 45,
+    "symbol": "Rh",
+    "period": 5,
+    "group": 9,
+    "column": 9,
+    "row": 5,
+    "family": "transition",
+    "wikidata": "Q1087"
+  },
+  {
+    "atomicNumber": 46,
+    "symbol": "Pd",
+    "period": 5,
+    "group": 10,
+    "column": 10,
+    "row": 5,
+    "family": "transition",
+    "wikidata": "Q1089"
+  },
+  {
+    "atomicNumber": 47,
+    "symbol": "Ag",
+    "period": 5,
+    "group": 11,
+    "column": 11,
+    "row": 5,
+    "family": "transition",
+    "wikidata": "Q1090"
+  },
+  {
+    "atomicNumber": 48,
+    "symbol": "Cd",
+    "period": 5,
+    "group": 12,
+    "column": 12,
+    "row": 5,
+    "family": "transition",
+    "wikidata": "Q1091"
+  },
+  {
+    "atomicNumber": 49,
+    "symbol": "In",
+    "period": 5,
+    "group": 13,
+    "column": 13,
+    "row": 5,
+    "family": "post-transition",
+    "wikidata": "Q1094"
+  },
+  {
+    "atomicNumber": 50,
+    "symbol": "Sn",
+    "period": 5,
+    "group": 14,
+    "column": 14,
+    "row": 5,
+    "family": "post-transition",
+    "wikidata": "Q1096"
+  },
+  {
+    "atomicNumber": 51,
+    "symbol": "Sb",
+    "period": 5,
+    "group": 15,
+    "column": 15,
+    "row": 5,
+    "family": "metalloid",
+    "wikidata": "Q1099"
+  },
+  {
+    "atomicNumber": 52,
+    "symbol": "Te",
+    "period": 5,
+    "group": 16,
+    "column": 16,
+    "row": 5,
+    "family": "metalloid",
+    "wikidata": "Q1100"
+  },
+  {
+    "atomicNumber": 53,
+    "symbol": "I",
+    "period": 5,
+    "group": 17,
+    "column": 17,
+    "row": 5,
+    "family": "halogen",
+    "wikidata": "Q1103"
+  },
+  {
+    "atomicNumber": 54,
+    "symbol": "Xe",
+    "period": 5,
+    "group": 18,
+    "column": 18,
+    "row": 5,
+    "family": "noble-gas",
+    "wikidata": "Q1106"
+  },
+  {
+    "atomicNumber": 55,
+    "symbol": "Cs",
+    "period": 6,
+    "group": 1,
+    "column": 1,
+    "row": 6,
+    "family": "alkali",
+    "wikidata": "Q1108"
+  },
+  {
+    "atomicNumber": 56,
+    "symbol": "Ba",
+    "period": 6,
+    "group": 2,
+    "column": 2,
+    "row": 6,
+    "family": "alkaline-earth",
+    "wikidata": "Q1112"
+  },
+  {
+    "atomicNumber": 57,
+    "symbol": "La",
+    "period": 6,
+    "group": null,
+    "column": 4,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1801"
+  },
+  {
+    "atomicNumber": 58,
+    "symbol": "Ce",
+    "period": 6,
+    "group": null,
+    "column": 5,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1385"
+  },
+  {
+    "atomicNumber": 59,
+    "symbol": "Pr",
+    "period": 6,
+    "group": null,
+    "column": 6,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1386"
+  },
+  {
+    "atomicNumber": 60,
+    "symbol": "Nd",
+    "period": 6,
+    "group": null,
+    "column": 7,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1388"
+  },
+  {
+    "atomicNumber": 61,
+    "symbol": "Pm",
+    "period": 6,
+    "group": null,
+    "column": 8,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1809"
+  },
+  {
+    "atomicNumber": 62,
+    "symbol": "Sm",
+    "period": 6,
+    "group": null,
+    "column": 9,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1819"
+  },
+  {
+    "atomicNumber": 63,
+    "symbol": "Eu",
+    "period": 6,
+    "group": null,
+    "column": 10,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1396"
+  },
+  {
+    "atomicNumber": 64,
+    "symbol": "Gd",
+    "period": 6,
+    "group": null,
+    "column": 11,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1832"
+  },
+  {
+    "atomicNumber": 65,
+    "symbol": "Tb",
+    "period": 6,
+    "group": null,
+    "column": 12,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1838"
+  },
+  {
+    "atomicNumber": 66,
+    "symbol": "Dy",
+    "period": 6,
+    "group": null,
+    "column": 13,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1843"
+  },
+  {
+    "atomicNumber": 67,
+    "symbol": "Ho",
+    "period": 6,
+    "group": null,
+    "column": 14,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1846"
+  },
+  {
+    "atomicNumber": 68,
+    "symbol": "Er",
+    "period": 6,
+    "group": null,
+    "column": 15,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1849"
+  },
+  {
+    "atomicNumber": 69,
+    "symbol": "Tm",
+    "period": 6,
+    "group": null,
+    "column": 16,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1853"
+  },
+  {
+    "atomicNumber": 70,
+    "symbol": "Yb",
+    "period": 6,
+    "group": null,
+    "column": 17,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1855"
+  },
+  {
+    "atomicNumber": 71,
+    "symbol": "Lu",
+    "period": 6,
+    "group": null,
+    "column": 18,
+    "row": 8,
+    "family": "lanthanoid",
+    "wikidata": "Q1857"
+  },
+  {
+    "atomicNumber": 72,
+    "symbol": "Hf",
+    "period": 6,
+    "group": 4,
+    "column": 4,
+    "row": 6,
+    "family": "transition",
+    "wikidata": "Q1119"
+  },
+  {
+    "atomicNumber": 73,
+    "symbol": "Ta",
+    "period": 6,
+    "group": 5,
+    "column": 5,
+    "row": 6,
+    "family": "transition",
+    "wikidata": "Q1123"
+  },
+  {
+    "atomicNumber": 74,
+    "symbol": "W",
+    "period": 6,
+    "group": 6,
+    "column": 6,
+    "row": 6,
+    "family": "transition",
+    "wikidata": "Q743"
+  },
+  {
+    "atomicNumber": 75,
+    "symbol": "Re",
+    "period": 6,
+    "group": 7,
+    "column": 7,
+    "row": 6,
+    "family": "transition",
+    "wikidata": "Q737"
+  },
+  {
+    "atomicNumber": 76,
+    "symbol": "Os",
+    "period": 6,
+    "group": 8,
+    "column": 8,
+    "row": 6,
+    "family": "transition",
+    "wikidata": "Q751"
+  },
+  {
+    "atomicNumber": 77,
+    "symbol": "Ir",
+    "period": 6,
+    "group": 9,
+    "column": 9,
+    "row": 6,
+    "family": "transition",
+    "wikidata": "Q877"
+  },
+  {
+    "atomicNumber": 78,
+    "symbol": "Pt",
+    "period": 6,
+    "group": 10,
+    "column": 10,
+    "row": 6,
+    "family": "transition",
+    "wikidata": "Q880"
+  },
+  {
+    "atomicNumber": 79,
+    "symbol": "Au",
+    "period": 6,
+    "group": 11,
+    "column": 11,
+    "row": 6,
+    "family": "transition",
+    "wikidata": "Q897"
+  },
+  {
+    "atomicNumber": 80,
+    "symbol": "Hg",
+    "period": 6,
+    "group": 12,
+    "column": 12,
+    "row": 6,
+    "family": "transition",
+    "wikidata": "Q925"
+  },
+  {
+    "atomicNumber": 81,
+    "symbol": "Tl",
+    "period": 6,
+    "group": 13,
+    "column": 13,
+    "row": 6,
+    "family": "post-transition",
+    "wikidata": "Q932"
+  },
+  {
+    "atomicNumber": 82,
+    "symbol": "Pb",
+    "period": 6,
+    "group": 14,
+    "column": 14,
+    "row": 6,
+    "family": "post-transition",
+    "wikidata": "Q708"
+  },
+  {
+    "atomicNumber": 83,
+    "symbol": "Bi",
+    "period": 6,
+    "group": 15,
+    "column": 15,
+    "row": 6,
+    "family": "post-transition",
+    "wikidata": "Q942"
+  },
+  {
+    "atomicNumber": 84,
+    "symbol": "Po",
+    "period": 6,
+    "group": 16,
+    "column": 16,
+    "row": 6,
+    "family": "post-transition",
+    "wikidata": "Q979"
+  },
+  {
+    "atomicNumber": 85,
+    "symbol": "At",
+    "period": 6,
+    "group": 17,
+    "column": 17,
+    "row": 6,
+    "family": "halogen",
+    "wikidata": "Q999"
+  },
+  {
+    "atomicNumber": 86,
+    "symbol": "Rn",
+    "period": 6,
+    "group": 18,
+    "column": 18,
+    "row": 6,
+    "family": "noble-gas",
+    "wikidata": "Q1133"
+  },
+  {
+    "atomicNumber": 87,
+    "symbol": "Fr",
+    "period": 7,
+    "group": 1,
+    "column": 1,
+    "row": 7,
+    "family": "alkali",
+    "wikidata": "Q671"
+  },
+  {
+    "atomicNumber": 88,
+    "symbol": "Ra",
+    "period": 7,
+    "group": 2,
+    "column": 2,
+    "row": 7,
+    "family": "alkaline-earth",
+    "wikidata": "Q1128"
+  },
+  {
+    "atomicNumber": 89,
+    "symbol": "Ac",
+    "period": 7,
+    "group": null,
+    "column": 4,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1121"
+  },
+  {
+    "atomicNumber": 90,
+    "symbol": "Th",
+    "period": 7,
+    "group": null,
+    "column": 5,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1115"
+  },
+  {
+    "atomicNumber": 91,
+    "symbol": "Pa",
+    "period": 7,
+    "group": null,
+    "column": 6,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1109"
+  },
+  {
+    "atomicNumber": 92,
+    "symbol": "U",
+    "period": 7,
+    "group": null,
+    "column": 7,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1098"
+  },
+  {
+    "atomicNumber": 93,
+    "symbol": "Np",
+    "period": 7,
+    "group": null,
+    "column": 8,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1105"
+  },
+  {
+    "atomicNumber": 94,
+    "symbol": "Pu",
+    "period": 7,
+    "group": null,
+    "column": 9,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1102"
+  },
+  {
+    "atomicNumber": 95,
+    "symbol": "Am",
+    "period": 7,
+    "group": null,
+    "column": 10,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1872"
+  },
+  {
+    "atomicNumber": 96,
+    "symbol": "Cm",
+    "period": 7,
+    "group": null,
+    "column": 11,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1876"
+  },
+  {
+    "atomicNumber": 97,
+    "symbol": "Bk",
+    "period": 7,
+    "group": null,
+    "column": 12,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1882"
+  },
+  {
+    "atomicNumber": 98,
+    "symbol": "Cf",
+    "period": 7,
+    "group": null,
+    "column": 13,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1888"
+  },
+  {
+    "atomicNumber": 99,
+    "symbol": "Es",
+    "period": 7,
+    "group": null,
+    "column": 14,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1892"
+  },
+  {
+    "atomicNumber": 100,
+    "symbol": "Fm",
+    "period": 7,
+    "group": null,
+    "column": 15,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1896"
+  },
+  {
+    "atomicNumber": 101,
+    "symbol": "Md",
+    "period": 7,
+    "group": null,
+    "column": 16,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1898"
+  },
+  {
+    "atomicNumber": 102,
+    "symbol": "No",
+    "period": 7,
+    "group": null,
+    "column": 17,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1901"
+  },
+  {
+    "atomicNumber": 103,
+    "symbol": "Lr",
+    "period": 7,
+    "group": null,
+    "column": 18,
+    "row": 9,
+    "family": "actinoid",
+    "wikidata": "Q1905"
+  },
+  {
+    "atomicNumber": 104,
+    "symbol": "Rf",
+    "period": 7,
+    "group": 4,
+    "column": 4,
+    "row": 7,
+    "family": "transition",
+    "wikidata": "Q1226"
+  },
+  {
+    "atomicNumber": 105,
+    "symbol": "Db",
+    "period": 7,
+    "group": 5,
+    "column": 5,
+    "row": 7,
+    "family": "transition",
+    "wikidata": "Q1232"
+  },
+  {
+    "atomicNumber": 106,
+    "symbol": "Sg",
+    "period": 7,
+    "group": 6,
+    "column": 6,
+    "row": 7,
+    "family": "transition",
+    "wikidata": "Q1234"
+  },
+  {
+    "atomicNumber": 107,
+    "symbol": "Bh",
+    "period": 7,
+    "group": 7,
+    "column": 7,
+    "row": 7,
+    "family": "transition",
+    "wikidata": "Q1249"
+  },
+  {
+    "atomicNumber": 108,
+    "symbol": "Hs",
+    "period": 7,
+    "group": 8,
+    "column": 8,
+    "row": 7,
+    "family": "transition",
+    "wikidata": "Q1252"
+  },
+  {
+    "atomicNumber": 109,
+    "symbol": "Mt",
+    "period": 7,
+    "group": 9,
+    "column": 9,
+    "row": 7,
+    "family": "transition",
+    "wikidata": "Q1258"
+  },
+  {
+    "atomicNumber": 110,
+    "symbol": "Ds",
+    "period": 7,
+    "group": 10,
+    "column": 10,
+    "row": 7,
+    "family": "transition",
+    "wikidata": "Q1266"
+  },
+  {
+    "atomicNumber": 111,
+    "symbol": "Rg",
+    "period": 7,
+    "group": 11,
+    "column": 11,
+    "row": 7,
+    "family": "transition",
+    "wikidata": "Q1272"
+  },
+  {
+    "atomicNumber": 112,
+    "symbol": "Cn",
+    "period": 7,
+    "group": 12,
+    "column": 12,
+    "row": 7,
+    "family": "transition",
+    "wikidata": "Q1278"
+  },
+  {
+    "atomicNumber": 113,
+    "symbol": "Nh",
+    "period": 7,
+    "group": 13,
+    "column": 13,
+    "row": 7,
+    "family": "post-transition",
+    "wikidata": "Q1301"
+  },
+  {
+    "atomicNumber": 114,
+    "symbol": "Fl",
+    "period": 7,
+    "group": 14,
+    "column": 14,
+    "row": 7,
+    "family": "post-transition",
+    "wikidata": "Q1302"
+  },
+  {
+    "atomicNumber": 115,
+    "symbol": "Mc",
+    "period": 7,
+    "group": 15,
+    "column": 15,
+    "row": 7,
+    "family": "post-transition",
+    "wikidata": "Q1303"
+  },
+  {
+    "atomicNumber": 116,
+    "symbol": "Lv",
+    "period": 7,
+    "group": 16,
+    "column": 16,
+    "row": 7,
+    "family": "post-transition",
+    "wikidata": "Q1304"
+  },
+  {
+    "atomicNumber": 117,
+    "symbol": "Ts",
+    "period": 7,
+    "group": 17,
+    "column": 17,
+    "row": 7,
+    "family": "halogen",
+    "wikidata": "Q1306"
+  },
+  {
+    "atomicNumber": 118,
+    "symbol": "Og",
+    "period": 7,
+    "group": 18,
+    "column": 18,
+    "row": 7,
+    "family": "noble-gas",
+    "wikidata": "Q1307"
+  }
+]

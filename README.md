@@ -1,11 +1,57 @@
-# Periodic table · Tableau périodique
+# Periodic table
 
-The bilingual source candidate is available on the [source-review branch](https://github.com/rectoversohq/rectoverso-periodic-table/tree/codex/1-source-candidate). Start there for the complete README, source data, licensing and build instructions.
+[Français](README.fr.md)
 
-[Source review](https://github.com/rectoversohq/rectoverso-periodic-table/issues/1) · [RectoVerso task](https://github.com/simonpinkas/RectoVerso/issues/619)
+An original, bilingual deck of the 118 elements, three cards each: the table with a symbol masked (**which symbol belongs here?**), the table with an element’s cell lit (**which element is this?**), and an element’s name (**what’s its symbol?**). The full element name and compact atomic-number, group and period facts follow each answer. English and French are separate packages built from one source. The 18-column figure has registered light/dark original and clean pairs; only symbol regions are removed.
 
-This main branch is a repository landing page. Source review and package releases are separate steps; no deck release is published. Original deck work: © Simon Pinkas, CC BY 4.0; component licenses are documented in the source.
+**Prerelease 0.1.0-rc.1.** [Download the English and French Anki packages](https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.1.0-rc.1). Original artwork and deck: © Simon Pinkas, **CC BY 4.0**. Factual Wikidata records: **CC0**. See [credits](NOTICE.md), [source and identity rules](docs/source.md), and [validation](docs/validation.md).
 
----
+## Get the source
 
-La source bilingue à examiner se trouve sur la [branche de revue](https://github.com/rectoversohq/rectoverso-periodic-table/tree/codex/1-source-candidate), avec les instructions de construction et les licences. Cette branche principale sert de page d’accueil ; aucun paquet n’est publié. Les créations originales sont sous CC BY 4.0 ; les licences des composants sont conservées.
+Clone the tagged source to reproduce this prerelease:
+
+```sh
+git clone --branch v0.1.0-rc.1 https://github.com/rectoversohq/rectoverso-periodic-table.git
+cd rectoverso-periodic-table
+```
+
+See [source review and validation status](docs/review.md).
+
+## Build and check
+
+Use Python 3.14, Anki 26.9.3, and Qt/PyQt 6.11.0. The drawing uses the macOS-provided SF Pro font; its file is never bundled. Install `requirements.txt` in a dedicated environment. Anki's bundled Python/Qt environment can also run the artwork and reviewer checks, while its matching Python backend builds packages.
+
+Choose an output directory outside this source repository. The builder makes one language's package from the source, rendering its four pictures with the pinned renderer and font, and refuses to overwrite a package.
+
+```sh
+export DECK_OUT=/path/to/new-output-directory
+python -m unittest discover -s tests
+python scripts/artwork.py --font /System/Library/Fonts/SFNS.ttf --out "$DECK_OUT/artwork"
+python scripts/checks/verify-artwork.py --render "$DECK_OUT/artwork"
+for lang in en fr; do
+  file=$(python -c "import json, sys; print(json.load(open('rectoverso.json'))['languages'][sys.argv[1]]['package']['file'])" "$lang")
+  python scripts/build.py --language "$lang" --out "$DECK_OUT/packages/$file"
+  python scripts/build.py --language "$lang" --out "$DECK_OUT/rebuild/$file"
+  python scripts/checks/validate-rebuild.py "$DECK_OUT/packages/$file" "$DECK_OUT/rebuild/$file" "$DECK_OUT/rebuild-$lang.json"
+done
+python scripts/checks/validate_source.py --packages "$DECK_OUT/packages" \
+  --update-packages "$DECK_OUT/rebuild" --out "$DECK_OUT/anki-check"
+python scripts/checks/validate-anki.py --output "$DECK_OUT/anki-packages" "$DECK_OUT"/packages/*.apkg
+python scripts/checks/render_anki.py --evidence "$DECK_OUT/anki-check" \
+  --web /Applications/Anki.app/Contents/Resources/app_packages/_aqt/data/web \
+  --out "$DECK_OUT/render-check"
+```
+
+`--web` must point to the **same Anki version's** installed reviewer assets. The render check uses a Qt window. In a graphical session, run it normally; for headless CI set `QT_QPA_PLATFORM=offscreen` and `QTWEBENGINE_CHROMIUM_FLAGS=--disable-gpu` so canvas masks use software rendering. `--sample` checks eight representative elements before the full 944-page pass. Adding `--document-delay-ms 300 --parser-delay-ms 300` exercises slow navigation and HTML parsing without changing the expected card result. For an installed `aqt` distribution, its `_aqt/data/web` directory is equivalent.
+
+Outputs: `Periodic-table-en.apkg`, `Tableau-periodique-fr.apkg`, each package's sidecar (`.rectoverso.json`: the language's metadata from `rectoverso.json` with the package's bytes and SHA-256), backend reports and native-reviewer captures. `validate_source.py` is the source's complete Anki check (editor, updates, scheduling); `validate-anki.py` and `validate-rebuild.py` are the per-package checks RectoVerso's gallery runs. Every note and note type carries `contentModifiedAt`, so two builds hold the same notes; the archive bytes may still differ. Use the sidecar belonging to the actual package.
+
+## Gallery metadata
+
+`rectoverso.json` follows RectoVerso's gallery layout ([simonpinkas/RectoVerso#690](https://github.com/simonpinkas/RectoVerso/issues/690)): the deck's title, subject, headline and description in English and French, its category (`sciences`), creator, license, sources, image credits, and for each language its package and its **sample** question, the gold cell Au (`rvPTenV1001/79`, `rvPTfrV1001/79`). Its GUIDs keep their compact form (`guidForm: compact`: the prefix `rvPT` and the language, joined), and its pictures are rendered by each build from the vectors in `artwork/` (`renderedPictures`). `scripts/source_data.py` expands one language's metadata and notes for RectoVerso's `scripts/gallery/decks.py`.
+
+## Update
+
+Edit shared facts in `source/elements.json` and names in `source/translations/`. Preserve region ordinals and all language identities. A content change moves `contentModifiedAt` in `rectoverso.json` forward to the time of the change (never into the future): Anki updates a note only when the package's modification time differs from the collection's. Rebuild both packages, check them against an independently rebuilt update, inspect both themes and clean pairs, and review any content change before publication. The current scope does not modify RectoVerso, its sample deck or the gallery.
+
+The original SVG masters are generated from `scripts/artwork.py`; edit the drawing there and regenerate all four together (`--font /System/Library/Fonts/SFNS.ttf --out "$DECK_OUT/artwork"`, with `QT_QPA_PLATFORM=offscreen`). It renders them at 3840 × 2960, with the actual resolved font family and font digest recorded. The pixels depend on the font file and on the Qt that draws them, so both are pinned: `source/artwork.json` records the font's SHA-256, the renderer (Qt and PyQt versions, the offscreen platform, which `scripts/artwork.py` always uses) and each picture's SHA-256. The pictures stay out of Git: `scripts/build.py` renders them and refuses a picture that isn't the pinned one, so every release build ships the same bytes. On a machine with another font (the hosted CI), `--artwork` builds from that machine's own render, for checks only. A changed drawing, font or Qt is reviewed, then pinned again under new file names (`-v3.png`). `scripts/checks/verify-artwork.py --render DIR` compares a fresh render with the record; `scripts/artwork.py` rejects any clean-image pixel change outside the 118 symbol regions. The optional **RectoVerso Occlusion** field binds exact masks and media; Anki's ordinary question and answer remain usable without it.

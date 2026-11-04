@@ -1,0 +1,389 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1480" viewBox="0 0 1920 1480">
+<rect width="1920" height="1480" fill="#f7f5ef"/>
+<g font-family=".SF NS">
+<text x="144.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">1</text>
+<text x="240.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">2</text>
+<text x="336.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">3</text>
+<text x="432.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">4</text>
+<text x="528.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">5</text>
+<text x="624.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">6</text>
+<text x="720.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">7</text>
+<text x="816.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">8</text>
+<text x="912.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">9</text>
+<text x="1008.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">10</text>
+<text x="1104.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">11</text>
+<text x="1200.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">12</text>
+<text x="1296.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">13</text>
+<text x="1392.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">14</text>
+<text x="1488.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">15</text>
+<text x="1584.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">16</text>
+<text x="1680.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">17</text>
+<text x="1776.0" y="94" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">18</text>
+<text x="55" y="197.0" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">1</text>
+<text x="55" y="329.0" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">2</text>
+<text x="55" y="461.0" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">3</text>
+<text x="55" y="593.0" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">4</text>
+<text x="55" y="725.0" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">5</text>
+<text x="55" y="857.0" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">6</text>
+<text x="55" y="989.0" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">7</text>
+<text x="336.0" y="1173" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">6</text>
+<text x="336.0" y="1305" font-size="16" font-weight="400" text-anchor="middle" fill="#62665c">7</text>
+<rect x="292" y="786" width="88" height="124" rx="4" fill="none" stroke="#62665c" stroke-opacity="0.4"/>
+<text x="336.0" y="855.0" font-size="15" font-weight="400" text-anchor="middle" fill="#62665c">57–71</text>
+<rect x="292" y="918" width="88" height="124" rx="4" fill="none" stroke="#62665c" stroke-opacity="0.4"/>
+<text x="336.0" y="987.0" font-size="15" font-weight="400" text-anchor="middle" fill="#62665c">89–103</text>
+<rect id="cell-1" x="100" y="126" width="88" height="124" rx="4" fill="#a9d5cb"/>
+<text x="110" y="147" font-size="14" font-weight="400" text-anchor="start" fill="#252820">1</text>
+<text x="144.0" y="215" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">H</text>
+<rect id="cell-2" x="1732" y="126" width="88" height="124" rx="4" fill="#dbc4df"/>
+<text x="1742" y="147" font-size="14" font-weight="400" text-anchor="start" fill="#252820">2</text>
+<text x="1776.0" y="215" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">He</text>
+<rect id="cell-3" x="100" y="258" width="88" height="124" rx="4" fill="#e9b8ad"/>
+<text x="110" y="279" font-size="14" font-weight="400" text-anchor="start" fill="#252820">3</text>
+<text x="144.0" y="347" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Li</text>
+<rect id="cell-4" x="196" y="258" width="88" height="124" rx="4" fill="#e8cf9b"/>
+<text x="206" y="279" font-size="14" font-weight="400" text-anchor="start" fill="#252820">4</text>
+<text x="240.0" y="347" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Be</text>
+<rect id="cell-5" x="1252" y="258" width="88" height="124" rx="4" fill="#d1dbad"/>
+<text x="1262" y="279" font-size="14" font-weight="400" text-anchor="start" fill="#252820">5</text>
+<text x="1296.0" y="347" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">B</text>
+<rect id="cell-6" x="1348" y="258" width="88" height="124" rx="4" fill="#a9d5cb"/>
+<text x="1358" y="279" font-size="14" font-weight="400" text-anchor="start" fill="#252820">6</text>
+<text x="1392.0" y="347" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">C</text>
+<rect id="cell-7" x="1444" y="258" width="88" height="124" rx="4" fill="#a9d5cb"/>
+<text x="1454" y="279" font-size="14" font-weight="400" text-anchor="start" fill="#252820">7</text>
+<text x="1488.0" y="347" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">N</text>
+<rect id="cell-8" x="1540" y="258" width="88" height="124" rx="4" fill="#a9d5cb"/>
+<text x="1550" y="279" font-size="14" font-weight="400" text-anchor="start" fill="#252820">8</text>
+<text x="1584.0" y="347" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">O</text>
+<rect id="cell-9" x="1636" y="258" width="88" height="124" rx="4" fill="#c3c9e6"/>
+<text x="1646" y="279" font-size="14" font-weight="400" text-anchor="start" fill="#252820">9</text>
+<text x="1680.0" y="347" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">F</text>
+<rect id="cell-10" x="1732" y="258" width="88" height="124" rx="4" fill="#dbc4df"/>
+<text x="1742" y="279" font-size="14" font-weight="400" text-anchor="start" fill="#252820">10</text>
+<text x="1776.0" y="347" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ne</text>
+<rect id="cell-11" x="100" y="390" width="88" height="124" rx="4" fill="#e9b8ad"/>
+<text x="110" y="411" font-size="14" font-weight="400" text-anchor="start" fill="#252820">11</text>
+<text x="144.0" y="479" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Na</text>
+<rect id="cell-12" x="196" y="390" width="88" height="124" rx="4" fill="#e8cf9b"/>
+<text x="206" y="411" font-size="14" font-weight="400" text-anchor="start" fill="#252820">12</text>
+<text x="240.0" y="479" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Mg</text>
+<rect id="cell-13" x="1252" y="390" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1262" y="411" font-size="14" font-weight="400" text-anchor="start" fill="#252820">13</text>
+<text x="1296.0" y="479" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Al</text>
+<rect id="cell-14" x="1348" y="390" width="88" height="124" rx="4" fill="#d1dbad"/>
+<text x="1358" y="411" font-size="14" font-weight="400" text-anchor="start" fill="#252820">14</text>
+<text x="1392.0" y="479" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Si</text>
+<rect id="cell-15" x="1444" y="390" width="88" height="124" rx="4" fill="#a9d5cb"/>
+<text x="1454" y="411" font-size="14" font-weight="400" text-anchor="start" fill="#252820">15</text>
+<text x="1488.0" y="479" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">P</text>
+<rect id="cell-16" x="1540" y="390" width="88" height="124" rx="4" fill="#a9d5cb"/>
+<text x="1550" y="411" font-size="14" font-weight="400" text-anchor="start" fill="#252820">16</text>
+<text x="1584.0" y="479" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">S</text>
+<rect id="cell-17" x="1636" y="390" width="88" height="124" rx="4" fill="#c3c9e6"/>
+<text x="1646" y="411" font-size="14" font-weight="400" text-anchor="start" fill="#252820">17</text>
+<text x="1680.0" y="479" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Cl</text>
+<rect id="cell-18" x="1732" y="390" width="88" height="124" rx="4" fill="#dbc4df"/>
+<text x="1742" y="411" font-size="14" font-weight="400" text-anchor="start" fill="#252820">18</text>
+<text x="1776.0" y="479" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ar</text>
+<rect id="cell-19" x="100" y="522" width="88" height="124" rx="4" fill="#e9b8ad"/>
+<text x="110" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">19</text>
+<text x="144.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">K</text>
+<rect id="cell-20" x="196" y="522" width="88" height="124" rx="4" fill="#e8cf9b"/>
+<text x="206" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">20</text>
+<text x="240.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ca</text>
+<rect id="cell-21" x="292" y="522" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="302" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">21</text>
+<text x="336.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Sc</text>
+<rect id="cell-22" x="388" y="522" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="398" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">22</text>
+<text x="432.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ti</text>
+<rect id="cell-23" x="484" y="522" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="494" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">23</text>
+<text x="528.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">V</text>
+<rect id="cell-24" x="580" y="522" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="590" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">24</text>
+<text x="624.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Cr</text>
+<rect id="cell-25" x="676" y="522" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="686" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">25</text>
+<text x="720.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Mn</text>
+<rect id="cell-26" x="772" y="522" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="782" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">26</text>
+<text x="816.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Fe</text>
+<rect id="cell-27" x="868" y="522" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="878" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">27</text>
+<text x="912.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Co</text>
+<rect id="cell-28" x="964" y="522" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="974" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">28</text>
+<text x="1008.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ni</text>
+<rect id="cell-29" x="1060" y="522" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="1070" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">29</text>
+<text x="1104.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Cu</text>
+<rect id="cell-30" x="1156" y="522" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="1166" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">30</text>
+<text x="1200.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Zn</text>
+<rect id="cell-31" x="1252" y="522" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1262" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">31</text>
+<text x="1296.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ga</text>
+<rect id="cell-32" x="1348" y="522" width="88" height="124" rx="4" fill="#d1dbad"/>
+<text x="1358" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">32</text>
+<text x="1392.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ge</text>
+<rect id="cell-33" x="1444" y="522" width="88" height="124" rx="4" fill="#d1dbad"/>
+<text x="1454" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">33</text>
+<text x="1488.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">As</text>
+<rect id="cell-34" x="1540" y="522" width="88" height="124" rx="4" fill="#a9d5cb"/>
+<text x="1550" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">34</text>
+<text x="1584.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Se</text>
+<rect id="cell-35" x="1636" y="522" width="88" height="124" rx="4" fill="#c3c9e6"/>
+<text x="1646" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">35</text>
+<text x="1680.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Br</text>
+<rect id="cell-36" x="1732" y="522" width="88" height="124" rx="4" fill="#dbc4df"/>
+<text x="1742" y="543" font-size="14" font-weight="400" text-anchor="start" fill="#252820">36</text>
+<text x="1776.0" y="611" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Kr</text>
+<rect id="cell-37" x="100" y="654" width="88" height="124" rx="4" fill="#e9b8ad"/>
+<text x="110" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">37</text>
+<text x="144.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Rb</text>
+<rect id="cell-38" x="196" y="654" width="88" height="124" rx="4" fill="#e8cf9b"/>
+<text x="206" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">38</text>
+<text x="240.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Sr</text>
+<rect id="cell-39" x="292" y="654" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="302" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">39</text>
+<text x="336.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Y</text>
+<rect id="cell-40" x="388" y="654" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="398" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">40</text>
+<text x="432.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Zr</text>
+<rect id="cell-41" x="484" y="654" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="494" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">41</text>
+<text x="528.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Nb</text>
+<rect id="cell-42" x="580" y="654" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="590" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">42</text>
+<text x="624.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Mo</text>
+<rect id="cell-43" x="676" y="654" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="686" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">43</text>
+<text x="720.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Tc</text>
+<rect id="cell-44" x="772" y="654" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="782" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">44</text>
+<text x="816.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ru</text>
+<rect id="cell-45" x="868" y="654" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="878" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">45</text>
+<text x="912.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Rh</text>
+<rect id="cell-46" x="964" y="654" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="974" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">46</text>
+<text x="1008.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Pd</text>
+<rect id="cell-47" x="1060" y="654" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="1070" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">47</text>
+<text x="1104.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ag</text>
+<rect id="cell-48" x="1156" y="654" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="1166" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">48</text>
+<text x="1200.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Cd</text>
+<rect id="cell-49" x="1252" y="654" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1262" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">49</text>
+<text x="1296.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">In</text>
+<rect id="cell-50" x="1348" y="654" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1358" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">50</text>
+<text x="1392.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Sn</text>
+<rect id="cell-51" x="1444" y="654" width="88" height="124" rx="4" fill="#d1dbad"/>
+<text x="1454" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">51</text>
+<text x="1488.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Sb</text>
+<rect id="cell-52" x="1540" y="654" width="88" height="124" rx="4" fill="#d1dbad"/>
+<text x="1550" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">52</text>
+<text x="1584.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Te</text>
+<rect id="cell-53" x="1636" y="654" width="88" height="124" rx="4" fill="#c3c9e6"/>
+<text x="1646" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">53</text>
+<text x="1680.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">I</text>
+<rect id="cell-54" x="1732" y="654" width="88" height="124" rx="4" fill="#dbc4df"/>
+<text x="1742" y="675" font-size="14" font-weight="400" text-anchor="start" fill="#252820">54</text>
+<text x="1776.0" y="743" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Xe</text>
+<rect id="cell-55" x="100" y="786" width="88" height="124" rx="4" fill="#e9b8ad"/>
+<text x="110" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">55</text>
+<text x="144.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Cs</text>
+<rect id="cell-56" x="196" y="786" width="88" height="124" rx="4" fill="#e8cf9b"/>
+<text x="206" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">56</text>
+<text x="240.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ba</text>
+<rect id="cell-57" x="388" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="398" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">57</text>
+<text x="432.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">La</text>
+<rect id="cell-58" x="484" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="494" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">58</text>
+<text x="528.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ce</text>
+<rect id="cell-59" x="580" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="590" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">59</text>
+<text x="624.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Pr</text>
+<rect id="cell-60" x="676" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="686" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">60</text>
+<text x="720.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Nd</text>
+<rect id="cell-61" x="772" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="782" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">61</text>
+<text x="816.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Pm</text>
+<rect id="cell-62" x="868" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="878" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">62</text>
+<text x="912.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Sm</text>
+<rect id="cell-63" x="964" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="974" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">63</text>
+<text x="1008.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Eu</text>
+<rect id="cell-64" x="1060" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="1070" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">64</text>
+<text x="1104.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Gd</text>
+<rect id="cell-65" x="1156" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="1166" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">65</text>
+<text x="1200.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Tb</text>
+<rect id="cell-66" x="1252" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="1262" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">66</text>
+<text x="1296.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Dy</text>
+<rect id="cell-67" x="1348" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="1358" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">67</text>
+<text x="1392.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ho</text>
+<rect id="cell-68" x="1444" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="1454" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">68</text>
+<text x="1488.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Er</text>
+<rect id="cell-69" x="1540" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="1550" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">69</text>
+<text x="1584.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Tm</text>
+<rect id="cell-70" x="1636" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="1646" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">70</text>
+<text x="1680.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Yb</text>
+<rect id="cell-71" x="1732" y="1086" width="88" height="124" rx="4" fill="#d6c6b5"/>
+<text x="1742" y="1107" font-size="14" font-weight="400" text-anchor="start" fill="#252820">71</text>
+<text x="1776.0" y="1175" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Lu</text>
+<rect id="cell-72" x="388" y="786" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="398" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">72</text>
+<text x="432.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Hf</text>
+<rect id="cell-73" x="484" y="786" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="494" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">73</text>
+<text x="528.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ta</text>
+<rect id="cell-74" x="580" y="786" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="590" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">74</text>
+<text x="624.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">W</text>
+<rect id="cell-75" x="676" y="786" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="686" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">75</text>
+<text x="720.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Re</text>
+<rect id="cell-76" x="772" y="786" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="782" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">76</text>
+<text x="816.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Os</text>
+<rect id="cell-77" x="868" y="786" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="878" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">77</text>
+<text x="912.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ir</text>
+<rect id="cell-78" x="964" y="786" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="974" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">78</text>
+<text x="1008.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Pt</text>
+<rect id="cell-79" x="1060" y="786" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="1070" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">79</text>
+<text x="1104.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Au</text>
+<rect id="cell-80" x="1156" y="786" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="1166" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">80</text>
+<text x="1200.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Hg</text>
+<rect id="cell-81" x="1252" y="786" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1262" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">81</text>
+<text x="1296.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Tl</text>
+<rect id="cell-82" x="1348" y="786" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1358" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">82</text>
+<text x="1392.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Pb</text>
+<rect id="cell-83" x="1444" y="786" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1454" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">83</text>
+<text x="1488.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Bi</text>
+<rect id="cell-84" x="1540" y="786" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1550" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">84</text>
+<text x="1584.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Po</text>
+<rect id="cell-85" x="1636" y="786" width="88" height="124" rx="4" fill="#c3c9e6"/>
+<text x="1646" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">85</text>
+<text x="1680.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">At</text>
+<rect id="cell-86" x="1732" y="786" width="88" height="124" rx="4" fill="#dbc4df"/>
+<text x="1742" y="807" font-size="14" font-weight="400" text-anchor="start" fill="#252820">86</text>
+<text x="1776.0" y="875" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Rn</text>
+<rect id="cell-87" x="100" y="918" width="88" height="124" rx="4" fill="#e9b8ad"/>
+<text x="110" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">87</text>
+<text x="144.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Fr</text>
+<rect id="cell-88" x="196" y="918" width="88" height="124" rx="4" fill="#e8cf9b"/>
+<text x="206" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">88</text>
+<text x="240.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ra</text>
+<rect id="cell-89" x="388" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="398" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">89</text>
+<text x="432.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ac</text>
+<rect id="cell-90" x="484" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="494" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">90</text>
+<text x="528.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Th</text>
+<rect id="cell-91" x="580" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="590" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">91</text>
+<text x="624.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Pa</text>
+<rect id="cell-92" x="676" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="686" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">92</text>
+<text x="720.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">U</text>
+<rect id="cell-93" x="772" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="782" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">93</text>
+<text x="816.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Np</text>
+<rect id="cell-94" x="868" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="878" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">94</text>
+<text x="912.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Pu</text>
+<rect id="cell-95" x="964" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="974" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">95</text>
+<text x="1008.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Am</text>
+<rect id="cell-96" x="1060" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="1070" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">96</text>
+<text x="1104.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Cm</text>
+<rect id="cell-97" x="1156" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="1166" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">97</text>
+<text x="1200.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Bk</text>
+<rect id="cell-98" x="1252" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="1262" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">98</text>
+<text x="1296.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Cf</text>
+<rect id="cell-99" x="1348" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="1358" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">99</text>
+<text x="1392.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Es</text>
+<rect id="cell-100" x="1444" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="1454" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">100</text>
+<text x="1488.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Fm</text>
+<rect id="cell-101" x="1540" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="1550" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">101</text>
+<text x="1584.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Md</text>
+<rect id="cell-102" x="1636" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="1646" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">102</text>
+<text x="1680.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">No</text>
+<rect id="cell-103" x="1732" y="1218" width="88" height="124" rx="4" fill="#dcbebf"/>
+<text x="1742" y="1239" font-size="14" font-weight="400" text-anchor="start" fill="#252820">103</text>
+<text x="1776.0" y="1307" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Lr</text>
+<rect id="cell-104" x="388" y="918" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="398" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">104</text>
+<text x="432.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Rf</text>
+<rect id="cell-105" x="484" y="918" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="494" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">105</text>
+<text x="528.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Db</text>
+<rect id="cell-106" x="580" y="918" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="590" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">106</text>
+<text x="624.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Sg</text>
+<rect id="cell-107" x="676" y="918" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="686" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">107</text>
+<text x="720.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Bh</text>
+<rect id="cell-108" x="772" y="918" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="782" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">108</text>
+<text x="816.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Hs</text>
+<rect id="cell-109" x="868" y="918" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="878" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">109</text>
+<text x="912.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Mt</text>
+<rect id="cell-110" x="964" y="918" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="974" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">110</text>
+<text x="1008.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ds</text>
+<rect id="cell-111" x="1060" y="918" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="1070" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">111</text>
+<text x="1104.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Rg</text>
+<rect id="cell-112" x="1156" y="918" width="88" height="124" rx="4" fill="#cedce5"/>
+<text x="1166" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">112</text>
+<text x="1200.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Cn</text>
+<rect id="cell-113" x="1252" y="918" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1262" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">113</text>
+<text x="1296.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Nh</text>
+<rect id="cell-114" x="1348" y="918" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1358" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">114</text>
+<text x="1392.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Fl</text>
+<rect id="cell-115" x="1444" y="918" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1454" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">115</text>
+<text x="1488.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Mc</text>
+<rect id="cell-116" x="1540" y="918" width="88" height="124" rx="4" fill="#bbd3cc"/>
+<text x="1550" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">116</text>
+<text x="1584.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Lv</text>
+<rect id="cell-117" x="1636" y="918" width="88" height="124" rx="4" fill="#c3c9e6"/>
+<text x="1646" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">117</text>
+<text x="1680.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Ts</text>
+<rect id="cell-118" x="1732" y="918" width="88" height="124" rx="4" fill="#dbc4df"/>
+<text x="1742" y="939" font-size="14" font-weight="400" text-anchor="start" fill="#252820">118</text>
+<text x="1776.0" y="1007" font-size="36" font-weight="600" text-anchor="middle" fill="#252820">Og</text>
+</g></svg>
