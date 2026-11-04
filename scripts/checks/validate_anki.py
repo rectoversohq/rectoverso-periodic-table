@@ -127,11 +127,17 @@ def validate_elements(col, lang, elements, names, occlusion):
         z, name, symbol = e["atomicNumber"], names[str(e["atomicNumber"])], e["symbol"]
         for kind in ("name-symbol", "symbol-name"):
             ids = ELEMENT_KINDS[kind][lang]
-            note = col.get_note(col.db.scalar("select id from notes where guid=?", f"{ids['guid']}{z:03d}"))
+            note = col.get_note(
+                col.db.scalar(
+                    "select id from notes where guid=?", f"{ids['guid']}{z:03d}"
+                )
+            )
             assert (note.id, note.mid) == (ids["noteBase"] + z, ids["model"])
             [card] = note.cards()
             assert (card.id, card.ord) == (ids["cardBase"] + z, 0)
-            assert [f["id"] for f in col.models.get(note.mid)["flds"]] == [ids["fieldBase"] + i for i in range(len(note.keys()))]
+            assert [f["id"] for f in col.models.get(note.mid)["flds"]] == [
+                ids["fieldBase"] + i for i in range(len(note.keys()))
+            ]
             assert note["Header"] == HEADERS[kind][lang]
             q, a = text_of(card.question()), text_of(card.answer())
             assert "RV-OCCLUSION-1" not in card.question() + card.answer()
@@ -142,22 +148,39 @@ def validate_elements(col, lang, elements, names, occlusion):
                 # The front shows the drawing and the lit frame, never the answer.
                 assert q == HEADERS[kind][lang], q
                 assert name in a and detail(e, lang) in a
-                data = json.loads(base64.b64decode(note[FIELD].split(":", 1)[1].split("<", 1)[0]))
+                data = json.loads(
+                    base64.b64decode(note[FIELD].split(":", 1)[1].split("<", 1)[0])
+                )
                 assert data["version"] == 1 and data["mode"] == "lit"
-                assert data["masksSHA256"] == digest(b"") and "Occlusion" not in note.keys()
+                assert (
+                    data["masksSHA256"] == digest(b"")
+                    and "Occlusion" not in note.keys()
+                )
                 for key in ("source", "clean", "darkSource", "darkClean", "canvas"):
                     assert data[key] == occlusion[key]
                 [r] = data["regions"]
-                assert (r["id"], r["ordinal"], r["kind"]) == (f"element-{z:03d}-cell", 1, "label")
-                assert r["answer"] == r["title"] == name and r["detail"] == detail(e, lang)
+                assert (r["id"], r["ordinal"], r["kind"]) == (
+                    f"element-{z:03d}-cell",
+                    1,
+                    "label",
+                )
+                assert r["answer"] == r["title"] == name and r["detail"] == detail(
+                    e, lang
+                )
                 assert r["position"] == position(e, lang) and name not in r["position"]
                 # The cell, independently of the artwork record: the symbol region sits at (9, 58)
                 # in an 88 × 124 cell of the 1920 × 1480 drawing.
                 left, top, _, _ = symbol_region["geometry"]["coordinates"]
                 cell = [left - 9 / 1920, top - 58 / 1480, 88 / 1920, 124 / 1480]
-                assert all(abs(x - y) < 1e-9 for x, y in zip(r["geometry"]["coordinates"], cell))
+                assert all(
+                    abs(x - y) < 1e-9
+                    for x, y in zip(r["geometry"]["coordinates"], cell)
+                )
                 lit = dict(part.split(":") for part in note["Lit"].split(";"))
-                assert all(abs(float(lit[k].rstrip("%")) / 100 - v) < 1e-6 for k, v in zip(("left", "top", "width", "height"), cell))
+                assert all(
+                    abs(float(lit[k].rstrip("%")) / 100 - v) < 1e-6
+                    for k, v in zip(("left", "top", "width", "height"), cell)
+                )
 
 
 def validate_prior_update(previous, packages, folder):

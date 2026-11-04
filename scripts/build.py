@@ -33,12 +33,40 @@ TITLES = {"en": "Periodic table", "fr": "Tableau périodique"}
 # keeps its identities; these never reuse its rows. Element z's note, card and GUID derive from z.
 ELEMENT_KINDS = {
     "name-symbol": {
-        "en": {"model": 619102000011, "template": 619106000011, "fieldBase": 619105001100, "noteBase": 619103101000, "cardBase": 619104110000, "guid": "rvPTenN"},
-        "fr": {"model": 619102000012, "template": 619106000012, "fieldBase": 619105002100, "noteBase": 619103201000, "cardBase": 619104210000, "guid": "rvPTfrN"},
+        "en": {
+            "model": 619102000011,
+            "template": 619106000011,
+            "fieldBase": 619105001100,
+            "noteBase": 619103101000,
+            "cardBase": 619104110000,
+            "guid": "rvPTenN",
+        },
+        "fr": {
+            "model": 619102000012,
+            "template": 619106000012,
+            "fieldBase": 619105002100,
+            "noteBase": 619103201000,
+            "cardBase": 619104210000,
+            "guid": "rvPTfrN",
+        },
     },
     "symbol-name": {
-        "en": {"model": 619102000021, "template": 619106000021, "fieldBase": 619105001200, "noteBase": 619103102000, "cardBase": 619104120000, "guid": "rvPTenL"},
-        "fr": {"model": 619102000022, "template": 619106000022, "fieldBase": 619105002200, "noteBase": 619103202000, "cardBase": 619104220000, "guid": "rvPTfrL"},
+        "en": {
+            "model": 619102000021,
+            "template": 619106000021,
+            "fieldBase": 619105001200,
+            "noteBase": 619103102000,
+            "cardBase": 619104120000,
+            "guid": "rvPTenL",
+        },
+        "fr": {
+            "model": 619102000022,
+            "template": 619106000022,
+            "fieldBase": 619105002200,
+            "noteBase": 619103202000,
+            "cardBase": 619104220000,
+            "guid": "rvPTfrL",
+        },
     },
 }
 HEADERS = {
@@ -92,7 +120,9 @@ def detail(e, lang):
 
 def element_model(col, kind, lang, fields, qfmt, afmt):
     ids = ELEMENT_KINDS[kind][lang]
-    model = col.models.new(f"Periodic table · {KIND_NAMES[kind][lang]} · {lang.upper()}")
+    model = col.models.new(
+        f"Periodic table · {KIND_NAMES[kind][lang]} · {lang.upper()}"
+    )
     for name in fields:
         col.models.add_field(model, col.models.new_field(name))
     template = col.models.new_template(KIND_NAMES[kind][lang])
@@ -127,30 +157,42 @@ def add_elements(col, lang, elements, names, artwork, deck_id):
     header = '<div class="rv-header">{{Header}}</div>'
     facts = '<div class="rv-detail">{{Details}}</div>'
     text = element_model(
-        col, "name-symbol", lang, ["Name", "Symbol", "Header", "Details", "Comments"],
+        col,
+        "name-symbol",
+        lang,
+        ["Name", "Symbol", "Header", "Details", "Comments"],
         header + '<div class="rv-prompt">{{Name}}</div>',
         '{{FrontSide}}<hr id="answer"><div class="rv-symbol">{{Symbol}}</div>' + facts,
     )
     figure = (
-        '<div class="rv-figure"><img class="rv-light" src="' + assets["rv-periodic-light"]["file"] + '">'
-        '<img class="rv-dark" src="' + assets["rv-periodic-dark"]["file"] + '" aria-hidden="true">'
+        '<div class="rv-figure"><img class="rv-light" src="'
+        + assets["rv-periodic-light"]["file"]
+        + '">'
+        '<img class="rv-dark" src="'
+        + assets["rv-periodic-dark"]["file"]
+        + '" aria-hidden="true">'
         '<div class="rv-lit" style="{{Lit}}"></div></div>'
     )
     lit = element_model(
-        col, "symbol-name", lang, ["Symbol", "Name", "Header", "Lit", "Details", FIELD, "Comments"],
+        col,
+        "symbol-name",
+        lang,
+        ["Symbol", "Name", "Header", "Lit", "Details", FIELD, "Comments"],
         header + figure,
         header + '<div class="rv-name">{{Name}}</div>' + facts + figure,
     )
-    comments = (
-        "Original artwork and deck © Simon Pinkas, CC BY 4.0. Names and symbols: Wikidata CC0, checked against PubChem and French references."
-    )
+    comments = "Original artwork and deck © Simon Pinkas, CC BY 4.0. Names and symbols: Wikidata CC0, checked against PubChem and French references."
     for e, g in zip(elements, artwork["regions"]):
         z = e["atomicNumber"]
         assert g["atomicNumber"] == z
         name, symbol, details = names[str(z)], e["symbol"], detail(e, lang)
         note = col.new_note(text)
-        note.guid = f'{ELEMENT_KINDS["name-symbol"][lang]["guid"]}{z:03d}'
-        note["Name"], note["Symbol"], note["Details"] = html.escape(name), symbol, html.escape(details)
+        note.guid = f"{ELEMENT_KINDS['name-symbol'][lang]['guid']}{z:03d}"
+        note["Name"], note["Symbol"], note["Details"] = (
+            html.escape(name),
+            symbol,
+            html.escape(details),
+        )
         note["Header"], note["Comments"] = HEADERS["name-symbol"][lang], comments
         note.tags = ["rectoverso", "chemistry", "periodic-table", "name-symbol", lang]
         col.add_note(note, deck_id)
@@ -164,23 +206,34 @@ def add_elements(col, lang, elements, names, artwork, deck_id):
             "darkClean": assets["rv-periodic-dark-clean"],
             "masksSHA256": sha(b""),
             "mode": "lit",
-            "regions": [{
-                "id": f"element-{z:03d}-cell",
-                "ordinal": 1,
-                "kind": "label",
-                "geometry": {"kind": "rect", "coordinates": [left, top, width, height]},
-                "answer": name,
-                "title": name,
-                "detail": details,
-                "position": position(e, lang),
-            }],
+            "regions": [
+                {
+                    "id": f"element-{z:03d}-cell",
+                    "ordinal": 1,
+                    "kind": "label",
+                    "geometry": {
+                        "kind": "rect",
+                        "coordinates": [left, top, width, height],
+                    },
+                    "answer": name,
+                    "title": name,
+                    "detail": details,
+                    "position": position(e, lang),
+                }
+            ],
             "canvas": artwork["canvas"],
         }
         note = col.new_note(lit)
-        note.guid = f'{ELEMENT_KINDS["symbol-name"][lang]["guid"]}{z:03d}'
-        note["Symbol"], note["Name"], note["Details"] = symbol, html.escape(name), html.escape(details)
+        note.guid = f"{ELEMENT_KINDS['symbol-name'][lang]['guid']}{z:03d}"
+        note["Symbol"], note["Name"], note["Details"] = (
+            symbol,
+            html.escape(name),
+            html.escape(details),
+        )
         note["Header"], note["Comments"] = HEADERS["symbol-name"][lang], comments
-        note["Lit"] = f"left:{left * 100:.4f}%;top:{top * 100:.4f}%;width:{width * 100:.4f}%;height:{height * 100:.4f}%"
+        note["Lit"] = (
+            f"left:{left * 100:.4f}%;top:{top * 100:.4f}%;width:{width * 100:.4f}%;height:{height * 100:.4f}%"
+        )
         note[FIELD] = (
             "RV-OCCLUSION-1:"
             + base64.b64encode(compact(preparation).encode()).decode()
@@ -194,7 +247,11 @@ def add_elements(col, lang, elements, names, artwork, deck_id):
 def position(e, lang):
     """What VoiceOver says for the lit cell: its place, never its name."""
     if e["group"]:
-        return f"période {e['period']}, groupe {e['group']}" if lang == "fr" else f"period {e['period']}, group {e['group']}"
+        return (
+            f"période {e['period']}, groupe {e['group']}"
+            if lang == "fr"
+            else f"period {e['period']}, group {e['group']}"
+        )
     # The detached rows: 15 cells each, from column 4 of the drawing.
     place = e["column"] - 3
     if lang == "fr":
