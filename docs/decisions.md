@@ -10,7 +10,7 @@ The owner settled the questions raised before the first release (0.1.0-rc.1):
 - **French headers:** « Quel est son symbole ? » and « Quel est cet élément ? » take a narrow no-break space (U+202F) before the question mark, the French of RectoVerso's `docs/app/languages.md`; `contentModifiedAt` moves forward with them.
 - **Gallery copy approved,** in English and French: the headline "Every element's symbol, name and place in the table." and the description in `rectoverso.json`.
 
-Release: 0.1.0-rc.1, a prerelease, once CI is green on the final head from the branch and a clean clone and RectoVerso's gallery check accepts the deck.
+Release: 0.1.0-rc.1, a prerelease, once CI is green on the final head from the branch and a clean clone and RectoVerso's gallery check accepts the deck. This publication-only change sets its status and download instructions, without changing notes, identities or pictures.
 
 ## Décisions du 4 novembre 2026, en français
 

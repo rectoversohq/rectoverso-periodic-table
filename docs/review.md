@@ -1,5 +1,11 @@
 # Source review
 
+## Current publication
+
+The owner approved this source and its package release. The reproducible prerelease is [0.1.0-rc.1](https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.1.0-rc.1): both languages' packages, their sidecars and `SHA256SUMS`, built from a clean clone of the tagged source with the pinned renderer and font. Earlier sections below are the review's history.
+
+La préversion [0.1.0-rc.1](https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.1.0-rc.1) publie les paquets des deux langues, leurs métadonnées et `SHA256SUMS`, construits à partir d’un clone propre des sources étiquetées.
+
 The owner approved creating this repository and pushing this candidate for source review. The [source issue](https://github.com/rectoversohq/rectoverso-periodic-table/issues/1) tracks the first PR against a README-only main branch. Merges, version tags and package releases remain separate owner decisions. The source is public; no packaged deck release is published.
 
 ## Provenance of this branch

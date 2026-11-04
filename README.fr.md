@@ -4,14 +4,14 @@
 
 Un paquet original bilingue des 118 éléments, trois cartes chacun : le tableau avec un symbole masqué (**quel symbole se trouve ici ?**), le tableau avec la case d’un élément éclairée (**quel est cet élément ?**) et le nom d’un élément (**quel est son symbole ?**). Le nom complet de l’élément et de courtes indications de numéro atomique, groupe et période suivent chaque réponse. Les versions française et anglaise sont deux paquets issus d’une même source. Le tableau à 18 colonnes possède des images originales et nettoyées parfaitement alignées, en clair et en sombre. Seules les zones des symboles sont retirées.
 
-Version **0.1.0-rc.1**, **source candidate à examiner**. Les sources sont disponibles pour revue ; aucun paquet n’est publié. Illustrations originales et paquet : © Simon Pinkas, **CC BY 4.0**. Données factuelles de Wikidata : **CC0**. Voir les [crédits](NOTICE.md), les [règles de source](docs/source.fr.md) et les [résultats des vérifications](docs/validation.fr.md).
+**Préversion 0.1.0-rc.1.** [Télécharger les paquets Anki français et anglais](https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.1.0-rc.1). Illustrations originales et paquet : © Simon Pinkas, **CC BY 4.0**. Données factuelles de Wikidata : **CC0**. Voir les [crédits](NOTICE.md), les [règles de source](docs/source.fr.md) et les [résultats des vérifications](docs/validation.fr.md).
 
 ## Obtenir les sources
 
-La branche principale est une page d’accueil jusqu’à la fusion de la pull request. Cloner la branche de revue pour disposer du générateur :
+Cloner les sources étiquetées pour reproduire cette préversion :
 
 ```sh
-git clone --branch codex/1-source-candidate https://github.com/rectoversohq/rectoverso-periodic-table.git
+git clone --branch v0.1.0-rc.1 https://github.com/rectoversohq/rectoverso-periodic-table.git
 cd rectoverso-periodic-table
 ```
 

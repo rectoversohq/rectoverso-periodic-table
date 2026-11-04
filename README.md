@@ -4,14 +4,14 @@
 
 An original, bilingual deck of the 118 elements, three cards each: the table with a symbol masked (**which symbol belongs here?**), the table with an element’s cell lit (**which element is this?**), and an element’s name (**what’s its symbol?**). The full element name and compact atomic-number, group and period facts follow each answer. English and French are separate packages built from one source. The 18-column figure has registered light/dark original and clean pairs; only symbol regions are removed.
 
-This is a **source review candidate**, version **0.1.0-rc.1**. The source is available for review; no package release is published. Original artwork and deck: © Simon Pinkas, **CC BY 4.0**. Factual Wikidata records: **CC0**. See [credits](NOTICE.md), [source and identity rules](docs/source.md), and [validation](docs/validation.md).
+**Prerelease 0.1.0-rc.1.** [Download the English and French Anki packages](https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.1.0-rc.1). Original artwork and deck: © Simon Pinkas, **CC BY 4.0**. Factual Wikidata records: **CC0**. See [credits](NOTICE.md), [source and identity rules](docs/source.md), and [validation](docs/validation.md).
 
 ## Get the source
 
-The complete candidate is reviewed in [source issue #1](https://github.com/rectoversohq/rectoverso-periodic-table/issues/1). The default branch is a landing page until the source PR is merged. Clone the review branch to run the commands below:
+Clone the tagged source to reproduce this prerelease:
 
 ```sh
-git clone --branch codex/1-source-candidate https://github.com/rectoversohq/rectoverso-periodic-table.git
+git clone --branch v0.1.0-rc.1 https://github.com/rectoversohq/rectoverso-periodic-table.git
 cd rectoverso-periodic-table
 ```
 

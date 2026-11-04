@@ -1,7 +1,7 @@
 {
   "id": "rectoverso-periodic-table",
   "version": "0.1.0-rc.1",
-  "status": "source-review-candidate",
+  "status": "prerelease",
   "releaseTag": "v0.1.0-rc.1",
   "guidPrefix": "rvPT",
   "guidForm": "compact",
