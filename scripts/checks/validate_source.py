@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Exercise native Anki import, editor update, schedules, media and roundtrips."""
+"""The source's complete Anki check: import, editor update, schedules, media and roundtrips.
+
+Both languages' packages, an independent rebuild as the update, and any prior candidates. The
+gallery's per-package check is `validate-anki.py`.
+"""
 
 import argparse
 import base64

@@ -1,96 +1,49 @@
 #!/usr/bin/env python3
-"""Build the two language packages from source and registered artwork using native Anki IO."""
+"""Build one language's package from the source and the registered artwork, with native Anki IO.
+
+    python scripts/build.py --language en --out /outside/the/checkout/Periodic-table-en.apkg
+
+writes the package and, beside it, its sidecar (`.rectoverso.json`): the language's metadata from
+`rectoverso.json` with the package's bytes and SHA-256. `--artwork DIR` builds from a fresh
+`scripts/artwork.py` render instead of the registered pictures in `source/media`.
+"""
 
 import argparse
-import base64
-import hashlib
-import html
 import json
-from datetime import datetime
+import tempfile
 from pathlib import Path
 from anki.collection import Collection, ExportAnkiPackageOptions
 from anki.buildinfo import version as anki_version
 
-ROOT = Path(__file__).resolve().parents[1]
-FIELD = "RectoVerso Occlusion"
-IDS = {
-    "en": {
-        "deck": 619101000001,
-        "model": 619102000001,
-        "note": 619103000001,
-        "guid": "rvPTenV1001",
-        "cardBase": 619104100000,
-    },
-    "fr": {
-        "deck": 619101000002,
-        "model": 619102000002,
-        "note": 619103000002,
-        "guid": "rvPTfrV1001",
-        "cardBase": 619104200000,
-    },
-}
-TITLES = {"en": "Periodic table", "fr": "Tableau périodique"}
+from source_data import (
+    ARTWORK,
+    ELEMENT_KINDS,
+    FIELD,
+    HEADERS,
+    IDS,
+    KIND_NAMES,
+    MEDIA,
+    TITLES,
+    artwork,
+    compact,
+    content_modified,
+    detail,
+    inputs,
+    position,
+    sha,
+)
 
-
-def content_modified():
-    """The reviewed content's time (rectoverso.json), in seconds: every note and note type carries it.
-
-    Anki applies an update to a note only when the package's modification second differs from the
-    collection's (If Newer: only when it is later). Stamping the build's wall-clock time made that
-    second depend on when the build ran, so an edit made in the same second as a build was skipped.
-    """
-    stamp = json.loads((ROOT / "rectoverso.json").read_text())["contentModifiedAt"]
-    return int(datetime.fromisoformat(stamp.replace("Z", "+00:00")).timestamp())
-
-
-# One note per element and language for each added card kind (#5). The occlusion note above
-# keeps its identities; these never reuse its rows. Element z's note, card and GUID derive from z.
-ELEMENT_KINDS = {
-    "name-symbol": {
-        "en": {
-            "model": 619102000011,
-            "template": 619106000011,
-            "fieldBase": 619105001100,
-            "noteBase": 619103101000,
-            "cardBase": 619104110000,
-            "guid": "rvPTenN",
-        },
-        "fr": {
-            "model": 619102000012,
-            "template": 619106000012,
-            "fieldBase": 619105002100,
-            "noteBase": 619103201000,
-            "cardBase": 619104210000,
-            "guid": "rvPTfrN",
-        },
-    },
-    "symbol-name": {
-        "en": {
-            "model": 619102000021,
-            "template": 619106000021,
-            "fieldBase": 619105001200,
-            "noteBase": 619103102000,
-            "cardBase": 619104120000,
-            "guid": "rvPTenL",
-        },
-        "fr": {
-            "model": 619102000022,
-            "template": 619106000022,
-            "fieldBase": 619105002200,
-            "noteBase": 619103202000,
-            "cardBase": 619104220000,
-            "guid": "rvPTfrL",
-        },
-    },
-}
-HEADERS = {
-    "name-symbol": {"en": "What’s its symbol?", "fr": "Quel est son symbole ?"},
-    "symbol-name": {"en": "Which element is this?", "fr": "Quel est cet élément ?"},
-}
-KIND_NAMES = {
-    "name-symbol": {"en": "Name → Symbol", "fr": "Nom → Symbole"},
-    "symbol-name": {"en": "Symbol → Name", "fr": "Symbole → Nom"},
-}
+__all__ = [
+    "ELEMENT_KINDS",
+    "FIELD",
+    "HEADERS",
+    "IDS",
+    "compact",
+    "content_modified",
+    "detail",
+    "position",
+    "sha",
+]
 CARD_CSS = """
 .card {font-family: -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif; background:#f7f5ef; color:#252820; font-size:18px; margin:20px; text-align:center;}
 .card.nightMode {background:#181a18;color:#f3f2e9;}
@@ -110,33 +63,12 @@ CARD_CSS = """
 """
 
 
-def compact(data):
-    return json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
-
-
-def sha(data):
-    return hashlib.sha256(data).hexdigest()
-
-
-def detail(e, lang):
-    if lang == "fr":
-        return (
-            f"Numéro atomique {e['atomicNumber']} · "
-            + (f"Groupe {e['group']} · " if e["group"] else "")
-            + f"Période {e['period']}"
-        )
-    return (
-        f"Atomic number {e['atomicNumber']} · "
-        + (f"Group {e['group']} · " if e["group"] else "")
-        + f"Period {e['period']}"
-    )
-
-
 def element_model(col, kind, lang, fields, qfmt, afmt):
     ids = ELEMENT_KINDS[kind][lang]
-    model = col.models.new(
-        f"Periodic table · {KIND_NAMES[kind][lang]} · {lang.upper()}"
-    )
+    title = f"Periodic table · {KIND_NAMES[kind][lang]} · {lang.upper()}"
+    # Added under a provisional name, then given its id and its name: the model at its new id
+    # must not share a name with the provisional one, or Anki adds a random suffix to it.
+    model = col.models.new(title + " (building)")
     for name in fields:
         col.models.add_field(model, col.models.new_field(name))
     template = col.models.new_template(KIND_NAMES[kind][lang])
@@ -147,6 +79,7 @@ def element_model(col, kind, lang, fields, qfmt, afmt):
     model = col.models.by_name(model["name"])
     old = model["id"]
     model["id"] = ids["model"]
+    model["name"] = title
     for i, field in enumerate(model["flds"]):
         field["id"] = ids["fieldBase"] + i
     model["tmpls"][0]["id"] = ids["template"]
@@ -165,9 +98,19 @@ def pin(col, note, kind, lang, z):
     col.db.execute("update cards set id=? where id=?", cid, card.id)
 
 
-def add_elements(col, lang, elements, names, artwork, deck_id):
+def add_note(col, model, source, deck_id):
+    note = col.new_note(model)
+    note.guid = source["guid"]
+    for key, value in source["fields"].items():
+        note[key] = value
+    note.tags = source["tags"]
+    col.add_note(note, deck_id)
+    return note
+
+
+def add_elements(col, lang, notes, art, deck_id):
     """Name → symbol (text) and symbol → name (the full drawing, the element's cell lit)."""
-    assets = artwork["assets"]
+    assets = art["assets"]
     header = '<div class="rv-header">{{Header}}</div>'
     facts = '<div class="rv-detail">{{Details}}</div>'
     text = element_model(
@@ -195,99 +138,28 @@ def add_elements(col, lang, elements, names, artwork, deck_id):
         header + figure,
         header + '<div class="rv-name">{{Name}}</div>' + facts + figure,
     )
-    comments = "Original artwork and deck © Simon Pinkas, CC BY 4.0. Names and symbols: Wikidata CC0, checked against PubChem and French references."
-    for e, g in zip(elements, artwork["regions"]):
-        z = e["atomicNumber"]
-        assert g["atomicNumber"] == z
-        name, symbol, details = names[str(z)], e["symbol"], detail(e, lang)
-        note = col.new_note(text)
-        note.guid = f"{ELEMENT_KINDS['name-symbol'][lang]['guid']}{z:03d}"
-        note["Name"], note["Symbol"], note["Details"] = (
-            html.escape(name),
-            symbol,
-            html.escape(details),
-        )
-        note["Header"], note["Comments"] = HEADERS["name-symbol"][lang], comments
-        note.tags = ["rectoverso", "chemistry", "periodic-table", "name-symbol", lang]
-        col.add_note(note, deck_id)
-        pin(col, note, "name-symbol", lang, z)
-        left, top, width, height = g["cell"]
-        preparation = {
-            "version": 1,
-            "source": assets["rv-periodic-light"],
-            "clean": assets["rv-periodic-light-clean"],
-            "darkSource": assets["rv-periodic-dark"],
-            "darkClean": assets["rv-periodic-dark-clean"],
-            "masksSHA256": sha(b""),
-            "mode": "lit",
-            "regions": [
-                {
-                    "id": f"element-{z:03d}-cell",
-                    "ordinal": 1,
-                    "kind": "label",
-                    "geometry": {
-                        "kind": "rect",
-                        "coordinates": [left, top, width, height],
-                    },
-                    "answer": name,
-                    "title": name,
-                    "detail": details,
-                    "position": position(e, lang),
-                }
-            ],
-            "canvas": artwork["canvas"],
-        }
-        note = col.new_note(lit)
-        note.guid = f"{ELEMENT_KINDS['symbol-name'][lang]['guid']}{z:03d}"
-        note["Symbol"], note["Name"], note["Details"] = (
-            symbol,
-            html.escape(name),
-            html.escape(details),
-        )
-        note["Header"], note["Comments"] = HEADERS["symbol-name"][lang], comments
-        note["Lit"] = (
-            f"left:{left * 100:.4f}%;top:{top * 100:.4f}%;width:{width * 100:.4f}%;height:{height * 100:.4f}%"
-        )
-        note[FIELD] = (
-            "RV-OCCLUSION-1:"
-            + base64.b64encode(compact(preparation).encode()).decode()
-            + "".join('<img src="' + a["file"] + '">' for a in assets.values())
-        )
-        note.tags = ["rectoverso", "chemistry", "periodic-table", "symbol-name", lang]
-        col.add_note(note, deck_id)
-        pin(col, note, "symbol-name", lang, z)
+    models = {"name-symbol": text, "symbol-name": lit}
+    for source in notes:
+        note = add_note(col, models[source["model"]], source, deck_id)
+        pin(col, note, source["model"], lang, source["atomicNumber"])
 
 
-def position(e, lang):
-    """What VoiceOver says for the lit cell: its place, never its name."""
-    if e["group"]:
-        return (
-            f"période {e['period']}, groupe {e['group']}"
-            if lang == "fr"
-            else f"period {e['period']}, group {e['group']}"
-        )
-    # The detached rows: 15 cells each, from column 4 of the drawing.
-    place = e["column"] - 3
-    if lang == "fr":
-        return f"ligne des {'lanthanoïdes' if e['row'] == 8 else 'actinoïdes'}, {place} sur 15"
-    return f"{'lanthanoid' if e['row'] == 8 else 'actinoid'} row, {place} of 15"
-
-
-def build(lang, art, out):
-    elements = json.loads((ROOT / "source/elements.json").read_text())
-    names = json.loads((ROOT / f"source/translations/{lang}.json").read_text())
-    artwork = json.loads((art / "artwork.json").read_text())
+def build(lang, out, art_dir=None):
+    record = art_dir / "artwork.json" if art_dir else ARTWORK
+    pictures = art_dir or MEDIA
+    meta, notes, _, _ = inputs(lang, record)
+    art = artwork(record)
     ids = IDS[lang]
-    folder = out / lang
-    folder.mkdir(parents=True, exist_ok=False)
-    col = Collection(str(folder / "source.anki2"))
-    col.add_image_occlusion_notetype()
-    model = col.models.by_name("Image Occlusion")
-    old_model = model["id"]
-    model["id"] = ids["model"]
-    model["name"] = "Periodic table · " + lang.upper()
-    col.models.add_field(model, col.models.new_field(FIELD))
-    model["css"] += """
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="periodic-build-", dir=out.parent) as temp:
+        col = Collection(str(Path(temp) / "collection.anki2"))
+        col.add_image_occlusion_notetype()
+        model = col.models.by_name("Image Occlusion")
+        old_model = model["id"]
+        model["id"] = ids["model"]
+        model["name"] = "Periodic table · " + lang.upper()
+        col.models.add_field(model, col.models.new_field(FIELD))
+        model["css"] += """
 .card {font-family: -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif; background:#f7f5ef; color:#252820; font-size:18px; margin:20px;}
 .card.nightMode {background:#181a18;color:#f3f2e9;}
 #image-occlusion-container {margin:20px auto;max-width:1600px;}
@@ -298,205 +170,112 @@ def build(lang, art, out):
 .rv-detail {font-size:14px;line-height:1.5;}
 button {font:inherit;font-size:14px;padding:8px 16px;border-radius:18px;}
 """
-    for key in ("qfmt", "afmt"):
-        model["tmpls"][0][key] = model["tmpls"][0][key].replace(
-            "try {",
-            """try {
+        for key in ("qfmt", "afmt"):
+            model["tmpls"][0][key] = model["tmpls"][0][key].replace(
+                "try {",
+                """try {
     const image = document.querySelector('#image-occlusion-container img');
     if (document.body.classList.contains('nightMode')) image.src = 'rv-periodic-dark-v2.png';""",
-        )
-    # The revealed name and compact facts lead the back, before the large figure.
-    model["tmpls"][0]["afmt"] = model["tmpls"][0]["afmt"].replace(
-        "{{#Header}}<div>{{Header}}</div>{{/Header}}",
-        "{{#Back Extra}}<div>{{Back Extra}}</div>{{/Back Extra}}",
-        1,
-    )
-    marker = "{{#Back Extra}}<div>{{Back Extra}}</div>{{/Back Extra}}"
-    position = model["tmpls"][0]["afmt"].rfind(marker)
-    model["tmpls"][0]["afmt"] = model["tmpls"][0]["afmt"][:position] + model["tmpls"][
-        0
-    ]["afmt"][position:].replace(marker, "", 1)
-    if lang == "fr":
-        model["tmpls"][0]["afmt"] = model["tmpls"][0]["afmt"].replace(
-            "Toggle Masks", "Afficher les masques"
-        )
-    for i, field in enumerate(model["flds"]):
-        field["id"] = 619105000000 + (1000 if lang == "en" else 2000) + i
-    model["tmpls"][0]["id"] = 619106000000 + (1 if lang == "en" else 2)
-    col.models.update(model)
-    col.models.remove(old_model)
-    deck = col.decks.get(1)
-    deck["id"] = ids["deck"]
-    deck["name"] = TITLES[lang]
-    col.decks.update(deck)
-    for asset in artwork["assets"].values():
-        col.media.write_data(asset["file"], (art / asset["file"]).read_bytes())
-    regions = []
-    masks = []
-    for e, g in zip(elements, artwork["regions"]):
-        assert e["atomicNumber"] == g["atomicNumber"]
-        z = e["atomicNumber"]
-        coords = g["coordinates"]
-        masks.append(
-            "{{c"
-            + str(z)
-            + "::image-occlusion:rect:"
-            + ":".join(
-                k + "=" + format(v, ".17g")
-                for k, v in zip(["left", "top", "width", "height"], coords)
             )
-            + ":oi=1}}"
+        # The revealed name and compact facts lead the back, before the large figure.
+        model["tmpls"][0]["afmt"] = model["tmpls"][0]["afmt"].replace(
+            "{{#Header}}<div>{{Header}}</div>{{/Header}}",
+            "{{#Back Extra}}<div>{{Back Extra}}</div>{{/Back Extra}}",
+            1,
         )
-        regions.append(
-            {
-                "id": f"element-{z:03d}-symbol",
-                "ordinal": z,
-                "kind": "label",
-                "geometry": {"kind": "rect", "coordinates": coords},
-                "answer": e["symbol"],
-                "title": names[str(z)],
-                "detail": detail(e, lang),
-            }
+        marker = "{{#Back Extra}}<div>{{Back Extra}}</div>{{/Back Extra}}"
+        position = model["tmpls"][0]["afmt"].rfind(marker)
+        model["tmpls"][0]["afmt"] = model["tmpls"][0]["afmt"][:position] + model[
+            "tmpls"
+        ][0]["afmt"][position:].replace(marker, "", 1)
+        if lang == "fr":
+            model["tmpls"][0]["afmt"] = model["tmpls"][0]["afmt"].replace(
+                "Toggle Masks", "Afficher les masques"
+            )
+        for i, field in enumerate(model["flds"]):
+            field["id"] = 619105000000 + (1000 if lang == "en" else 2000) + i
+        model["tmpls"][0]["id"] = 619106000000 + (1 if lang == "en" else 2)
+        col.models.update(model)
+        col.models.remove(old_model)
+        deck = col.decks.get(1)
+        deck["id"] = ids["deck"]
+        deck["name"] = TITLES[lang]
+        col.decks.update(deck)
+        for asset in art["assets"].values():
+            col.media.write_data(asset["file"], (pictures / asset["file"]).read_bytes())
+        [occlusion] = [n for n in notes if n["model"] == "occlusion"]
+        note = add_note(col, model, occlusion, ids["deck"])
+        # Anki's native add API allocates the row; assign deterministic source IDs after creation.
+        col.db.execute("update cards set nid=? where nid=?", ids["note"], note.id)
+        col.db.execute("update notes set id=? where id=?", ids["note"], note.id)
+        note = col.get_note(ids["note"])
+        for card in note.cards():
+            col.db.execute(
+                "update cards set id=? where id=?",
+                ids["cardBase"] + card.ord + 1,
+                card.id,
+            )
+        cards = note.cards()
+        assert len(cards) == occlusion["cards"] == 118
+        assert {c.ord for c in cards} == set(range(118))
+        add_elements(
+            col, lang, [n for n in notes if n["model"] != "occlusion"], art, ids["deck"]
         )
-    masks = "".join(masks)
-    assets = artwork["assets"]
-    preparation = {
-        "version": 1,
-        "source": assets["rv-periodic-light"],
-        "clean": assets["rv-periodic-light-clean"],
-        "darkSource": assets["rv-periodic-dark"],
-        "darkClean": assets["rv-periodic-dark-clean"],
-        "masksSHA256": sha(masks.encode()),
-        "mode": "hideAll",
-        "regions": regions,
-        "canvas": artwork["canvas"],
-    }
-    field = (
-        "RV-OCCLUSION-1:"
-        + base64.b64encode(compact(preparation).encode()).decode()
-        + "".join('<img src="' + a["file"] + '">' for a in assets.values())
-    )
-    note = col.new_note(model)
-    note.guid = ids["guid"]
-    note["Occlusion"] = masks
-    note["Image"] = (
-        '<img src="rv-periodic-light-v2.png"><img src="rv-periodic-dark-v2.png" style="display:none" aria-hidden="true">'
-    )
-    note["Header"] = (
-        "Which symbol belongs here?" if lang == "en" else "Quel symbole se trouve ici ?"
-    )
-    note[FIELD] = field
-    extras = []
-    for e in elements:
-        z = e["atomicNumber"]
-        extras.append(
-            f'<section class="rv-fact" data-rv-ordinal="{z}" hidden><div class="rv-name">{html.escape(names[str(z)])}</div><div class="rv-detail">{html.escape(detail(e, lang))}</div></section>'
-        )
-    note["Back Extra"] = (
-        "".join(extras)
-        + """<script>(() => {
-  const showFact = () => {
-    const ordinal = document.querySelector('.cloze-highlight')?.dataset.ordinal;
-    if (!ordinal) return;
-    document.querySelectorAll('[data-rv-ordinal]').forEach(el => {
-      if (el.dataset.rvOrdinal === ordinal) el.hidden = false;
-      else el.remove();
-    });
-  };
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', showFact, {once: true});
-  } else {
-    showFact();
-  }
-})();</script>"""
-    )
-    note["Comments"] = (
-        "Original artwork and deck © Simon Pinkas, CC BY 4.0. Element facts: Wikidata CC0, checked against IUPAC. "
-        + (
-            "Detached series have no asserted group number."
-            if lang == "en"
-            else "Aucun numéro de groupe n’est attribué aux séries détachées."
-        )
-    )
-    note.tags = ["rectoverso", "chemistry", "periodic-table", lang]
-    col.add_note(note, ids["deck"])
-    # Anki's native add API allocates the row; assign deterministic source IDs after creation.
-    col.db.execute("update cards set nid=? where nid=?", ids["note"], note.id)
-    col.db.execute("update notes set id=? where id=?", ids["note"], note.id)
-    note = col.get_note(ids["note"])
-    for card in note.cards():
+        assert col.card_count() == meta["cards"] == 3 * 118
+        assert col.note_count() == len(notes) == 1 + 2 * 118
+        modified = content_modified()
+        models = [ids["model"]] + [
+            kind[lang]["model"] for kind in ELEMENT_KINDS.values()
+        ]
+        col.db.execute("update notes set mod=?", modified)
         col.db.execute(
-            "update cards set id=? where id=?", ids["cardBase"] + card.ord + 1, card.id
+            "update notetypes set mtime_secs=? where id in (?, ?, ?)", modified, *models
         )
-    cards = note.cards()
-    assert len(cards) == 118
-    assert {c.ord for c in cards} == set(range(118))
-    add_elements(col, lang, elements, names, artwork, ids["deck"])
-    assert col.card_count() == 3 * 118
-    assert col.note_count() == 1 + 2 * 118
-    modified = content_modified()
-    models = [ids["model"]] + [kind[lang]["model"] for kind in ELEMENT_KINDS.values()]
-    col.db.execute("update notes set mod=?", modified)
-    col.db.execute(
-        "update notetypes set mtime_secs=? where id in (?, ?, ?)", modified, *models
+        col.export_anki_package(
+            out_path=str(out),
+            options=ExportAnkiPackageOptions(
+                with_scheduling=False,
+                with_media=True,
+                with_deck_configs=False,
+                legacy=False,
+            ),
+            limit=None,
+        )
+        media = col.media.check()
+        assert not media.missing and not media.unused, (
+            list(media.missing),
+            list(media.unused),
+        )
+        col.close()
+    data = out.read_bytes()
+    meta["package"] = meta["package"] | {"bytes": len(data), "sha256": sha(data)}
+    out.with_suffix(".rectoverso.json").write_text(
+        json.dumps(meta, ensure_ascii=False, indent=2) + "\n"
     )
-    (folder / "preparation.json").write_text(
-        json.dumps(preparation, ensure_ascii=False, indent=2) + "\n"
-    )
-    (folder / "occlusion.txt").write_text(masks)
-    package = out / (
-        ("Periodic-table" if lang == "en" else "Tableau-periodique")
-        + "-"
-        + lang
-        + ".apkg"
-    )
-    col.export_anki_package(
-        out_path=str(package),
-        options=ExportAnkiPackageOptions(
-            with_scheduling=False,
-            with_media=True,
-            with_deck_configs=False,
-            legacy=False,
-        ),
-        limit=None,
-    )
-    media = col.media.check()
-    assert not media.missing and not media.unused, (
-        list(media.missing),
-        list(media.unused),
-    )
-    col.close()
-    metadata = {
-        "id": "periodic-table",
+    return {
         "language": lang,
-        "title": TITLES[lang],
-        "cards": 3 * 118,
-        "notes": 1 + 2 * 118,
-        "pictures": 4,
-        "sounds": 0,
-        "license": "CC-BY-4.0",
-        "ankiVersion": anki_version,
-        "identities": ids,
-        "package": package.name,
-        "bytes": package.stat().st_size,
-        "sha256": sha(package.read_bytes()),
-        "preparationSHA256": sha(compact(preparation).encode()),
+        "cards": meta["cards"],
+        "file": out.name,
+        "bytes": len(data),
     }
-    (out / (package.stem + ".rectoverso.json")).write_text(
-        json.dumps(metadata, ensure_ascii=False, indent=2) + "\n"
-    )
-    return metadata
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--artwork", type=Path, required=True)
-    p.add_argument("--out", type=Path, required=True)
+    p.add_argument("--language", required=True, choices=sorted(IDS))
+    p.add_argument(
+        "--out", type=Path, required=True, help="The package to write (.apkg)"
+    )
+    p.add_argument(
+        "--artwork",
+        type=Path,
+        help="A scripts/artwork.py output folder (default: the registered source/media)",
+    )
     a = p.parse_args()
-    a.out.mkdir(parents=True, exist_ok=True)
     assert anki_version == "26.09.3" or anki_version == "26.9.3", anki_version
-    report = [build(lang, a.artwork, a.out) for lang in IDS]
-    print(json.dumps(report, ensure_ascii=False))
+    if a.out.suffix != ".apkg" or a.out.exists():
+        p.error("--out must be a new .apkg path")
+    print(json.dumps(build(a.language, a.out.resolve(), a.artwork), ensure_ascii=False))
 
 
 if __name__ == "__main__":
