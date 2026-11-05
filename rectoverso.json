@@ -1,15 +1,14 @@
 {
   "id": "rectoverso-periodic-table",
-  "version": "0.1.0-rc.1",
+  "version": "0.2.0-rc.1",
   "status": "prerelease",
-  "releaseTag": "v0.1.0-rc.1",
-  "guidPrefix": "rvPT",
-  "guidForm": "compact",
+  "releaseTag": "v0.2.0-rc.1",
+  "guidPrefix": "rv-periodic-table",
   "identityBase": 619100000000,
-  "contentModifiedAt": "2026-11-04T21:02:00Z",
+  "contentModifiedAt": "2026-11-05T19:25:00Z",
   "publication": {
     "remote": "https://github.com/rectoversohq/rectoverso-periodic-table",
-    "release": "https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.1.0-rc.1",
+    "release": "https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.2.0-rc.1",
     "approved": true,
     "visibility": "public"
   },
@@ -92,7 +91,7 @@
       "package": {
         "file": "Periodic-table-en.apkg"
       },
-      "sample": "rvPTenV1001/79"
+      "sample": "rv-periodic-table-en-table/79"
     },
     "fr": {
       "id": "rectoverso-periodic-table-fr",
@@ -101,7 +100,7 @@
       "package": {
         "file": "Tableau-periodique-fr.apkg"
       },
-      "sample": "rvPTfrV1001/79"
+      "sample": "rv-periodic-table-fr-table/79"
     }
   },
   "renderedPictures": true

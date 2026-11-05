@@ -30,6 +30,7 @@ from source_data import (
     compact,
     content_modified,
     detail,
+    element_guid,
     inputs,
     position,
     sha,
@@ -45,6 +46,7 @@ __all__ = [
     "compact",
     "content_modified",
     "detail",
+    "element_guid",
     "position",
     "sha",
 ]
