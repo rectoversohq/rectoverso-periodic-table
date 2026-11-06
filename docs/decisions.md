@@ -50,3 +50,8 @@ galerie sur Duo et iPhone 17, en clair et en sombre. La première met Au (79)
 en valeur, la deuxième masque son symbole sous une lentille dépolie lisse et
 la troisième montre les 118 éléments. Les deux langues partagent les symboles
 et les numéros atomiques.
+
+## 2026-11-06 — 1.0.0 lists the gallery covers
+
+The owner approved the covers and the 1.0.0 release (2026-11-06), with no `whatsNew`: the cards are those of 0.2.0-rc.1. `rectoverso.json` lists `rv-periodic-table-cover-light-1.png` to `-3.png` for light mode and `rv-periodic-table-cover-dark-1.png` to `-3.png` for dark mode, in that order, in both languages: their symbols and numbers serve English and French. The release attaches the six PNGs beside the packages.
+
