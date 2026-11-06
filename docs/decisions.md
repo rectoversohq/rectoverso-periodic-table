@@ -32,3 +32,7 @@ Le propriétaire revient sur les GUID compacts : comme dans tous les paquets d
 ## 2026-11-06 — One complete AGENTS.md for every agent, by kind of work
 
 The owner: a single `AGENTS.md`, read by any agent (Codex, Claude Code or another) and complete on its own, organized around the three kinds of work done here: deck authoring (the content), contract honoring (what RectoVerso's gallery and Anki read: rectoverso.json, identities, packages, versions and releases) and cover making (the gallery's pictures: the specification, the names, the masters, renderer and check). It restates RectoVerso's `agents/decks.md`, the Library page's deck contract and cover specification and its French, with this repository's own rules; where they disagree, RectoVerso's pages win and this file is corrected. The `CLAUDE.md` first proposed here, importing RectoVerso's page, isn't kept.
+
+## 2026-11-06 — 1.0.0, the first release learners get
+
+The owner (2026-11-06): the deck's first release in RectoVerso's Deck gallery is 1.0.0, after the owner's review, its tag and release on the owner's go. It has the same cards as the last prerelease, 0.2.0-rc.1: version, tag and release address move to 1.0.0 in `rectoverso.json`, the READMEs and the review page, and `status` says `release`. No `whatsNew` (nothing changed for a learner since 0.2.0-rc.1) and no gallery covers yet (the app shows placeholders until the deck's own). `contentModifiedAt` stays.
