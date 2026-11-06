@@ -36,3 +36,17 @@ The owner: a single `AGENTS.md`, read by any agent (Codex, Claude Code or anothe
 ## 2026-11-06 — 1.0.0, the first release learners get
 
 The owner (2026-11-06): the deck's first release in RectoVerso's Deck gallery is 1.0.0, after the owner's review, its tag and release on the owner's go. It has the same cards as the last prerelease, 0.2.0-rc.1: version, tag and release address move to 1.0.0 in `rectoverso.json`, the READMEs and the review page, and `status` says `release`. No `whatsNew` (nothing changed for a learner since 0.2.0-rc.1) and no gallery covers yet (the app shows placeholders until the deck's own). `contentModifiedAt` stays.
+
+## 2026-11-06 — Periodic table gallery covers
+
+Simon Pinkas approved three compositions after reviewing their light and dark
+versions together in the Duo and iPhone 17 gallery composites. The first
+highlights Au (79), the second hides its symbol under a smooth frosted lens, and
+the third shows all 118 elements. The separate appearance masters keep the
+deck’s two table palettes. Symbols and atomic numbers serve both languages.
+
+Simon Pinkas a validé les trois compositions après les avoir vues dans la
+galerie sur Duo et iPhone 17, en clair et en sombre. La première met Au (79)
+en valeur, la deuxième masque son symbole sous une lentille dépolie lisse et
+la troisième montre les 118 éléments. Les deux langues partagent les symboles
+et les numéros atomiques.
