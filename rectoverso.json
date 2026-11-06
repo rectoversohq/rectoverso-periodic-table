@@ -1,14 +1,14 @@
 {
   "id": "rectoverso-periodic-table",
-  "version": "0.2.0-rc.1",
-  "status": "prerelease",
-  "releaseTag": "v0.2.0-rc.1",
+  "version": "1.0.0",
+  "status": "release",
+  "releaseTag": "v1.0.0",
   "guidPrefix": "rv-periodic-table",
   "identityBase": 619100000000,
   "contentModifiedAt": "2026-11-05T19:25:00Z",
   "publication": {
     "remote": "https://github.com/rectoversohq/rectoverso-periodic-table",
-    "release": "https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.2.0-rc.1",
+    "release": "https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v1.0.0",
     "approved": true,
     "visibility": "public"
   },
@@ -75,6 +75,32 @@
       "original": "artwork/rv-periodic-dark-clean.svg"
     }
   ],
+  "covers": {
+    "en": {
+      "light": [
+        "rv-periodic-table-cover-light-1.png",
+        "rv-periodic-table-cover-light-2.png",
+        "rv-periodic-table-cover-light-3.png"
+      ],
+      "dark": [
+        "rv-periodic-table-cover-dark-1.png",
+        "rv-periodic-table-cover-dark-2.png",
+        "rv-periodic-table-cover-dark-3.png"
+      ]
+    },
+    "fr": {
+      "light": [
+        "rv-periodic-table-cover-light-1.png",
+        "rv-periodic-table-cover-light-2.png",
+        "rv-periodic-table-cover-light-3.png"
+      ],
+      "dark": [
+        "rv-periodic-table-cover-dark-1.png",
+        "rv-periodic-table-cover-dark-2.png",
+        "rv-periodic-table-cover-dark-3.png"
+      ]
+    }
+  },
   "proOnly": false,
   "sourceFiles": {
     "vectors": "artwork",

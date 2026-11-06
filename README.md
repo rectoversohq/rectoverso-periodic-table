@@ -4,14 +4,14 @@
 
 An original, bilingual deck of the 118 elements, three cards each: the table with a symbol masked (**which symbol belongs here?**), the table with an element’s cell lit (**which element is this?**), and an element’s name (**what’s its symbol?**). The full element name and compact atomic-number, group and period facts follow each answer. English and French are separate packages built from one source. The 18-column figure has registered light/dark original and clean pairs; only symbol regions are removed.
 
-**Prerelease 0.2.0-rc.1.** [Download the English and French Anki packages](https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.2.0-rc.1). Its notes' GUIDs changed since 0.1.0-rc.1, so progress studied on 0.1.0-rc.1 doesn't carry over: imported into the same Anki profile, 0.2.0-rc.1's cards come in as new ones. Original artwork and deck: © Simon Pinkas, **CC BY 4.0**. Factual Wikidata records: **CC0**. See [credits](NOTICE.md), [source and identity rules](docs/source.md), and [validation](docs/validation.md).
+**Release 1.0.0,** the same cards as the last prerelease, 0.2.0-rc.1. [Download the English and French Anki packages](https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v1.0.0). Its notes' GUIDs changed since 0.1.0-rc.1, so progress studied on 0.1.0-rc.1 doesn't carry over: imported into the same Anki profile, 0.2.0-rc.1's cards come in as new ones. Original artwork and deck: © Simon Pinkas, **CC BY 4.0**. Factual Wikidata records: **CC0**. See [credits](NOTICE.md), [source and identity rules](docs/source.md), and [validation](docs/validation.md).
 
 ## Get the source
 
 Clone the tagged source to reproduce this prerelease:
 
 ```sh
-git clone --branch v0.2.0-rc.1 https://github.com/rectoversohq/rectoverso-periodic-table.git
+git clone --branch v1.0.0 https://github.com/rectoversohq/rectoverso-periodic-table.git
 cd rectoverso-periodic-table
 ```
 

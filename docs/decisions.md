@@ -33,6 +33,10 @@ Le propriétaire revient sur les GUID compacts : comme dans tous les paquets d
 
 The owner: a single `AGENTS.md`, read by any agent (Codex, Claude Code or another) and complete on its own, organized around the three kinds of work done here: deck authoring (the content), contract honoring (what RectoVerso's gallery and Anki read: rectoverso.json, identities, packages, versions and releases) and cover making (the gallery's pictures: the specification, the names, the masters, renderer and check). It restates RectoVerso's `agents/decks.md`, the Library page's deck contract and cover specification and its French, with this repository's own rules; where they disagree, RectoVerso's pages win and this file is corrected. The `CLAUDE.md` first proposed here, importing RectoVerso's page, isn't kept.
 
+## 2026-11-06 — 1.0.0, the first release learners get
+
+The owner (2026-11-06): the deck's first release in RectoVerso's Deck gallery is 1.0.0, after the owner's review, its tag and release on the owner's go. It has the same cards as the last prerelease, 0.2.0-rc.1: version, tag and release address move to 1.0.0 in `rectoverso.json`, the READMEs and the review page, and `status` says `release`. No `whatsNew` (nothing changed for a learner since 0.2.0-rc.1) and no gallery covers yet (the app shows placeholders until the deck's own). `contentModifiedAt` stays.
+
 ## 2026-11-06 — Periodic table gallery covers
 
 Simon Pinkas approved three compositions after reviewing their light and dark
@@ -46,3 +50,8 @@ galerie sur Duo et iPhone 17, en clair et en sombre. La première met Au (79)
 en valeur, la deuxième masque son symbole sous une lentille dépolie lisse et
 la troisième montre les 118 éléments. Les deux langues partagent les symboles
 et les numéros atomiques.
+
+## 2026-11-06 — 1.0.0 lists the gallery covers
+
+The owner approved the covers and the 1.0.0 release (2026-11-06), with no `whatsNew`: the cards are those of 0.2.0-rc.1. `rectoverso.json` lists `rv-periodic-table-cover-light-1.png` to `-3.png` for light mode and `rv-periodic-table-cover-dark-1.png` to `-3.png` for dark mode, in that order, in both languages: their symbols and numbers serve English and French. The release attaches the six PNGs beside the packages.
+
