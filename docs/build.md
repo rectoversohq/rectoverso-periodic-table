@@ -12,8 +12,8 @@ sidecar. Each build writes six optimized 2010 × 1340 PNGs from the masters in
 `artwork/covers/`. Keep generated files outside the checkout.
 
 Use `rv-periodic-table[-<language>]-cover[-<light|dark>]-<n>.svg` for each
-master and the same stem for its PNG. Use lowercase and number from 1 in display
-order. Include a language only when the cover contains words, with a matching
+master and the same stem for its PNG. Use lowercase and number consecutively from 1 in
+display order. Include a language only when the cover contains words, with a matching
 master for every shipped language. Include an appearance only when the art
 differs by appearance. The current designs use language-independent chemical
 symbols and numbers, with separate light and dark art.
@@ -33,7 +33,9 @@ table vectors. The three compositions show Au in focus, its symbol covered by a
 smooth frosted lens, and the whole table. The system SF Pro lettering is
 outlined from macOS’s `SFNS.ttf` (version `22.0d5e1`, SHA-256
 `44890958f3e0b997028121ed7c7a789f3f5cce227c7a93ce8f86ec0db26da571`).
-Builds need no installed font for the covers.
+Builds need no installed font for the covers. The authoring font is Apple
+software under its macOS license, separate from the compositions’ CC BY 4.0
+license. See [Apple’s font information](https://developer.apple.com/fonts/).
 
 | Approved master | SHA-256 |
 |---|---|

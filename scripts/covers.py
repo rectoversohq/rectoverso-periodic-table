@@ -15,6 +15,8 @@ from source_data import ROOT, read
 
 COVER_SIZE = (2010, 1340)
 MASTERS = ROOT / "artwork/covers"
+LOCAL_REFERENCES = ("#", "data:")
+CSS_URL = re.compile(r"""url\(\s*["']?([^"'\s)]+)""", re.IGNORECASE)
 
 
 def cover_pattern(meta, extension):
@@ -39,13 +41,24 @@ def render_covers(output):
                 raise ValueError(f"Invalid cover master name: {master.name}")
             svg = master.read_text(encoding="utf-8")
             for element in ElementTree.fromstring(svg).iter():
-                if element.tag.rsplit("}", 1)[-1] in {"text", "tspan", "textPath"}:
+                tag = element.tag.rsplit("}", 1)[-1]
+                if tag in {"text", "tspan", "textPath"}:
                     raise ValueError(f"Outline text in {master.name}")
                 for key, value in element.attrib.items():
-                    if key.rsplit("}", 1)[-1] == "href" and not value.startswith(
-                        ("#", "data:")
-                    ):
+                    if key.rsplit("}", 1)[
+                        -1
+                    ] == "href" and not value.strip().startswith(LOCAL_REFERENCES):
                         raise ValueError(f"External resource in {master.name}: {value}")
+                if tag == "style" and re.search(
+                    r"@import\b", element.text or "", re.IGNORECASE
+                ):
+                    raise ValueError(f"External resource in {master.name}: CSS import")
+                for value in (*element.attrib.values(), element.text or ""):
+                    for reference in CSS_URL.findall(value):
+                        if not reference.startswith(LOCAL_REFERENCES):
+                            raise ValueError(
+                                f"External resource in {master.name}: {reference}"
+                            )
             target = Path(temporary) / master.with_suffix(".png").name
             png = resvg_py.svg_to_bytes(
                 svg_string=svg,

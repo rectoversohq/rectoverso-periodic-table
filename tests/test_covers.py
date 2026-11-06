@@ -15,21 +15,33 @@ from covers import render_covers  # noqa: E402
 
 
 class CoverRenderer(unittest.TestCase):
-    def test_incompatible_master_aspect_ratio_leaves_no_png(self):
+    def assert_invalid_master(self, svg, message):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             masters = root / "masters"
             masters.mkdir()
-            (masters / "rv-periodic-table-cover-1.svg").write_text(
-                '<svg xmlns="http://www.w3.org/2000/svg" '
-                'width="100" height="100" viewBox="0 0 100 100">'
-                '<rect width="100" height="100" fill="#211e18"/></svg>'
-            )
+            (masters / "rv-periodic-table-cover-1.svg").write_text(svg)
             output = root / "output"
             with patch("covers.MASTERS", masters):
-                with self.assertRaisesRegex(ValueError, "3:2 viewport"):
+                with self.assertRaisesRegex(ValueError, message):
                     render_covers(output)
             self.assertEqual(list(output.glob("*.png")), [])
+
+    def test_incompatible_master_aspect_ratio_leaves_no_png(self):
+        self.assert_invalid_master(
+            '<svg xmlns="http://www.w3.org/2000/svg" '
+            'width="100" height="100" viewBox="0 0 100 100">'
+            '<rect width="100" height="100" fill="#211e18"/></svg>',
+            "3:2 viewport",
+        )
+
+    def test_external_style_url_is_rejected(self):
+        self.assert_invalid_master(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="201" height="134">'
+            '<style>rect { fill: url("other.svg#fill") }</style>'
+            '<rect width="201" height="134"/></svg>',
+            "External resource",
+        )
 
 
 class CoverCheck(unittest.TestCase):
@@ -79,6 +91,12 @@ class CoverCheck(unittest.TestCase):
                 self.assert_rejected(f"Invalid cover filename: {name}")
                 (self.output / name).unlink()
 
+    def test_cover_numbers_start_at_one_without_gaps(self):
+        self.add_cover("rv-periodic-table-cover-3.png")
+        self.assert_rejected("Cover numbers must run consecutively from 1")
+        (self.output / "rv-periodic-table-cover-1.png").unlink()
+        self.assert_rejected("Cover numbers must run consecutively from 1")
+
     def test_missing_appearance_is_rejected(self):
         (self.output / "rv-periodic-table-cover-1.png").unlink()
         self.add_cover("rv-periodic-table-cover-light-1.png")
@@ -109,7 +127,7 @@ class CoverCheck(unittest.TestCase):
 
     def test_minor_background_variation_and_art_outside_the_corner_are_allowed(self):
         self.add_cover(
-            "rv-periodic-table-cover-4.png", mark=((1608, 335), (37, 26, 27))
+            "rv-periodic-table-cover-2.png", mark=((1608, 335), (37, 26, 27))
         )
         self.add_cover(
             "rv-periodic-table-cover-1.png", mark=((1608, 336), (237, 230, 216))
@@ -127,7 +145,7 @@ class CoverCheck(unittest.TestCase):
     def test_localized_shared_appearance_covers_supply_both_modes(self):
         (self.output / "rv-periodic-table-cover-1.png").unlink()
         for language in ("en", "fr"):
-            self.add_cover(f"rv-periodic-table-{language}-cover-2.png")
+            self.add_cover(f"rv-periodic-table-{language}-cover-1.png")
         result = self.check()
         self.assertEqual(result.returncode, 0, result.stderr)
 

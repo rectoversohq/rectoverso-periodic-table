@@ -73,6 +73,10 @@ def verify(output):
                 f"{language} missing cover appearances: {', '.join(sorted(missing))}"
             )
 
+    numbers = sorted(map(int, language_scopes))
+    if numbers != list(range(1, len(numbers) + 1)):
+        raise ValueError("Cover numbers must run consecutively from 1")
+
     return digests
 
 

@@ -69,6 +69,8 @@ jobs:
           name: periodic-anki-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             ${{ runner.temp }}/periodic/artwork/artwork.json
+            ${{ runner.temp }}/periodic/packages/rv-periodic-table-*.png
+            ${{ runner.temp }}/periodic/rebuild/rv-periodic-table-*.png
             ${{ runner.temp }}/periodic/anki-check/report.json
             ${{ runner.temp }}/periodic/anki-packages/anki-validation.json
             ${{ runner.temp }}/periodic/rebuild-check/
