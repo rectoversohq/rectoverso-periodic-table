@@ -9,6 +9,7 @@ source/artwork.json, byte for byte, then writes the package and, beside it, its 
 (`.rectoverso.json`): the language's metadata from `rectoverso.json` with the package's bytes and
 SHA-256. `--artwork DIR` builds instead from a `scripts/artwork.py` output folder, unpinned: for a
 check on a machine with another font (the hosted CI), never for a release.
+Gallery cover PNGs are rendered separately beside the package.
 """
 
 import argparse
@@ -18,6 +19,7 @@ from pathlib import Path
 from anki.collection import Collection, ExportAnkiPackageOptions
 from anki.buildinfo import version as anki_version
 
+from covers import render_covers
 from source_data import (
     ARTWORK,
     ELEMENT_KINDS,
@@ -171,7 +173,7 @@ def pinned_pictures(font, folder):
 
 
 def build(lang, out, art_dir=None, font=FONT):
-    out.parent.mkdir(parents=True, exist_ok=True)
+    render_covers(out.parent)
     with tempfile.TemporaryDirectory(prefix="periodic-build-", dir=out.parent) as temp:
         if art_dir:
             record, pictures = art_dir / "artwork.json", art_dir

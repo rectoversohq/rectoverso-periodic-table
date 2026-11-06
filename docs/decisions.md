@@ -32,3 +32,17 @@ Le propriétaire revient sur les GUID compacts : comme dans tous les paquets d
 ## 2026-11-06 — One complete AGENTS.md for every agent, by kind of work
 
 The owner: a single `AGENTS.md`, read by any agent (Codex, Claude Code or another) and complete on its own, organized around the three kinds of work done here: deck authoring (the content), contract honoring (what RectoVerso's gallery and Anki read: rectoverso.json, identities, packages, versions and releases) and cover making (the gallery's pictures: the specification, the names, the masters, renderer and check). It restates RectoVerso's `agents/decks.md`, the Library page's deck contract and cover specification and its French, with this repository's own rules; where they disagree, RectoVerso's pages win and this file is corrected. The `CLAUDE.md` first proposed here, importing RectoVerso's page, isn't kept.
+
+## 2026-11-06 — Periodic table gallery covers
+
+Simon Pinkas approved three compositions after reviewing their light and dark
+versions together in the Duo and iPhone 17 gallery composites. The first
+highlights Au (79), the second hides its symbol under a smooth frosted lens, and
+the third shows all 118 elements. The separate appearance masters keep the
+deck’s two table palettes. Symbols and atomic numbers serve both languages.
+
+Simon Pinkas a validé les trois compositions après les avoir vues dans la
+galerie sur Duo et iPhone 17, en clair et en sombre. La première met Au (79)
+en valeur, la deuxième masque son symbole sous une lentille dépolie lisse et
+la troisième montre les 118 éléments. Les deux langues partagent les symboles
+et les numéros atomiques.
