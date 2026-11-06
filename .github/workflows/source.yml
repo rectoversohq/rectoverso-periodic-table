@@ -36,6 +36,17 @@ jobs:
             python scripts/build.py --language "$lang" --artwork "$RUNNER_TEMP/periodic/artwork" --out "$RUNNER_TEMP/periodic/packages/$file"
             python scripts/build.py --language "$lang" --artwork "$RUNNER_TEMP/periodic/artwork" --out "$RUNNER_TEMP/periodic/rebuild/$file"
           done
+      - name: Verify cover PNGs against the independent rebuild
+        run: |
+          python scripts/checks/verify-covers.py --output "$RUNNER_TEMP/periodic/packages" --compare "$RUNNER_TEMP/periodic/rebuild"
+      - name: Attach gallery cover PNGs for review
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: periodic-table-covers
+          path: ${{ runner.temp }}/periodic/packages/rv-periodic-table-*.png
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
       - name: Native import, editing, update and scheduling
         run: |
           python scripts/checks/validate_source.py --packages "$RUNNER_TEMP/periodic/packages" --update-packages "$RUNNER_TEMP/periodic/rebuild" --out "$RUNNER_TEMP/periodic/anki-check"

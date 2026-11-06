@@ -127,4 +127,4 @@ The pictures the gallery shows for this deck: in the featured box, a row's thumb
 - **Listed at release:** rectoverso.json's `covers` lists them per language and appearance, and the release attaches them with the packages; they reach the app with the deck's next release, never before.
 
 ### This deck's covers
-- **No covers yet:** the app shows placeholders until this deck releases its own. Build them as the specification above says, as Capitals' do (rectoversohq/rectoverso-capitals: scripts/covers.py, scripts/checks/verify-covers.py, tests/test_covers.py), once the owner has the designs.
+- **Six masters:** three designs in light and dark, shared by English and French. See [Building gallery covers](docs/build.md) for their provenance and rebuild commands.
