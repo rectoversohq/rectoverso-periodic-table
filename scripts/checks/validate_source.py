@@ -25,6 +25,7 @@ from build import (  # noqa: E402 — sibling source module, not installed.
     IDS,
     content_modified,
     detail,
+    element_guid,
     position,
 )
 
@@ -141,7 +142,7 @@ def validate_elements(col, lang, elements, names, occlusion):
             ids = ELEMENT_KINDS[kind][lang]
             note = col.get_note(
                 col.db.scalar(
-                    "select id from notes where guid=?", f"{ids['guid']}{z:03d}"
+                    "select id from notes where guid=?", element_guid(kind, lang, z)
                 )
             )
             assert (note.id, note.mid) == (ids["noteBase"] + z, ids["model"])

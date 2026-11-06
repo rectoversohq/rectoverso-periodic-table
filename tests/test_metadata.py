@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from source_data import IDS, inputs  # noqa: E402
+from source_data import HEADERS, IDS, inputs  # noqa: E402
 
 
 class MetadataTests(unittest.TestCase):
@@ -63,6 +63,32 @@ class MetadataTests(unittest.TestCase):
                 for picture in re.findall(r'<img\b[^>]*?\bsrc="([^"]+)"', field):
                     self.assertIn(picture, credited)
             self.assertNotEqual(deck["id"], types["occlusion"]["id"])
+
+    def test_guids_read_as_every_gallery_decks(self):
+        # The prefix, the language, then the note (RectoVerso's agents/decks.md): the table, and
+        # each element by its atomic number, then what its note asks.
+        self.assertEqual(self.meta["guidPrefix"], "rv-periodic-table")
+        self.assertNotIn("guidForm", self.meta)
+        asks = {"name-symbol": "symbol", "symbol-name": "name"}
+        for lang in self.meta["languages"]:
+            _, notes, _, _ = inputs(lang)
+            for note in notes:
+                if note["model"] == "occlusion":
+                    expected = f"rv-periodic-table-{lang}-table"
+                else:
+                    z, ask = note["atomicNumber"], asks[note["model"]]
+                    expected = f"rv-periodic-table-{lang}-{z:03d}-{ask}"
+                self.assertEqual(note["guid"], expected)
+                self.assertRegex(note["guid"], r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+            by_guid = {n["guid"]: n for n in notes}
+            # Gold: its symbol asked from its name, its name asked from its lit cell.
+            symbol = by_guid[f"rv-periodic-table-{lang}-079-symbol"]
+            name = by_guid[f"rv-periodic-table-{lang}-079-name"]
+            self.assertEqual(symbol["fields"]["Header"], HEADERS["name-symbol"][lang])
+            self.assertEqual(name["fields"]["Header"], HEADERS["symbol-name"][lang])
+            self.assertEqual(
+                (symbol["model"], name["model"]), ("name-symbol", "symbol-name")
+            )
 
     def test_pictures_are_pinned_and_rendered_not_committed(self):
         record = json.loads((ROOT / "source/artwork.json").read_text())

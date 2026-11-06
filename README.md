@@ -4,14 +4,14 @@
 
 An original, bilingual deck of the 118 elements, three cards each: the table with a symbol masked (**which symbol belongs here?**), the table with an element’s cell lit (**which element is this?**), and an element’s name (**what’s its symbol?**). The full element name and compact atomic-number, group and period facts follow each answer. English and French are separate packages built from one source. The 18-column figure has registered light/dark original and clean pairs; only symbol regions are removed.
 
-**Prerelease 0.1.0-rc.1.** [Download the English and French Anki packages](https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.1.0-rc.1). Original artwork and deck: © Simon Pinkas, **CC BY 4.0**. Factual Wikidata records: **CC0**. See [credits](NOTICE.md), [source and identity rules](docs/source.md), and [validation](docs/validation.md).
+**Prerelease 0.2.0-rc.1.** [Download the English and French Anki packages](https://github.com/rectoversohq/rectoverso-periodic-table/releases/tag/v0.2.0-rc.1). Its notes' GUIDs changed since 0.1.0-rc.1, so progress studied on 0.1.0-rc.1 doesn't carry over: imported into the same Anki profile, 0.2.0-rc.1's cards come in as new ones. Original artwork and deck: © Simon Pinkas, **CC BY 4.0**. Factual Wikidata records: **CC0**. See [credits](NOTICE.md), [source and identity rules](docs/source.md), and [validation](docs/validation.md).
 
 ## Get the source
 
 Clone the tagged source to reproduce this prerelease:
 
 ```sh
-git clone --branch v0.1.0-rc.1 https://github.com/rectoversohq/rectoverso-periodic-table.git
+git clone --branch v0.2.0-rc.1 https://github.com/rectoversohq/rectoverso-periodic-table.git
 cd rectoverso-periodic-table
 ```
 
@@ -48,7 +48,7 @@ Outputs: `Periodic-table-en.apkg`, `Tableau-periodique-fr.apkg`, each package's 
 
 ## Gallery metadata
 
-`rectoverso.json` follows RectoVerso's gallery layout ([simonpinkas/RectoVerso#690](https://github.com/simonpinkas/RectoVerso/issues/690)): the deck's title, subject, headline and description in English and French, its category (`sciences`), creator, license, sources, image credits, and for each language its package and its **sample** question, the gold cell Au (`rvPTenV1001/79`, `rvPTfrV1001/79`). Its GUIDs keep their compact form (`guidForm: compact`: the prefix `rvPT` and the language, joined), and its pictures are rendered by each build from the vectors in `artwork/` (`renderedPictures`). `scripts/source_data.py` expands one language's metadata and notes for RectoVerso's `scripts/gallery/decks.py`.
+`rectoverso.json` follows RectoVerso's gallery layout ([simonpinkas/RectoVerso#690](https://github.com/simonpinkas/RectoVerso/issues/690)): the deck's title, subject, headline and description in English and French, its category (`sciences`), creator, license, sources, image credits, and for each language its package and its **sample** question, the gold cell Au (`rv-periodic-table-en-table/79`, `rv-periodic-table-fr-table/79`). Its GUIDs read as every gallery deck's: the prefix `rv-periodic-table`, the language, then the note (`rv-periodic-table-en-079-name`, `rv-periodic-table-en-079-symbol`), and its pictures are rendered by each build from the vectors in `artwork/` (`renderedPictures`). `scripts/source_data.py` expands one language's metadata and notes for RectoVerso's `scripts/gallery/decks.py`.
 
 ## Update
 

@@ -17,25 +17,28 @@ FIELD = "RectoVerso Occlusion"
 # The pinned artwork record: the font, the renderer, the four pictures' hashes and sizes, the
 # regions, cells and canvas. The pictures themselves are rendered by each build (scripts/build.py).
 ARTWORK = ROOT / "source/artwork.json"
+# Every note's GUID is the deck's prefix, the language, then the note, in lowercase words and
+# hyphens (RectoVerso's agents/decks.md): rv-periodic-table-en-table, rv-periodic-table-en-079-name.
 IDS = {
     "en": {
         "deck": 619101000001,
         "model": 619102000001,
         "note": 619103000001,
-        "guid": "rvPTenV1001",
+        "guid": "rv-periodic-table-en-table",
         "cardBase": 619104100000,
     },
     "fr": {
         "deck": 619101000002,
         "model": 619102000002,
         "note": 619103000002,
-        "guid": "rvPTfrV1001",
+        "guid": "rv-periodic-table-fr-table",
         "cardBase": 619104200000,
     },
 }
 TITLES = {"en": "Periodic table", "fr": "Tableau périodique"}
 # One note per element and language for each added card kind (#5). The occlusion note above
-# keeps its identities; these never reuse its rows. Element z's note, card and GUID derive from z.
+# keeps its identities; these never reuse its rows. Element z's note, card and GUID derive from z:
+# its GUID names the element by its atomic number, then what the note asks (element_guid).
 ELEMENT_KINDS = {
     "name-symbol": {
         "en": {
@@ -44,7 +47,7 @@ ELEMENT_KINDS = {
             "fieldBase": 619105001100,
             "noteBase": 619103101000,
             "cardBase": 619104110000,
-            "guid": "rvPTenN",
+            "guid": "rv-periodic-table-en-{z:03d}-symbol",
         },
         "fr": {
             "model": 619102000012,
@@ -52,7 +55,7 @@ ELEMENT_KINDS = {
             "fieldBase": 619105002100,
             "noteBase": 619103201000,
             "cardBase": 619104210000,
-            "guid": "rvPTfrN",
+            "guid": "rv-periodic-table-fr-{z:03d}-symbol",
         },
     },
     "symbol-name": {
@@ -62,7 +65,7 @@ ELEMENT_KINDS = {
             "fieldBase": 619105001200,
             "noteBase": 619103102000,
             "cardBase": 619104120000,
-            "guid": "rvPTenL",
+            "guid": "rv-periodic-table-en-{z:03d}-name",
         },
         "fr": {
             "model": 619102000022,
@@ -70,7 +73,7 @@ ELEMENT_KINDS = {
             "fieldBase": 619105002200,
             "noteBase": 619103202000,
             "cardBase": 619104220000,
-            "guid": "rvPTfrL",
+            "guid": "rv-periodic-table-fr-{z:03d}-name",
         },
     },
 }
@@ -100,6 +103,11 @@ def content_modified():
     """
     stamp = read("rectoverso.json")["contentModifiedAt"]
     return int(datetime.fromisoformat(stamp.replace("Z", "+00:00")).timestamp())
+
+
+def element_guid(kind, lang, z):
+    """Element z's note of this kind: rv-periodic-table-en-079-symbol asks gold's symbol."""
+    return ELEMENT_KINDS[kind][lang]["guid"].format(z=z)
 
 
 def compact(data):
@@ -244,7 +252,7 @@ def element_notes(lang, elements, names, art):
         name, symbol, details = names[str(z)], e["symbol"], detail(e, lang)
         notes.append(
             {
-                "guid": f"{ELEMENT_KINDS['name-symbol'][lang]['guid']}{z:03d}",
+                "guid": element_guid("name-symbol", lang, z),
                 "model": "name-symbol",
                 "atomicNumber": z,
                 "fields": {
@@ -291,7 +299,7 @@ def element_notes(lang, elements, names, art):
         }
         notes.append(
             {
-                "guid": f"{ELEMENT_KINDS['symbol-name'][lang]['guid']}{z:03d}",
+                "guid": element_guid("symbol-name", lang, z),
                 "model": "symbol-name",
                 "atomicNumber": z,
                 "fields": {
