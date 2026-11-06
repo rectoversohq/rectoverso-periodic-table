@@ -27,3 +27,8 @@ The owner reversed the 2026-11-04 decision to keep the compact GUIDs ([simonpink
 ## Décisions du 5 novembre 2026, en français
 
 Le propriétaire revient sur les GUID compacts : comme dans tous les paquets de la galerie, chaque GUID est le préfixe `rv-periodic-table`, la langue, puis la note (`rv-periodic-table-fr-table`, `rv-periodic-table-fr-079-name`, `rv-periodic-table-fr-079-symbol`) ; `guidForm` disparaît. Publiée en 0.2.0-rc.1, la nouvelle version ne reprend pas la progression étudiée sur la 0.1.0-rc.1 : ses notes arrivent comme nouvelles. Les autres identifiants et le contenu des cartes ne changent pas.
+
+
+## 2026-11-06 — One complete AGENTS.md for every agent, by kind of work
+
+The owner: a single `AGENTS.md`, read by any agent (Codex, Claude Code or another) and complete on its own, organized around the three kinds of work done here: deck authoring (the content), contract honoring (what RectoVerso's gallery and Anki read: rectoverso.json, identities, packages, versions and releases) and cover making (the gallery's pictures: the specification, the names, the masters, renderer and check). It restates RectoVerso's `agents/decks.md`, the Library page's deck contract and cover specification and its French, with this repository's own rules; where they disagree, RectoVerso's pages win and this file is corrected. The `CLAUDE.md` first proposed here, importing RectoVerso's page, isn't kept.
