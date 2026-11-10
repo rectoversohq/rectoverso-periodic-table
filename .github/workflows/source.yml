@@ -13,10 +13,16 @@ jobs:
       QTWEBENGINE_CHROMIUM_FLAGS: --disable-gpu
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          submodules: true
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.14'
           cache: pip
+      # The deck contract, by the deck kit's own check (kit/, a submodule pinned to a tag), as
+      # RectoVerso's gallery takes a deck. Standard library only: it runs before anything is installed.
+      - name: The deck contract
+        run: python3 kit/check.py --rectoverso
       - run: python -m pip install -r requirements.txt ruff==0.14.3
       - run: |
           ruff format --check scripts tests
