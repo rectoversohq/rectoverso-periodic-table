@@ -82,6 +82,12 @@ At the repository's root, the deck's single source of truth, released with its p
 - **Every GUID reads the same way:** the deck's `guidPrefix`, then the language, then the note, in lowercase words and hyphens (`rv-flags-fr-npl-flag-place`). Never a form of the deck's own.
 - **Each language is a package of its own,** with ids of its own: adding or changing one language never touches another's progress.
 
+### Prerequisites
+- **A course whose cards build on each other says so card by card** (RectoVerso #876): in each note's "RectoVerso" payload, two optional lists, `requires` and `introduces`, of the deck's own tokens (lowercase words and digits, hyphens between them). The app's **Lesson mode** holds a card back until the cards that introduce what it requires have been answered, right or wrong.
+- **Only a card that teaches introduces;** a card requires everything it shows or asks that another card teaches, a figure's other visible items included. The source's own ordering data isn't the contract: what the package's payloads say is.
+- **RectoVerso's gallery check refuses** a list that isn't one of tokens, each once; a token no card of the same language's package introduces; a card that could never come (it waits for itself, or two cards wait for each other); and a deck's order that asks before it teaches.
+- **This deck declares none:** its cards stand alone, and it studies as any deck.
+
 ### The contract is RectoVerso's
 - **A new field, value or form** is a change to RectoVerso's contract, made there first, at once in every place that reads it (the gallery check, the app's catalog reader and its frozen fixture, the catalog writer, the Library page, a dated decision). A deck never uses one alone: what only the check knows, the app can't read.
 
